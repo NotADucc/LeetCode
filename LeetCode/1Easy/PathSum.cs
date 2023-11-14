@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 namespace LeetCode._1Easy
 {
     /*
-    Runtime: 91ms 61%
-    Memory: 42.3MB 36%
+    Runtime: 91ms 60.89%
+    Memory: 42.3MB 35.89%
      */
     public class PathSum : IRunProgram
     {
-        private record PathSumInput(TreeNode TreeNode, int TargetSum);
+        private record Input(TreeNode TreeNode, int TargetSum);
         public void Run()
         {
-            PathSumInput[] inputs = new PathSumInput[]
+            Input[] inputs = new Input[]
             {
                 //True
-                new PathSumInput(
+                new Input(
                     new TreeNode(5, new TreeNode(4, new TreeNode(11, new TreeNode(7), new TreeNode(2))), new TreeNode(8, new TreeNode(13), new TreeNode(4, null, new TreeNode(1))))
                 , 22)
                 //False
-                ,new PathSumInput(
+                ,new Input(
                     new TreeNode(1, new TreeNode(2), new TreeNode(3))
                 , 5)
             };

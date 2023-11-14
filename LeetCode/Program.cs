@@ -12,7 +12,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            IRunProgram run = new PathSum();
+            IRunProgram run = new IndexFirstOccurrenceString();
             run.Run();
         }
     }
