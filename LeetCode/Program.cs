@@ -13,8 +13,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            IRunProgram run = new MaxAchievableNumber();
-            run.Run();
+            Runner.RunLeetCodeSolution<MaxAchievableNumber>();
         }
     }
 }
