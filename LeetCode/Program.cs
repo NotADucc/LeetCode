@@ -13,7 +13,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            IRunProgram run = new DefangIPAddress();
+            IRunProgram run = new OriginalArrayPrefixXOR();
             run.Run();
         }
     }
