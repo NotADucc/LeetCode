@@ -13,7 +13,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            IRunProgram run = new Add2Numbers();
+            IRunProgram run = new DefangIPAddress();
             run.Run();
         }
     }
