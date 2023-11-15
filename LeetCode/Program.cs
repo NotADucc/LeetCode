@@ -13,7 +13,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            IRunProgram run = new OriginalArrayPrefixXOR();
+            IRunProgram run = new MaxAchievableNumber();
             run.Run();
         }
     }
