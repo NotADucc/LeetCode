@@ -13,7 +13,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            Runner.RunLeetCodeSolution<DivisibleAndNonDivisibleSumsDifference>();
+            Runner.RunLeetCodeSolution<EncodeDecodeTinyURL>();
         }
     }
 }
