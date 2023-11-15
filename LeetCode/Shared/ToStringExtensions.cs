@@ -14,10 +14,17 @@ namespace LeetCode.Shared
             {
                 return;
             }
+
+            if (input.Length == 0)
+            {
+                return;
+            }
+
             for (int i = 0; i < input.Length - 1; i++)
             {
                 Console.Write($"{input[i]}, ");
             }
+
             Console.WriteLine(input[^1]);
         }
     }

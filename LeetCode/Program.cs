@@ -13,7 +13,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            Runner.RunLeetCodeSolution<EncodeDecodeTinyURL>();
+            Runner.RunLeetCodeSolution<ShuffleTheArray>();
         }
     }
 }
