@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,8 @@ namespace LeetCode._1Easy
     Memory: 39.1MB 80.85%
 
     no built in
-    Runtime: 80ms 69.53%
-    Memory: 38.93MB 90.37%
+    Runtime: 78ms 78.73%
+    Memory: 39.22MB 48.83%
      */
     internal class RichestCustomer : IRunProgram
     {
@@ -69,12 +70,19 @@ namespace LeetCode._1Easy
         }
         public int SumArray(int[] arr) 
         {
-            int output = 0;
-            foreach (var item in arr)
+            var vSize = Vector<int>.Count;
+            int result = 0;
+            int i = 0;
+            for (; i <= arr.Length - vSize; i += vSize)
             {
-                output += item;
+                var v1 = new Vector<int>(arr, i);
+                result += Vector.Sum<int>(v1);
             }
-            return output;
+            for (; i < arr.Length; i++)
+            {
+                result += arr[i];
+            }
+            return result;
         }
     }
 }
