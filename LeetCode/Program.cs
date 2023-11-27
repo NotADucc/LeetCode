@@ -9,11 +9,11 @@ using LeetCode.Shared;
 
 namespace LeetCode
 {
-    public partial class Program
+    public class Program
     {
         public static void Main()
         {
-            Runner.RunLeetCodeSolution<ContainerWithMostWater>();
+            Runner.RunLeetCodeSolution<MaxDepthBinaryTree>();
         }
     }
 }
