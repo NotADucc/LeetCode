@@ -23,8 +23,14 @@ namespace LeetCode._2Medium
             }
         }
 
-        //TLE
         public int MaxArea(int[] height)
+        {
+            //TODO
+            return 0;
+        }
+
+        //TLE
+        public int MaxAreaBrute(int[] height)
         {
             int v = 0;
             int l = height.Length;
@@ -40,7 +46,5 @@ namespace LeetCode._2Medium
 
             return v;
         }
-
-        //TODO 2 Pointer
     }
 }
