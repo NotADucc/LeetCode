@@ -25,8 +25,25 @@ namespace LeetCode.CSharp
 
         public int MaxArea(int[] height)
         {
-            //TODO
-            return 0;
+            int output = 0;
+
+            int left = 0, right = height.Length - 1;
+
+            while (left < right)
+            {
+                int min = Math.Min(height[left], height[right]);
+                output = Math.Max(output, min * (right - left));
+                if (height[left] > height[right])
+                {
+                    right--;
+                }
+                else
+                {
+                    left++;
+                }
+            }
+
+            return output;
         }
 
         //TLE
