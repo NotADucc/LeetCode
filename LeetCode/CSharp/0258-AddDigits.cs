@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode
 {
     internal class AddDigits : IRunProgram
     {
@@ -21,16 +21,27 @@ namespace LeetCode._1Easy
 
             foreach (var input in inputs)
             {
-                Console.WriteLine(Method(input.Data));
+                Console.WriteLine(AddDigits(input.Data));
                 Console.WriteLine(input.Result);
                 Console.WriteLine();
             }
         }
 
-        public int Method(int num)
+        public int AddDigits(int num)
         {
-            //TODO: O(1)
-            return 0;
+            int output = 0;
+            while (num > 0)
+            {
+                output += num % 10;
+                num /= 10;
+
+                if (num == 0 && output >= 10)
+                {
+                    num = output;
+                    output = 0;
+                }
+            }
+            return output;
         }
     }
 }

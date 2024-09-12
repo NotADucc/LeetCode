@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode
 {
-    public class BinaryTreeInOrderTraversel : IRunProgram
+    internal class Solution0094 : IRunProgram
     {
         private record Input(TreeNode Root, List<int> Result);
         public void Run()
         {
             Input[] inputs = new Input[]
-{
+            {
                 new Input(new TreeNode(1, null, new TreeNode(2, new TreeNode(3))), new List<int>(){ 1, 3, 2 })
                 , 
-};
+            };
             foreach (var input in inputs)
             {
                 InorderTraversal(input.Root).Print();
@@ -26,24 +26,21 @@ namespace LeetCode._1Easy
         }
         public IList<int> InorderTraversal(TreeNode root)
         {
-            List<int> output = new List<int>();
-
-            Helper(root, output);
-
+            var output = new List<int>();
+            Helper(output, root);
             return output;
         }
-        private void Helper(TreeNode root, List<int> output)
+
+        private void Helper(List<int> output, TreeNode root)
         {
             if (root is null)
             {
                 return;
             }
 
-            Helper(root.left, output);
-
+            Helper(output, root.left);
             output.Add(root.val);
-
-            Helper(root.right, output);
+            Helper(output, root.right);
         }
     }
 }

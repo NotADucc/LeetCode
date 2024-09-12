@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.AddStrings
 {
-    public class AddStrings : IRunProgram
+    internal class Solution : IRunProgram
     {
         private record Input(string s1, string s2, string Result);
         public void Run()
@@ -21,13 +21,13 @@ namespace LeetCode._1Easy
 
             foreach (var input in inputs)
             {
-                Console.WriteLine(Method(input.s1, input.s2));
+                Console.WriteLine(AddStrings(input.s1, input.s2));
                 Console.WriteLine(input.Result);
                 Console.WriteLine();
             }
         }
         private const int _ASCII_CHAR_0 = 48;
-        public string Method(string num1, string num2)
+        public string AddStrings(string num1, string num2)
         {
             Stack<char> stack = new Stack<char>();
             string longerString = "";
@@ -38,7 +38,7 @@ namespace LeetCode._1Easy
                 shorterString = num1;
                 longerString = num2;
             }
-            else 
+            else
             {
                 shorterString = num2;
                 longerString = num1;
@@ -49,7 +49,6 @@ namespace LeetCode._1Easy
                 int g1 = shorterString[^i] - _ASCII_CHAR_0;
                 int g2 = longerString[^i] - _ASCII_CHAR_0;
                 int combined = g1 + g2 + carry;
-
                 carry = combined / 10;
                 combined = combined % 10;
                 stack.Push((char)(combined + _ASCII_CHAR_0));
@@ -59,7 +58,6 @@ namespace LeetCode._1Easy
             {
                 int g1 = longerString[^i] - _ASCII_CHAR_0;
                 int combined = g1 + carry;
-
                 carry = combined / 10;
                 combined = combined % 10;
                 stack.Push((char)(combined + _ASCII_CHAR_0));

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode
 {
-    public class SymmetricTree : IRunProgram
+    internal class Solution0101 : IRunProgram
     {
         private record Input(TreeNode Root, bool Result);
         public void Run()

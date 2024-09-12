@@ -5,13 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.GreatestNumberOfCandies
 {
-    /*
-    Runtime: 140ms 37.06%
-    Memory: 44.76MB 58.41%
-     */
-    internal class GreatestNumberOfCandies : IRunProgram
+    internal class Solution1431 : IRunProgram
     {
         private record Data(int[] arr, int e);
         private record Input(Data Data, IList<bool> Result);

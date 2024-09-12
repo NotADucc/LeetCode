@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.BestTimeToBuyAndSellStock
 {
-    public class BestTimeToBuyAndSellStock : IRunProgram
+    internal class Solution : IRunProgram
     {
         private record Input(int[] Data, int Result);
         public void Run()
@@ -33,8 +33,15 @@ namespace LeetCode._1Easy
         }
         public int MaxProfit(int[] prices)
         {
-            //TODO
-            return 0;
+            int lowest_day = prices[0];
+            int maximum_profit = 0;
+
+            foreach (var price in prices)
+            {
+                maximum_profit = Math.Max(maximum_profit, price - lowest_day);
+                lowest_day = Math.Min(lowest_day, price);
+            }
+            return maximum_profit;
         }
 
         public int MaxProfitBrute(int[] prices) 

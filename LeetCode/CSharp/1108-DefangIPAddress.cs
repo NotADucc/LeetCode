@@ -5,18 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode
 {
-    /*
-    Cheese
-    Runtime: 83ms 5.92%
-    Memory: 36.48MB 95,45%
-
-    Normal
-    Runtime: 63ms 96.28%
-    Memory: 37.03MB 16.39%
-    */
-    internal class DefangIPAddress : IRunProgram
+    internal class Solution1108 : IRunProgram
     {
         private record Input(string Case, string Result);
         public void Run()
@@ -28,16 +19,16 @@ namespace LeetCode._1Easy
             };
             foreach (var input in inputs)
             {
-                Console.WriteLine(DefangIPaddr2(input.Case));
+                Console.WriteLine(DefangIPaddr(input.Case));
                 Console.WriteLine(input.Result);
                 Console.WriteLine();
             }
         }
-        public string DefangIPaddr(string address)
+        public string DefangIPaddrCheese(string address)
         {
             return address.Replace(".", "[.]");
         }
-        public string DefangIPaddr2(string address)
+        public string DefangIPaddr(string address)
         {
             int l = address.Length;
             int j = 0;

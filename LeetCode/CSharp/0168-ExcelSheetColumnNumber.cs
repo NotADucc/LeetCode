@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.ExcelSheetColumnNumber
 {
-    public class ExcelSheetColumnNumber : IRunProgram
+    public class Solution0168 : IRunProgram
     {
         private record Input(int Data, string Result);
         public void Run()
@@ -29,11 +29,6 @@ namespace LeetCode._1Easy
             }
         }
 
-        //private readonly char[] chars = new char[]
-        //{
-        //    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-        //    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-        //};
 
         private const int _ASCII_BASE = 64;
 

@@ -5,12 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode
 {
-    /*
-    Runtime: 82ms 44.30%
-    Memory: 39.40MB 25.37%
-     */
     internal class UQMorseCodeWords : IRunProgram
     {
         private record Input(string[] Data, int Result);

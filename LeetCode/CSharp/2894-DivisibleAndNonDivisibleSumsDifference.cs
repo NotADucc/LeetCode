@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.DivisibleAndNonDivisibleSumsDifference
 {
     /*
     Runtime: 21ms 75.00%
     Memory: 26.74MB 48.58%
      */
-    internal class DivisibleAndNonDivisibleSumsDifference : IRunProgram
+    internal class Solution : IRunProgram
     {
         private record Data(int n, int m);
         private record Input(Data Data, int Result);

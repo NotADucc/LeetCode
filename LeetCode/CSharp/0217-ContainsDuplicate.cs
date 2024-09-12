@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.ContainsDuplicate
 {
-    public class ContainsDuplicate2 : IRunProgram
+    internal class Solution : IRunProgram
     {
         private record Input(int[] Data, int k, bool Result);
         public void Run()
@@ -21,26 +21,15 @@ namespace LeetCode._1Easy
 
             foreach (var input in inputs)
             {
-                Console.WriteLine(ContainsNearbyDuplicate(input.Data, input.k));
+                Console.WriteLine(ContainsDuplicate(input.Data, input.k));
                 Console.WriteLine(input.Result);
                 Console.WriteLine();
             }
         }
 
-        public bool ContainsNearbyDuplicate(int[] nums, int k)
+        public bool ContainsDuplicate(int[] nums)
         {
-            for (int i = 0; i < nums.Length; i++)
-            {
-                for (int j = i + 1; j < nums.Length && Math.Abs(i - j) <= k; j++)
-                {
-                    if (nums[i] == nums[j])
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            return new HashSet<int>(nums).Count != nums.Length;
         }
     }
 }

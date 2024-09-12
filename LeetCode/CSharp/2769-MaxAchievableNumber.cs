@@ -7,7 +7,7 @@ namespace LeetCode._1Easy
     Runtime: 22ms 62.88%
     Memory: 26.68MB 84.09%
     */
-    internal class MaxAchievableNumber : IRunProgram
+    internal class Solution2769 : IRunProgram
     {
         private record Input(int Num, int T, int Max);
         public void Run()
