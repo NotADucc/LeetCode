@@ -9,20 +9,10 @@ namespace LeetCode.CSharp
 {
     internal class Solution1108 : IRunProgram
     {
-        private record Input(string Case, string Result);
         public void Run()
         {
-            Input[] inputs = new Input[] 
-            { 
-                new Input("1.1.1.1","1[.]1[.]1[.]1")
-                , new Input("255.100.50.0", "255[.]100[.]50[.]0")
-            };
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(DefangIPaddr(input.Case));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            DefangIPaddr("1.1.1.1").Print();
+            DefangIPaddr("255.100.50.0").Print();
         }
         public string DefangIPaddrCheese(string address)
         {

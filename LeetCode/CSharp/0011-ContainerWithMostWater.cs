@@ -2,25 +2,13 @@
 
 namespace LeetCode.CSharp
 {
-    public class Solution0011 : IRunProgram
+    internal class Solution0011 : IRunProgram
     {
-        private record Input(int[] Data, int Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new int[]{ 1,8,6,2,5,4,8,3,7}, 49)
-                ,new Input(new int[]{ 1,1}, 1)
-                ,new Input(new int[]{ 1,8,6,2,5,4,8,3,8}, 56)
-                ,new Input(new int[]{ 2,3,4,5,18,17,6}, 17)
-            };
-
-            foreach (var item in inputs)
-            {
-                Console.WriteLine(MaxArea(item.Data));
-                Console.WriteLine(item.Result);
-                Console.WriteLine();
-            }
+            MaxArea(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 }).Print();
+            MaxArea(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 8 }).Print();
+            MaxArea(new int[] { 2, 3, 4, 5, 18, 17, 6 }).Print();
         }
 
         public int MaxArea(int[] height)

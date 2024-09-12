@@ -9,21 +9,10 @@ namespace LeetCode.CSharp
 {
     internal class Solution0804 : IRunProgram
     {
-        private record Input(string[] Data, int Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            { 
-                new Input(new string[] { "gin","zen","gig","msg" }, 2)
-                ,new Input(new string[] { "a" }, 1)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(UniqueMorseRepresentations(input.Data));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            UniqueMorseRepresentations(["gin", "zen", "gig", "msg"]);
+            UniqueMorseRepresentations(["a"]);
         }
 
         private Dictionary<char, string> _codes = new Dictionary<char, string>() 

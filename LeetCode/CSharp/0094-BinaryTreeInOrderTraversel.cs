@@ -9,20 +9,9 @@ namespace LeetCode.CSharp
 {
     internal class Solution0094 : IRunProgram
     {
-        private record Input(TreeNode Root, List<int> Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new TreeNode(1, null, new TreeNode(2, new TreeNode(3))), new List<int>(){ 1, 3, 2 })
-                , 
-            };
-            foreach (var input in inputs)
-            {
-                InorderTraversal(input.Root).Print();
-                input.Result.Print();
-                Console.WriteLine();
-            }
+            InorderTraversal(new TreeNode(1, null, new TreeNode(2, new TreeNode(3)))).Print();
         }
         public IList<int> InorderTraversal(TreeNode root)
         {

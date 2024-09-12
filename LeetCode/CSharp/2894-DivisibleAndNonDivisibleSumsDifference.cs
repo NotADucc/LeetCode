@@ -9,22 +9,10 @@ namespace LeetCode.CSharp
 {
     internal class Solution2894 : IRunProgram
     {
-        private record Data(int n, int m);
-        private record Input(Data Data, int Result);
         public void Run()
         {
-            Input[] inputs = new Input[] 
-            { 
-                new Input(new Data(10,3), 19)
-                , new Input(new Data(5, 6), 15)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(DifferenceOfSums(input.Data.n, input.Data.m));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            DifferenceOfSums(10, 3).Print();
+            DifferenceOfSums(5, 6).Print();
         }
 
         public int DifferenceOfSums(int n, int m)

@@ -9,27 +9,13 @@ namespace LeetCode.CSharp
 {
     internal class Solution0228 : IRunProgram
     {
-        private record Input(int[] Data, List<string> Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new int[]{ 0 }, new List<string>(){ "0" })
-                ,new Input(new int[]{ 0,1,2,4,5,7 }, new List<string>(){ "0->2", "4->5", "7" })
-                ,new Input(new int[]{ 0,2,3,4,6,8,9 }, new List<string>(){ "0", "2->4", "6", "8->9" })
-                ,new Input(new int[]{ 0,2,3,4,6,8,9,11 }, new List<string>(){ "0", "2->4", "6", "8->9", "11" })
-                ,new Input(new int[]{  }, new List<string>(){  })
-            };
-
-            foreach (var input in inputs)
-            {
-                Method(input.Data).Print();
-                input.Result.Print();
-                Console.WriteLine();
-            }
+            SummaryRanges([0]).Print();
+            SummaryRanges([0, 1, 2, 4, 5, 7]).Print();
         }
 
-        public List<string> Method(int[] nums)
+        public List<string> SummaryRanges(int[] nums)
         {
             List<string> output = new List<string>();
 

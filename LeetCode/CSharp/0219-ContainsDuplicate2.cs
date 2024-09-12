@@ -9,22 +9,9 @@ namespace LeetCode.CSharp
 {
     internal class Solution0219 : IRunProgram
     {
-        private record Input(int[] Data, int k, bool Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new int[]{ 1, 2, 3, 1}, 3, true)
-                ,new Input(new int[]{ 1, 0, 1, 1}, 1, true)
-                ,new Input(new int[]{ 1, 2, 3, 1, 2, 3}, 2, false)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(ContainsNearbyDuplicate(input.Data, input.k));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            ContainsNearbyDuplicate([1, 2, 3, 1], 3).Print();
         }
 
         public bool ContainsNearbyDuplicate(int[] nums, int k)

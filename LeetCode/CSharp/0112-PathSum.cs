@@ -7,27 +7,12 @@ using System.Threading.Tasks;
 
 namespace LeetCode.CSharp
 {
-    public class Solution0112 : IRunProgram
+    internal class Solution0112 : IRunProgram
     {
-        private record Input(TreeNode TreeNode, int TargetSum);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                //True
-                new Input(
-                    new TreeNode(5, new TreeNode(4, new TreeNode(11, new TreeNode(7), new TreeNode(2))), new TreeNode(8, new TreeNode(13), new TreeNode(4, null, new TreeNode(1))))
-                , 22)
-                //False
-                ,new Input(
-                    new TreeNode(1, new TreeNode(2), new TreeNode(3))
-                , 5)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(HasPathSum(input.TreeNode, input.TargetSum));
-            }
+            HasPathSum(new TreeNode(5, new TreeNode(4, new TreeNode(11, new TreeNode(7), new TreeNode(2))), new TreeNode(8, new TreeNode(13), new TreeNode(4, null, new TreeNode(1)))), 22).Print();
+            HasPathSum(new TreeNode(1, new TreeNode(2), new TreeNode(3)), 5).Print();
         }
 
         public static bool HasPathSum(TreeNode root, int targetSum)

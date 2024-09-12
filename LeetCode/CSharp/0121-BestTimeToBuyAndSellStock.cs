@@ -9,27 +9,12 @@ namespace LeetCode.CSharp
 {
     internal class Solution0121 : IRunProgram
     {
-        private record Input(int[] Data, int Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new int[]{ 7, 1, 5, 3, 6, 4 }, 5)
-                ,new Input(new int[]{ 7, 6, 4, 3, 1 }, 0)
-                ,new Input(new int[]{ 1 }, 0)
-                ,new Input(new int[]{ 2, 3, 4 }, 2)
-                ,new Input(new int[]{ 2, 1, 4 }, 3)
-                ,new Input(new int[]{ 2, 5, 1, 2, 4 }, 3)
-                ,new Input(new int[]{ 2, 4, 1 }, 2)
-                ,new Input(new int[]{ 3, 2, 6, 5, 0, 3 }, 4)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(MaxProfit(input.Data));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            MaxProfit([7, 1, 5, 3, 6, 4]).Print();
+            MaxProfit([7, 6, 4, 3, 1]).Print();
+            MaxProfit([1]).Print();
+            MaxProfit([2, 3, 4]).Print();
         }
         public int MaxProfit(int[] prices)
         {

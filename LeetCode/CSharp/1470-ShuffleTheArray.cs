@@ -9,21 +9,9 @@ namespace LeetCode.CSharp
 {
     internal class Solution1470 : IRunProgram
     {
-        private record Data(int[] arr, int n);
-        private record Input(Data Data, int[] Result);
         public void Run()
         {
-            Input[] inputs = new Input[] 
-            { 
-                new Input(new Data(new int[]{ 2,5,1,3,4,7 }, 3), new int[]{ 2,3,5,4,1,7 })
-            };
-
-            foreach (var input in inputs)
-            {
-                Shuffle(input.Data.arr, input.Data.n).Print();
-                input.Result.Print();
-                Console.WriteLine();
-            }
+            Shuffle([2, 5, 1, 3, 4, 7], 3).Print();
         }
         public int[] Shuffle(int[] nums, int n)
         {

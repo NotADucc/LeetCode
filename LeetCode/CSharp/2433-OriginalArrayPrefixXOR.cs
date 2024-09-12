@@ -10,21 +10,9 @@ namespace LeetCode.CSharp
 {
     internal class Solution2433 : IRunProgram
     {
-        private record Input(int[] Data, int[] Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new int[]{ 5, 2, 0, 3, 1 }, new int[]{ 5, 7, 2, 3, 2 })
-                ,
-            };
-
-            foreach (var input in inputs)
-            {
-                FindArray2Arr(input.Data).Print();
-                input.Result.Print();
-                Console.WriteLine();
-            }
+            FindArray([5, 2, 0, 3, 1]).Print();
         }
         public int[] FindArray(int[] pref)
         {

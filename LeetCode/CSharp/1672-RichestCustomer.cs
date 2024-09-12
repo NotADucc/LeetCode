@@ -11,22 +11,9 @@ namespace LeetCode.CSharp
 {
     internal class Solution1672 : IRunProgram
     {
-        private record Input(int[][] Data, int Result);
-
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new int[][]{ new int[]{ 1, 2, 3 }, new int[] { 3, 2, 1} }, 6)
-                ,new Input(new int[][]{ new int[]{ 1, 2, 3 }, new int[] { 3, 2, 2} }, 7)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(MaximumWealthNoBuiltInMethods(input.Data));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            MaximumWealth([[1, 2, 3],[3, 2, 1]]).Print();
         }
 
         public int MaximumWealth(int[][] accounts)

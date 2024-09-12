@@ -9,21 +9,10 @@ namespace LeetCode.CSharp
 {
     internal class Solution2413 : IRunProgram
     {
-        private record Input(int Data, int Result);
         public void Run()
         {
-            Input[] inputs = new Input[] 
-            { 
-                new Input(5, 10)
-                ,new Input(6, 6)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(SmallestEvenMultiple(input.Data));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            SmallestEvenMultiple(5).Print();
+            SmallestEvenMultiple(6).Print();
         }
 
         public int SmallestEvenMultiple(int n)

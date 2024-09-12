@@ -9,22 +9,11 @@ namespace LeetCode.CSharp
 {
     internal class Solution0258 : IRunProgram
     {
-        private record Input(int Data, int Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(38, 2)
-                , new Input(0, 0)
-                , new Input(41, 5)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(AddDigits(input.Data));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            AddDigits(38).Print();
+            AddDigits(0).Print();
+            AddDigits(41).Print();
         }
 
         public int AddDigits(int num)

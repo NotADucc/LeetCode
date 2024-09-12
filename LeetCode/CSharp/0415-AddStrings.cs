@@ -9,22 +9,10 @@ namespace LeetCode.CSharp
 {
     internal class Solution0415 : IRunProgram
     {
-        private record Input(string s1, string s2, string Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input("11","123","134")
-                , new Input("0", "0", "0")
-                , new Input("99", "1", "100")
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(AddStrings(input.s1, input.s2));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            AddStrings("11", "123").Print();
+            AddStrings("0", "0").Print();
         }
         private const int _ASCII_CHAR_0 = 48;
         public string AddStrings(string num1, string num2)

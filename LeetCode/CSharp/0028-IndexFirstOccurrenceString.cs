@@ -9,23 +9,11 @@ namespace LeetCode.CSharp
 {
     public class Solution0028 : IRunProgram
     {
-        private record Input(string HayStack, string Needle);
         public void Run()
         {
-            Input[] inputs = new Input[] 
-            {
-                //0
-                new Input("sadbutsad", "sad")
-                //-1
-                ,new Input("leetcode", "leeto")
-                //0
-                ,new Input("a", "a")
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(StrStr(input.HayStack, input.Needle));
-            }
+            StrStr("sadbutsad", "sad").Print();
+            StrStr("leetcode", "leeto").Print();
+            StrStr("a", "a").Print();
         }
 
         public static int StrStrCheese(string haystack, string needle)

@@ -9,21 +9,10 @@ namespace LeetCode.CSharp
 {
     internal class Solution0101 : IRunProgram
     {
-        private record Input(TreeNode Root, bool Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(2, new TreeNode(4), new TreeNode(3))), true)
-                , new Input(new TreeNode(1, new TreeNode(2, null, new TreeNode(3)), new TreeNode(2, null, new TreeNode(3))), false)
-                , new Input(new TreeNode(1, new TreeNode(2, new TreeNode(2)), new TreeNode(2, new TreeNode(2))), false)
-            };
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(IsSymmetric(input.Root));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            IsSymmetric(new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(2, new TreeNode(4), new TreeNode(3)))).Print();
+            IsSymmetric(new TreeNode(1, new TreeNode(2, null, new TreeNode(3)), new TreeNode(2, null, new TreeNode(3)))).Print();
         }
         public bool IsSymmetric(TreeNode root)
         {

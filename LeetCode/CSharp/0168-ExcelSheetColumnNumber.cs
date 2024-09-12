@@ -7,26 +7,13 @@ using System.Threading.Tasks;
 
 namespace LeetCode.CSharp
 {
-    public class Solution0168 : IRunProgram
+    internal class Solution0168 : IRunProgram
     {
-        private record Input(int Data, string Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(1, "A")
-                , new Input(2, "B")
-                , new Input(28, "AB")
-                , new Input(701, "ZY")
-                , new Input(70149123, "EWMDWE")
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(ConvertToTitle(input.Data));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            ConvertToTitle(1).Print();
+            ConvertToTitle(28).Print();
+            ConvertToTitle(70149123).Print();
         }
 
 
