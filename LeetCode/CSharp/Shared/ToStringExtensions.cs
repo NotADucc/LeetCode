@@ -47,12 +47,27 @@ namespace LeetCode.Shared
 
             for (int i = 0; i < input.Length; i++)
             {
-                for (int j = 0; j < input[i].Length - 1; j++)
-                {
-                    Console.Write($"{input[i][j]} | ");
-                }
-                Console.WriteLine();
+                input[i].Print();
             }
+        }
+
+        public static void PrintNested<T>(this IEnumerable<IEnumerable<T>> input)
+        {
+            if (input is null)
+            {
+                return;
+            }
+
+            if (input.Count() == 0)
+            {
+                return;
+            }
+
+            foreach (var item in input) 
+            { 
+                item.Print();
+            }
+            Console.WriteLine();
         }
 
         public static void Print<T>(this IEnumerable<T> input)
