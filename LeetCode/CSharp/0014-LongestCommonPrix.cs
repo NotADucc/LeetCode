@@ -12,10 +12,6 @@ namespace LeetCode.CSharp
 
         public string LongestCommonPrefix(string[] strs)
         {
-            if (strs.Length > 200 || strs.Length == 0)
-            {
-                return "";
-            }
             if (strs.Length == 1)
             {
                 return strs[0];
