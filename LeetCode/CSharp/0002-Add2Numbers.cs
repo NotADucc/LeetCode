@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode.CSharp
 {
-    public class Solution0002 : IRunProgram
+    internal class Solution0002 : IRunProgram
     {
         private record Input(ListNode l1, ListNode l2);
         public void Run()
