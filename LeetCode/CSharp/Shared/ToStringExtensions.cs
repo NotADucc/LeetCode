@@ -9,6 +9,10 @@ namespace LeetCode.Shared
 {
     public static class ToStringExtensions
     {
+        public static void Print<T>(this T input)
+        {
+            Console.WriteLine(input);
+        }
         public static void Print<T>(this T[] input)
         {
             if (input is null)
