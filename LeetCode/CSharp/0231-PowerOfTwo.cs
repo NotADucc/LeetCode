@@ -16,12 +16,7 @@ namespace LeetCode.CSharp
 
         public bool IsPowerOfTwo(int n)
         {
-            if (n == 1)
-            {
-                return true;
-            }
-            int i = Convert.ToString(n, 2).Length - 1;
-            return ((n >> i) << i) == n && n != 0 && n != -2147483648;
+            return int.PopCount(n) == 1 && n != -2147483648;
         }
     }
 }
