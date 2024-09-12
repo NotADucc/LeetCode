@@ -5,23 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.ContainsDuplicate
+namespace LeetCode.CSharp
 {
-    internal class Solution : IRunProgram
+    internal class Solution0217 : IRunProgram
     {
-        private record Input(int[] Data, int k, bool Result);
+        private record Input(int[] Data, bool Result);
         public void Run()
         {
             Input[] inputs = new Input[]
             {
-                new Input(new int[]{ 1, 2, 3, 1}, 3, true)
-                ,new Input(new int[]{ 1, 0, 1, 1}, 1, true)
-                ,new Input(new int[]{ 1, 2, 3, 1, 2, 3}, 2, false)
+                new Input(new int[]{ 1, 2, 3, 1}, true)
+                ,new Input(new int[]{ 1, 0, 1, 1}, true)
+                ,new Input(new int[]{ 1, 2, 3, 1, 2, 3}, false)
             };
 
             foreach (var input in inputs)
             {
-                Console.WriteLine(ContainsDuplicate(input.Data, input.k));
+                Console.WriteLine(ContainsDuplicate(input.Data));
                 Console.WriteLine(input.Result);
                 Console.WriteLine();
             }

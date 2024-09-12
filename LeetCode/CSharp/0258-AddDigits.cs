@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode
+namespace LeetCode.CSharp
 {
-    internal class AddDigits : IRunProgram
+    internal class Solution0258 : IRunProgram
     {
         private record Input(int Data, int Result);
         public void Run()

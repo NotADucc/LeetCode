@@ -5,13 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.CSharp
 {
-    /*
-    Runtime: 21ms 60.24%
-    Memory: 26.5MB 73%
-     */
-    internal class SmallestEvenNumber : IRunProgram
+    internal class Solution2413 : IRunProgram
     {
         private record Input(int Data, int Result);
         public void Run()

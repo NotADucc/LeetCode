@@ -1,12 +1,8 @@
 ﻿using LeetCode.Shared;
-using System.Reflection.Metadata.Ecma335;
 
-namespace LeetCode._1Easy
+
+namespace LeetCode.CSharp
 {
-    /*
-    Runtime: 22ms 62.88%
-    Memory: 26.68MB 84.09%
-    */
     internal class Solution2769 : IRunProgram
     {
         private record Input(int Num, int T, int Max);

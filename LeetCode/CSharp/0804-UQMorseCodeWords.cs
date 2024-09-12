@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode
+namespace LeetCode.CSharp
 {
-    internal class UQMorseCodeWords : IRunProgram
+    internal class Solution0804 : IRunProgram
     {
         private record Input(string[] Data, int Result);
         public void Run()

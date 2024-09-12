@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="3Hard\" />
+    <Compile Remove="3Hard\**" />
+    <EmbeddedResource Remove="3Hard\**" />
+    <None Remove="3Hard\**" />
   </ItemGroup>
 
 </Project>

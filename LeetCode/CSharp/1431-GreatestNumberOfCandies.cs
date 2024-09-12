@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.GreatestNumberOfCandies
+namespace LeetCode.CSharp
 {
     internal class Solution1431 : IRunProgram
     {

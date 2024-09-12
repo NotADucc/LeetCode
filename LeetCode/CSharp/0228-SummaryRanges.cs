@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode
+namespace LeetCode.CSharp
 {
     internal class Solution0228 : IRunProgram
     {

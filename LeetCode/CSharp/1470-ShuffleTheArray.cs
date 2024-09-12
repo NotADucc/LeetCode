@@ -5,13 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.CSharp
 {
-    /*
-    Runtime: 120ms 95.84%
-    Memory: 44.61MB 86,69%
-     */
-    internal class ShuffleTheArray : IRunProgram
+    internal class Solution1470 : IRunProgram
     {
         private record Data(int[] arr, int n);
         private record Input(Data Data, int[] Result);

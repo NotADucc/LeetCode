@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.ContainsDuplicate2
+namespace LeetCode.CSharp
 {
-    internal class Solution : IRunProgram
+    internal class Solution0219 : IRunProgram
     {
         private record Input(int[] Data, int k, bool Result);
         public void Run()

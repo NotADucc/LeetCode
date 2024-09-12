@@ -1,8 +1,8 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode._2Medium
+namespace LeetCode.CSharp
 {
-    public class ContainerWithMostWater : IRunProgram
+    public class Solution0011 : IRunProgram
     {
         private record Input(int[] Data, int Result);
         public void Run()

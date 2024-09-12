@@ -6,18 +6,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._2Medium
+namespace LeetCode.CSharp
 {
-    /*
-    temp
-    Runtime: 266ms 5.70%
-    Memory: 63.8MB 12.43% 
-    
-    2 arr
-    Runtime: 256ms 15.90%
-    Memory: 60.5MB 48.51%
-     */
-    internal class OriginalArrayPrefixXOR : IRunProgram
+    internal class Solution2433 : IRunProgram
     {
         private record Input(int[] Data, int[] Result);
         public void Run()

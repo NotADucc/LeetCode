@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode.ExcelSheetColumnNumber
+namespace LeetCode.CSharp
 {
     public class Solution0168 : IRunProgram
     {

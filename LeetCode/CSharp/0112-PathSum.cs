@@ -5,13 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.CSharp
 {
-    /*
-    Runtime: 91ms 60.89%
-    Memory: 42.3MB 35.89%
-     */
-    public class PathSum : IRunProgram
+    public class Solution0112 : IRunProgram
     {
         private record Input(TreeNode TreeNode, int TargetSum);
         public void Run()

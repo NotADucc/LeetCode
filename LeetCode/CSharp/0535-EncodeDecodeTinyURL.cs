@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._2Medium
+namespace LeetCode.CSharp
 {
-    internal class EncodeDecodeTinyURL : IRunProgram
+    internal class Solution0535 : IRunProgram
     {
         private record Input(string Data, string Result);
         public void Run()
         {
-            Input[] inputs = new Input[] 
-            { 
+            Input[] inputs = new Input[]
+            {
                 new Input("http://badge.example.net/beginner.aspx?aftermath=achiever&actor=air", "http://badge.example.net/beginner.aspx?aftermath=achiever&actor=air")
             };
 
-            foreach (Input input in inputs) 
+            foreach (Input input in inputs)
             {
                 var encoded = encode(input.Data);
                 Console.WriteLine(encoded);

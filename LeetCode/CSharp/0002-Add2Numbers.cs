@@ -5,19 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._2Medium
+namespace LeetCode.CSharp
 {
-    /*
-    Runtime: 84ms 77.08%
-    Memory: 49.57MB 41.48%
-     */
-    public class Add2Numbers : IRunProgram
+    public class Solution0002 : IRunProgram
     {
         private record Input(ListNode l1, ListNode l2);
         public void Run()
         {
-            Input[] inputs = new Input[] 
-            { 
+            Input[] inputs = new Input[]
+            {
                 new Input(new ListNode(2, new ListNode(4, new ListNode(3))), new ListNode(5, new ListNode(6, new ListNode(4))))
                 ,new Input(new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))))))), new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))
                 ,new Input(new ListNode(1, new ListNode(8)), new ListNode())
@@ -43,7 +39,7 @@ namespace LeetCode._2Medium
 
             if (overflow)
             {
-                l1 ??= new ListNode(0); 
+                l1 ??= new ListNode(0);
                 l2 ??= new ListNode(0);
                 l1.next ??= new ListNode(0);
                 l2.next ??= new ListNode(0);
@@ -54,7 +50,7 @@ namespace LeetCode._2Medium
             return new ListNode(total, AddTwoNumbers(l1?.next, l2?.next));
         }
 
-        public void Helper(int i1, int i2, out int total, out bool overflow) 
+        public void Helper(int i1, int i2, out int total, out bool overflow)
         {
             int temp = i1 + i2;
             overflow = temp >= 10;

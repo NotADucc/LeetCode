@@ -7,19 +7,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.CSharp
 {
-    /*
-    
-    All built in
-    Runtime: 84ms 44.66%
-    Memory: 39.1MB 80.85%
-
-    no built in
-    Runtime: 78ms 78.73%
-    Memory: 39.22MB 48.83%
-     */
-    internal class RichestCustomer : IRunProgram
+    internal class Solution1672 : IRunProgram
     {
         private record Input(int[][] Data, int Result);
 

@@ -5,18 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode._1Easy
+namespace LeetCode.CSharp
 {
-    /*
-    Cheese
-    Runtime: 49ms 94.65%
-    Memory: 37.1MB 16.88%
-
-    Normal
-    Runtime: 66ms 14.27%
-    Memory: 36.52MB 74.21%
-    */
-    public class IndexFirstOccurrenceString : IRunProgram
+    public class Solution0028 : IRunProgram
     {
         private record Input(string HayStack, string Needle);
         public void Run()
@@ -33,17 +24,17 @@ namespace LeetCode._1Easy
 
             foreach (var input in inputs)
             {
-                Console.WriteLine(StrStr2(input.HayStack, input.Needle));
+                Console.WriteLine(StrStr(input.HayStack, input.Needle));
             }
         }
 
-        public static int StrStr(string haystack, string needle)
+        public static int StrStrCheese(string haystack, string needle)
         {
             //cheese
             return haystack.IndexOf(needle);
         }
 
-        public static int StrStr2(string haystack, string needle)
+        public static int StrStr(string haystack, string needle)
         {
             for (int i = 0; i < haystack.Length; i++)
             {
