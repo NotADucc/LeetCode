@@ -15,24 +15,12 @@ namespace LeetCode.CSharp
         }
         public int CountNodes(TreeNode root)
         {
-            int total = 0;
-
             if (root is null)
             {
-                return total;
-            }
-            total++;
-            if (root.left is not null)
-            {
-                total += CountNodes(root.left);
+                return 0;
             }
 
-            if (root.right is not null)
-            {
-                total += CountNodes(root.right);
-            }
-
-            return total;
+            return CountNodes(root.left) + CountNodes(root.right) + 1;
         }
     }
 }
