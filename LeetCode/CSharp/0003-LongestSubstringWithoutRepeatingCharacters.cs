@@ -11,9 +11,9 @@ namespace LeetCode.CSharp
     {
         public void Run()
         {
-            Console.WriteLine(LengthOfLongestSubstring("abcabcbb"));
-            Console.WriteLine(LengthOfLongestSubstring("bbbbb"));
-            Console.WriteLine(LengthOfLongestSubstring("pwwkew"));
+            LengthOfLongestSubstring("abcabcbb").Print();
+            LengthOfLongestSubstring("bbbbb").Print();
+            LengthOfLongestSubstring("pwwkew").Print();
         }
 
         public int LengthOfLongestSubstring(string s)
