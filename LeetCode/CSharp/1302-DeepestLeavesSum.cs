@@ -1,47 +1,46 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1302 : IRunProgram
 {
-    internal class Solution1302 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        DeepestLeavesSum(new TreeNode(1, new TreeNode(2, new TreeNode(4, new TreeNode(7)), new TreeNode(5)), new TreeNode(3, null, new TreeNode(6, null, new TreeNode(8)))));
+    }
+    int maxDepth = 0;
+    int total = 0;
+    public int DeepestLeavesSum(TreeNode root)
+    {
+        maxDepth = 0;
+        total = 0;
+        GetDepth(root);
+        return total;
+    }
+
+    public void GetDepth(TreeNode root, int depth = 0)
+    {
+        depth++;
+
+        if (depth > maxDepth)
         {
-            DeepestLeavesSum(new TreeNode(1, new TreeNode(2, new TreeNode(4, new TreeNode(7)), new TreeNode(5)), new TreeNode(3, null, new TreeNode(6, null, new TreeNode(8)))));
-        }
-        int maxDepth = 0;
-        int total = 0;
-        public int DeepestLeavesSum(TreeNode root)
-        {
-            maxDepth = 0;
+            maxDepth = depth;
             total = 0;
-            GetDepth(root);
-            return total;
         }
 
-        public void GetDepth(TreeNode root, int depth = 0)
+        if (root.left is not null)
         {
-            depth++;
+            GetDepth(root.left, depth);
+        }
 
-            if (depth > maxDepth)
-            {
-                maxDepth = depth;
-                total = 0;
-            }
+        if (root.right is not null)
+        {
+            GetDepth(root.right, depth);
+        }
 
-            if (root.left is not null)
-            {
-                GetDepth(root.left, depth);
-            }
-
-            if (root.right is not null)
-            {
-                GetDepth(root.right, depth);
-            }
-
-            if (depth == maxDepth)
-            {
-                total += root.val;
-            }
+        if (depth == maxDepth)
+        {
+            total += root.val;
         }
     }
 }

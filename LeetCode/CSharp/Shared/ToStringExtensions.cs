@@ -1,81 +1,80 @@
-﻿namespace LeetCode.Shared
+﻿namespace LeetCode.Shared;
+
+public static class ToStringExtensions
 {
-    public static class ToStringExtensions
+    public static void Print<T>(this T input)
     {
-        public static void Print<T>(this T input)
+        Console.WriteLine(input);
+    }
+    public static void Print<T>(this T[] input)
+    {
+        if (input is null)
         {
-            Console.WriteLine(input);
-        }
-        public static void Print<T>(this T[] input)
-        {
-            if (input is null)
-            {
-                return;
-            }
-
-            if (input.Length == 0)
-            {
-                return;
-            }
-
-            for (int i = 0; i < input.Length - 1; i++)
-            {
-                Console.Write($"{input[i]}, ");
-            }
-
-            Console.WriteLine(input[^1]);
+            return;
         }
 
-        public static void Print<T>(this T[][] input)
+        if (input.Length == 0)
         {
-            if (input is null)
-            {
-                return;
-            }
-
-            if (input.Length == 0)
-            {
-                return;
-            }
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                input[i].Print();
-            }
+            return;
         }
 
-        public static void PrintNested<T>(this IEnumerable<IEnumerable<T>> input)
+        for (int i = 0; i < input.Length - 1; i++)
         {
-            if (input is null)
-            {
-                return;
-            }
-
-            if (input.Count() == 0)
-            {
-                return;
-            }
-
-            foreach (var item in input) 
-            { 
-                item.Print();
-            }
-            Console.WriteLine();
+            Console.Write($"{input[i]}, ");
         }
 
-        public static void Print<T>(this IEnumerable<T> input)
+        Console.WriteLine(input[^1]);
+    }
+
+    public static void Print<T>(this T[][] input)
+    {
+        if (input is null)
         {
-            if (input is null)
-            {
-                return;
-            }
-
-            if (input.Count() == 0)
-            {
-                return;
-            }
-
-            Console.WriteLine(string.Join(", ", input.Select(x => x)));
+            return;
         }
+
+        if (input.Length == 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            input[i].Print();
+        }
+    }
+
+    public static void PrintNested<T>(this IEnumerable<IEnumerable<T>> input)
+    {
+        if (input is null)
+        {
+            return;
+        }
+
+        if (input.Count() == 0)
+        {
+            return;
+        }
+
+        foreach (var item in input) 
+        { 
+            item.Print();
+        }
+        Console.WriteLine();
+    }
+
+    public static void Print<T>(this IEnumerable<T> input)
+    {
+        if (input is null)
+        {
+            return;
+        }
+
+        if (input.Count() == 0)
+        {
+            return;
+        }
+
+        Console.WriteLine(string.Join(", ", input.Select(x => x)));
     }
 }

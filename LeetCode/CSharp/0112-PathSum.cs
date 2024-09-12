@@ -1,62 +1,61 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0112 : IRunProgram
 {
-    internal class Solution0112 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        HasPathSum(new TreeNode(5, new TreeNode(4, new TreeNode(11, new TreeNode(7), new TreeNode(2))), new TreeNode(8, new TreeNode(13), new TreeNode(4, null, new TreeNode(1)))), 22).Print();
+        HasPathSum(new TreeNode(1, new TreeNode(2), new TreeNode(3)), 5).Print();
+    }
+
+    public static bool HasPathSum(TreeNode root, int targetSum)
+    {
+        if (root is null)
         {
-            HasPathSum(new TreeNode(5, new TreeNode(4, new TreeNode(11, new TreeNode(7), new TreeNode(2))), new TreeNode(8, new TreeNode(13), new TreeNode(4, null, new TreeNode(1)))), 22).Print();
-            HasPathSum(new TreeNode(1, new TreeNode(2), new TreeNode(3)), 5).Print();
+            return false;
         }
 
-        public static bool HasPathSum(TreeNode root, int targetSum)
+        if (root.val == targetSum && root.left is null && root.right is null)
         {
-            if (root is null)
-            {
-                return false;
-            }
-
-            if (root.val == targetSum && root.left is null && root.right is null)
-            {
-                return true;
-            }
-
-            return GetSum(root, root.val, targetSum);
+            return true;
         }
-        private static bool GetSum(TreeNode r, int c, int t)
+
+        return GetSum(root, root.val, targetSum);
+    }
+    private static bool GetSum(TreeNode r, int c, int t)
+    {
+        bool b = false;
+
+        if (r.left is not null)
         {
-            bool b = false;
+            int temp = r.left.val + c;
 
-            if (r.left is not null)
+            if (r.left.left is null && r.left.right is null)
             {
-                int temp = r.left.val + c;
-
-                if (r.left.left is null && r.left.right is null)
-                {
-                    b = temp == t;
-                }
-                if (!b)
-                {
-                    b = GetSum(r.left, temp, t);
-                }
+                b = temp == t;
             }
-
-            if (r.right is not null)
+            if (!b)
             {
-                int temp = r.right.val + c;
-
-                if (r.right.left is null && r.right.right is null)
-                {
-                    b = temp == t;
-                }
-                if (!b)
-                {
-                    b = GetSum(r.right, temp, t);
-                }
+                b = GetSum(r.left, temp, t);
             }
-
-            return b;
         }
+
+        if (r.right is not null)
+        {
+            int temp = r.right.val + c;
+
+            if (r.right.left is null && r.right.right is null)
+            {
+                b = temp == t;
+            }
+            if (!b)
+            {
+                b = GetSum(r.right, temp, t);
+            }
+        }
+
+        return b;
     }
 }

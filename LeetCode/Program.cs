@@ -1,13 +1,12 @@
 ﻿using LeetCode.CSharp;
 using LeetCode.Shared;
 
-namespace LeetCode
+namespace LeetCode;
+
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-            Runner.RunLeetCodeSolution<Solution0083>();
-        }
+        Runner.RunLeetCodeSolution<Solution0083>();
     }
 }

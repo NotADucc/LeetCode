@@ -1,7 +1,6 @@
-﻿namespace LeetCode.Shared
+﻿namespace LeetCode.Shared;
+
+public interface IRunProgram
 {
-    public interface IRunProgram
-    {
-        void Run();
-    }
+    void Run();
 }

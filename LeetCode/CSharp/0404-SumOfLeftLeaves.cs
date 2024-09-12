@@ -1,28 +1,27 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0404 : IRunProgram
 {
-    internal class Solution0404 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        SumOfLeftLeaves(new TreeNode(1, new TreeNode(5))).Print();
+        SumOfLeftLeaves(new TreeNode(1)).Print();
+    }
+
+    public int SumOfLeftLeaves(TreeNode root, bool is_left = false)
+    {
+        if (root is null)
         {
-            SumOfLeftLeaves(new TreeNode(1, new TreeNode(5))).Print();
-            SumOfLeftLeaves(new TreeNode(1)).Print();
+            return 0;
         }
 
-        public int SumOfLeftLeaves(TreeNode root, bool is_left = false)
+        if (root.left is null && root.right is null && is_left)
         {
-            if (root is null)
-            {
-                return 0;
-            }
-
-            if (root.left is null && root.right is null && is_left)
-            {
-                return root.val;
-            }
-
-            return SumOfLeftLeaves(root.left, true) + SumOfLeftLeaves(root.right, false);
+            return root.val;
         }
+
+        return SumOfLeftLeaves(root.left, true) + SumOfLeftLeaves(root.right, false);
     }
 }

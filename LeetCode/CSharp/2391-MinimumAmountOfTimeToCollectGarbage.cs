@@ -1,64 +1,63 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2391 : IRunProgram
 {
-    internal class Solution2391 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        GarbageCollection(["G", "P", "GP", "GG"], [2, 4, 3]).Print();
+    }
+    public int GarbageCollection(string[] garbage, int[] travel)
+    {
+        int output = 0;
+        int potentialGlass = 0, potentialPaper = 0, potentialMetal = 0;
+        for (int i = 0; i < garbage.Length; i++)
         {
-            GarbageCollection(["G", "P", "GP", "GG"], [2, 4, 3]).Print();
-        }
-        public int GarbageCollection(string[] garbage, int[] travel)
-        {
-            int output = 0;
-            int potentialGlass = 0, potentialPaper = 0, potentialMetal = 0;
-            for (int i = 0; i < garbage.Length; i++)
+            int travelCost = i == 0 ? 0 : travel[i - 1];
+
+            int glassCount = CountAmount(garbage[i].AsSpan(), 'G');
+            int paperCount = CountAmount(garbage[i].AsSpan(), 'P');
+            int metalCount = CountAmount(garbage[i].AsSpan(), 'M');
+
+            output += glassCount + paperCount + metalCount;
+
+            potentialGlass += travelCost;
+            potentialPaper += travelCost;
+            potentialMetal += travelCost;
+
+            if (glassCount != 0)
             {
-                int travelCost = i == 0 ? 0 : travel[i - 1];
-
-                int glassCount = CountAmount(garbage[i].AsSpan(), 'G');
-                int paperCount = CountAmount(garbage[i].AsSpan(), 'P');
-                int metalCount = CountAmount(garbage[i].AsSpan(), 'M');
-
-                output += glassCount + paperCount + metalCount;
-
-                potentialGlass += travelCost;
-                potentialPaper += travelCost;
-                potentialMetal += travelCost;
-
-                if (glassCount != 0)
-                {
-                    output += potentialGlass;
-                    potentialGlass = 0;
-                }
-                if (paperCount != 0)
-                {
-                    output += potentialPaper;
-                    potentialPaper = 0;
-                }
-                if (metalCount != 0)
-                {
-                    output += potentialMetal;
-                    potentialMetal = 0;
-                }
+                output += potentialGlass;
+                potentialGlass = 0;
             }
-
-            return output;
-        }
-
-        private int CountAmount(ReadOnlySpan<char> s, char ch)
-        {
-            int output = 0;
-
-            foreach (var sCh in s)
+            if (paperCount != 0)
             {
-                if (sCh.Equals(ch))
-                {
-                    output++;
-                }
+                output += potentialPaper;
+                potentialPaper = 0;
             }
-
-            return output;
+            if (metalCount != 0)
+            {
+                output += potentialMetal;
+                potentialMetal = 0;
+            }
         }
+
+        return output;
+    }
+
+    private int CountAmount(ReadOnlySpan<char> s, char ch)
+    {
+        int output = 0;
+
+        foreach (var sCh in s)
+        {
+            if (sCh.Equals(ch))
+            {
+                output++;
+            }
+        }
+
+        return output;
     }
 }

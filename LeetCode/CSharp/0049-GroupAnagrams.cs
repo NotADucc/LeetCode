@@ -1,30 +1,29 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+public class Solution0049 : IRunProgram
 {
-    public class Solution0049 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            GroupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]).PrintNested();
-            GroupAnagrams(["a"]).PrintNested();
-            GroupAnagrams([""]).PrintNested();
-        }
+        GroupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]).PrintNested();
+        GroupAnagrams(["a"]).PrintNested();
+        GroupAnagrams([""]).PrintNested();
+    }
 
-        public IList<IList<string>> GroupAnagrams(string[] strs)
-        {
-            var dct = new Dictionary<int, IList<string>>();
+    public IList<IList<string>> GroupAnagrams(string[] strs)
+    {
+        var dct = new Dictionary<int, IList<string>>();
 
-            for (int i = 0; i < strs.Length; i++)
+        for (int i = 0; i < strs.Length; i++)
+        {
+            var hash = HashCode.Combine(string.Concat(strs[i].OrderBy(x => x)));
+            if (!dct.TryAdd(hash, new List<string>() { strs[i] }))
             {
-                var hash = HashCode.Combine(string.Concat(strs[i].OrderBy(x => x)));
-                if (!dct.TryAdd(hash, new List<string>() { strs[i] }))
-                {
-                    dct[hash].Add(strs[i]);
-                }
+                dct[hash].Add(strs[i]);
             }
-
-            return dct.Values.ToList();
         }
+
+        return dct.Values.ToList();
     }
 }

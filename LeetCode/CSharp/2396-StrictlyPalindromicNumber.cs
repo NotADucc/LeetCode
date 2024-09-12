@@ -1,16 +1,15 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2396 : IRunProgram
 {
-    internal class Solution2396 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            IsStrictlyPalindromic(2).Print();
-        }
-        public bool IsStrictlyPalindromic(int n)
-        {
-            return false;
-        }
+        IsStrictlyPalindromic(2).Print();
+    }
+    public bool IsStrictlyPalindromic(int n)
+    {
+        return false;
     }
 }

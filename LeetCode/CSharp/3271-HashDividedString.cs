@@ -1,29 +1,28 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution3271 : IRunProgram
 {
-    internal class Solution3271 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            StringHash("abcd", 2).Print();
-        }
+        StringHash("abcd", 2).Print();
+    }
 
-        public string StringHash(string s, int k)
-        {
-            Span<char> span = stackalloc char[s.Length / k];
+    public string StringHash(string s, int k)
+    {
+        Span<char> span = stackalloc char[s.Length / k];
 
-            for (int i = 0; i < s.Length; i += k)
+        for (int i = 0; i < s.Length; i += k)
+        {
+            int c = 0;
+            for (int j = 0; j < k; j++)
             {
-                int c = 0;
-                for (int j = 0; j < k; j++)
-                {
-                    c += s[i + j] - 'a';
-                }
-                span[i / k] = (char)(c % 26 + 'a');
+                c += s[i + j] - 'a';
             }
-
-            return span.ToString();
+            span[i / k] = (char)(c % 26 + 'a');
         }
+
+        return span.ToString();
     }
 }

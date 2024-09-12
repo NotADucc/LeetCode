@@ -1,32 +1,31 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0933: IRunProgram
 {
-    internal class Solution0933: IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            
-        }
+        
+    }
+}
+
+public class RecentCounter
+{
+    Queue<int> counter;
+    public RecentCounter()
+    {
+        counter = new Queue<int>();
     }
 
-    public class RecentCounter
+    public int Ping(int t)
     {
-        Queue<int> counter;
-        public RecentCounter()
+        int low = Math.Max(t - 3_000, 0);
+        while (counter.Count > 0 && counter.Peek() < low)
         {
-            counter = new Queue<int>();
+            counter.Dequeue();
         }
-
-        public int Ping(int t)
-        {
-            int low = Math.Max(t - 3_000, 0);
-            while (counter.Count > 0 && counter.Peek() < low)
-            {
-                counter.Dequeue();
-            }
-            counter.Enqueue(t);
-            return counter.Count;
-        }
+        counter.Enqueue(t);
+        return counter.Count;
     }
 }

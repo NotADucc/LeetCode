@@ -1,31 +1,30 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
-{
-    internal class Solution1684 : IRunProgram
-    {
-        public void Run()
-        {
-            CountConsistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"]).Print();
-        }
+namespace LeetCode.CSharp;
 
-        public int CountConsistentStrings(string allowed, string[] words)
+internal class Solution1684 : IRunProgram
+{
+    public void Run()
+    {
+        CountConsistentStrings("ab", ["ad", "bd", "aaab", "baa", "badab"]).Print();
+    }
+
+    public int CountConsistentStrings(string allowed, string[] words)
+    {
+        int output = 0;
+        for (int i = 0; i < words.Length; i++)
         {
-            int output = 0;
-            for (int i = 0; i < words.Length; i++)
+            output++;
+            for (int j = 0; j < words[i].Length; j++)
             {
-                output++;
-                for (int j = 0; j < words[i].Length; j++)
+                if (!allowed.Contains(words[i][j]))
                 {
-                    if (!allowed.Contains(words[i][j]))
-                    {
-                        output--;
-                        break;
-                    }
+                    output--;
+                    break;
                 }
             }
-
-            return output;
         }
+
+        return output;
     }
 }

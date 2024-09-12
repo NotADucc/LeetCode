@@ -1,17 +1,16 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
-{
-    internal class Solution2220 : IRunProgram
-    {
-        public void Run()
-        {
-            MinBitFlips(10, 7).Print();
-        }
+namespace LeetCode.CSharp;
 
-        public int MinBitFlips(int start, int goal)
-        {
-            return int.PopCount(start ^ goal);
-        }
+internal class Solution2220 : IRunProgram
+{
+    public void Run()
+    {
+        MinBitFlips(10, 7).Print();
+    }
+
+    public int MinBitFlips(int start, int goal)
+    {
+        return int.PopCount(start ^ goal);
     }
 }

@@ -1,28 +1,27 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2011 : IRunProgram
 {
-    internal class Solution2011 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        FinalValueAfterOperations(["--X", "X++", "X++"]).Print();
+    }
+    public int FinalValueAfterOperations(string[] operations)
+    {
+        int x = 0;
+        foreach (var item in operations)
         {
-            FinalValueAfterOperations(["--X", "X++", "X++"]).Print();
-        }
-        public int FinalValueAfterOperations(string[] operations)
-        {
-            int x = 0;
-            foreach (var item in operations)
+            if (item[0] == '-' || item[^1] == '-')
             {
-                if (item[0] == '-' || item[^1] == '-')
-                {
-                    x--;
-                }
-                else
-                {
-                    x++;
-                }
+                x--;
             }
-            return x;
+            else
+            {
+                x++;
+            }
         }
+        return x;
     }
 }

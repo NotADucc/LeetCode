@@ -1,26 +1,25 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0347 : IRunProgram
 {
-    internal class Solution0347 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        TopKFrequent([1, 1, 1, 2, 2, 3], 2);
+        TopKFrequent([1], 1);
+    }
+
+    public int[] TopKFrequent(int[] nums, int k)
+    {
+        var dct = new Dictionary<int, int>();
+
+        foreach (int num in nums)
         {
-            TopKFrequent([1, 1, 1, 2, 2, 3], 2);
-            TopKFrequent([1], 1);
+            dct.TryAdd(num, 0);
+            dct[num]++;
         }
 
-        public int[] TopKFrequent(int[] nums, int k)
-        {
-            var dct = new Dictionary<int, int>();
-
-            foreach (int num in nums)
-            {
-                dct.TryAdd(num, 0);
-                dct[num]++;
-            }
-
-            return dct.OrderByDescending(x => x.Value).Select(x => x.Key).Take(k).ToArray();
-        }
+        return dct.OrderByDescending(x => x.Value).Select(x => x.Key).Take(k).ToArray();
     }
 }

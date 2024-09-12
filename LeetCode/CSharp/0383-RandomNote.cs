@@ -1,42 +1,41 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0383 : IRunProgram
 {
-    internal class Solution0383 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        CanConstruct("a", "b").Print();
+        CanConstruct("aa", "ab").Print();
+        CanConstruct("aa", "aab").Print();
+    }
+
+    public bool CanConstruct(string ransomNote, string magazine)
+    {
+        if (magazine.Length < ransomNote.Length)
         {
-            CanConstruct("a", "b").Print();
-            CanConstruct("aa", "ab").Print();
-            CanConstruct("aa", "aab").Print();
+            return false;
         }
 
-        public bool CanConstruct(string ransomNote, string magazine)
+        Span<char> ransomSpan = stackalloc char[ransomNote.Length];
+        ransomNote.AsSpan().CopyTo(ransomSpan);
+
+        Span<char> magazineSpan = stackalloc char[magazine.Length];
+        magazine.AsSpan().CopyTo(magazineSpan);
+
+        ransomSpan.Sort();
+        magazineSpan.Sort();
+
+        int ransomIndex = 0;
+        for (int i = 0; i < magazine.Length && ransomIndex < ransomSpan.Length; i++)
         {
-            if (magazine.Length < ransomNote.Length)
+            if (magazineSpan[i] == ransomSpan[ransomIndex])
             {
-                return false;
+                ransomIndex++;
             }
-
-            Span<char> ransomSpan = stackalloc char[ransomNote.Length];
-            ransomNote.AsSpan().CopyTo(ransomSpan);
-
-            Span<char> magazineSpan = stackalloc char[magazine.Length];
-            magazine.AsSpan().CopyTo(magazineSpan);
-
-            ransomSpan.Sort();
-            magazineSpan.Sort();
-
-            int ransomIndex = 0;
-            for (int i = 0; i < magazine.Length && ransomIndex < ransomSpan.Length; i++)
-            {
-                if (magazineSpan[i] == ransomSpan[ransomIndex])
-                {
-                    ransomIndex++;
-                }
-            }
-
-            return ransomIndex == ransomNote.Length;
         }
+
+        return ransomIndex == ransomNote.Length;
     }
 }

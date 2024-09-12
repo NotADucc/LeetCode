@@ -1,33 +1,32 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0226 : IRunProgram
 {
-    internal class Solution0226 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        InvertTree(new TreeNode(1, new TreeNode(2), new TreeNode(3))).Print();
+    }
+
+    public TreeNode InvertTree(TreeNode root)
+    {
+        Invert(root);
+        return root;
+    }
+
+    void Invert(TreeNode root)
+    {
+        if (root is null)
         {
-            InvertTree(new TreeNode(1, new TreeNode(2), new TreeNode(3))).Print();
+            return;
         }
 
-        public TreeNode InvertTree(TreeNode root)
-        {
-            Invert(root);
-            return root;
-        }
+        var temp = root.right;
+        root.right = root.left;
+        root.left = temp;
 
-        void Invert(TreeNode root)
-        {
-            if (root is null)
-            {
-                return;
-            }
-
-            var temp = root.right;
-            root.right = root.left;
-            root.left = temp;
-
-            Invert(root.left);
-            Invert(root.right);
-        }
+        Invert(root.left);
+        Invert(root.right);
     }
 }

@@ -1,41 +1,40 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0566 : IRunProgram
 {
-    internal class Solution0566 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        MatrixReshape([[1, 2], [3, 4]], 1, 4).Print();
+        MatrixReshape([[1, 2], [3, 4]], 4, 1).Print();
+    }
+    public int[][] MatrixReshape(int[][] mat, int r, int c)
+    {
+        if (mat.Length == r || (mat.Length * mat[0].Length != r * c))
         {
-            MatrixReshape([[1, 2], [3, 4]], 1, 4).Print();
-            MatrixReshape([[1, 2], [3, 4]], 4, 1).Print();
+            return mat;
         }
-        public int[][] MatrixReshape(int[][] mat, int r, int c)
-        {
-            if (mat.Length == r || (mat.Length * mat[0].Length != r * c))
-            {
-                return mat;
-            }
-            int[][] output = new int[r][];
+        int[][] output = new int[r][];
 
-            for (int i = 0; i < mat.Length; i++)
+        for (int i = 0; i < mat.Length; i++)
+        {
+            for (int j = 0; j < mat[i].Length; j++)
             {
-                for (int j = 0; j < mat[i].Length; j++)
+                int index = i * mat[i].Length + j;
+
+                int row = index / c;
+                int col = index - (row * c);
+
+                if (output[row] is null)
                 {
-                    int index = i * mat[i].Length + j;
-
-                    int row = index / c;
-                    int col = index - (row * c);
-
-                    if (output[row] is null)
-                    {
-                        output[row] = new int[c];
-                    }
-
-                    output[row][col] = mat[i][j];
+                    output[row] = new int[c];
                 }
-            }
 
-            return output;
+                output[row][col] = mat[i][j];
+            }
         }
+
+        return output;
     }
 }

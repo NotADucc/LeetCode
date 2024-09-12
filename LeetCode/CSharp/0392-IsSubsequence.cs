@@ -1,37 +1,36 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0392 : IRunProgram
 {
-    internal class Solution0392 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        IsSubsequence("abc", "ahbgdc").Print();
+        IsSubsequence("axc", "ahbgdc").Print();
+    }
+
+    public bool IsSubsequence(string s, string t)
+    {
+        if (t.Length == 0)
         {
-            IsSubsequence("abc", "ahbgdc").Print();
-            IsSubsequence("axc", "ahbgdc").Print();
+            return s.Length == t.Length;
         }
 
-        public bool IsSubsequence(string s, string t)
+        int i = 0;
+        int j = 0;
+
+        while (i < s.Length && j < t.Length)
         {
-            if (t.Length == 0)
+            if (s[i] != t[j])
             {
-                return s.Length == t.Length;
-            }
-
-            int i = 0;
-            int j = 0;
-
-            while (i < s.Length && j < t.Length)
-            {
-                if (s[i] != t[j])
-                {
-                    j++;
-                    continue;
-                }
-                i++;
                 j++;
+                continue;
             }
-
-            return i == s.Length;
+            i++;
+            j++;
         }
+
+        return i == s.Length;
     }
 }

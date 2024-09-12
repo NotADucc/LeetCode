@@ -1,31 +1,30 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2553 : IRunProgram
 {
-    internal class Solution2553 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            SeparateDigits([13, 25, 83, 77]).Print();
-        }
+        SeparateDigits([13, 25, 83, 77]).Print();
+    }
 
-        public int[] SeparateDigits(int[] nums)
+    public int[] SeparateDigits(int[] nums)
+    {
+        var output = new List<int>();
+        int list_index = 0;
+        for (int i = 0; i < nums.Length; i++)
         {
-            var output = new List<int>();
-            int list_index = 0;
-            for (int i = 0; i < nums.Length; i++)
+            int add = 0;
+            while (nums[i] > 0)
             {
-                int add = 0;
-                while (nums[i] > 0)
-                {
-                    output.Insert(list_index, nums[i] % 10);
-                    nums[i] /= 10;
-                    add++;
-                }
-                list_index += add;
+                output.Insert(list_index, nums[i] % 10);
+                nums[i] /= 10;
+                add++;
             }
-
-            return output.ToArray();
+            list_index += add;
         }
+
+        return output.ToArray();
     }
 }

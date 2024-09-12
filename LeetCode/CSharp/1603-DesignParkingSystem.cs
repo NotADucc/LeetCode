@@ -1,33 +1,32 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1603 : IRunProgram
 {
-    internal class Solution1603 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
 
-        }
     }
-    public class ParkingSystem
+}
+public class ParkingSystem
+{
+    private int[] spces = new int[] { 0, 0, 0 };
+
+    public ParkingSystem(int big, int medium, int small)
     {
-        private int[] spces = new int[] { 0, 0, 0 };
+        spces[0] = big;
+        spces[1] = medium;
+        spces[2] = small;
+    }
 
-        public ParkingSystem(int big, int medium, int small)
+    public bool AddCar(int carType)
+    {
+        if (spces[carType - 1] <= 0)
         {
-            spces[0] = big;
-            spces[1] = medium;
-            spces[2] = small;
+            return false;
         }
-
-        public bool AddCar(int carType)
-        {
-            if (spces[carType - 1] <= 0)
-            {
-                return false;
-            }
-            spces[carType - 1] -= 1;
-            return true;
-        }
+        spces[carType - 1] -= 1;
+        return true;
     }
 }

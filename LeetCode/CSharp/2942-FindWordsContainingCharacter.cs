@@ -1,27 +1,26 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2942 : IRunProgram
 {
-    internal class Solution2942 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            FindWordsContaining(["leet", "code"], 'e').Print();
-        }
+        FindWordsContaining(["leet", "code"], 'e').Print();
+    }
 
-        public IList<int> FindWordsContaining(string[] words, char x)
-        {
-            var output = new List<int>();
+    public IList<int> FindWordsContaining(string[] words, char x)
+    {
+        var output = new List<int>();
 
-            for (int i = 0; i < words.Length; i++)
+        for (int i = 0; i < words.Length; i++)
+        {
+            if (words[i].IndexOf(x) > -1)
             {
-                if (words[i].IndexOf(x) > -1)
-                {
-                    output.Add(i);
-                }
+                output.Add(i);
             }
-
-            return output;
         }
+
+        return output;
     }
 }

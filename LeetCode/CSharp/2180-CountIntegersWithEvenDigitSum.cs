@@ -1,26 +1,25 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2180 : IRunProgram
 {
-    internal class Solution2180 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        CountEven(4).Print();
+        CountEven(30).Print();
+    }
+
+    public int CountEven(int num)
+    {
+        int ans = 0;
+        int temp_num = num;
+        while (num > 0)
         {
-            CountEven(4).Print();
-            CountEven(30).Print();
+            ans += num % 10;
+            num /= 10;
         }
 
-        public int CountEven(int num)
-        {
-            int ans = 0;
-            int temp_num = num;
-            while (num > 0)
-            {
-                ans += num % 10;
-                num /= 10;
-            }
-
-            return (temp_num - ((ans & 1) == 1 ? 1 : 0)) >> 1;
-        }
+        return (temp_num - ((ans & 1) == 1 ? 1 : 0)) >> 1;
     }
 }

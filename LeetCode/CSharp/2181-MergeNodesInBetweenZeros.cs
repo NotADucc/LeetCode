@@ -1,37 +1,36 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2181 : IRunProgram
 {
-    internal class Solution2181 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            
-        }
+        
+    }
 
-        public ListNode MergeNodes(ListNode head)
-        {
-            var current = head;
+    public ListNode MergeNodes(ListNode head)
+    {
+        var current = head;
 
-            while (current.next is not null)
+        while (current.next is not null)
+        {
+            if (current.next.val == 0)
             {
-                if (current.next.val == 0)
-                {
-                    current = current.next;
-                }
-                else
-                {
-                    current.val += current.next.val;
-                    current.next = current.next.next;
-                }
-
-                if (current.next.next is null)
-                {
-                    current.next = null;
-                }
+                current = current.next;
+            }
+            else
+            {
+                current.val += current.next.val;
+                current.next = current.next.next;
             }
 
-            return head;
+            if (current.next.next is null)
+            {
+                current.next = null;
+            }
         }
+
+        return head;
     }
 }

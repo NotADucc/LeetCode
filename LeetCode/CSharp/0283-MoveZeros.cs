@@ -1,28 +1,27 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0283 : IRunProgram
 {
-    internal class Solution0283 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            MoveZeroes([0, 1, 0, 3, 12]);
-            MoveZeroes([0]);
-        }
+        MoveZeroes([0, 1, 0, 3, 12]);
+        MoveZeroes([0]);
+    }
 
-        public void MoveZeroes(int[] nums)
-        {
+    public void MoveZeroes(int[] nums)
+    {
 
-            int index = 0;
-            for (int i = 0; i < nums.Length; i++)
+        int index = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] != 0)
             {
-                if (nums[i] != 0)
-                {
-                    bool was0 = nums[index] == 0;
-                    nums[index] = nums[i];
-                    nums[i] = was0 ? 0 : nums[i];
-                    index++;
-                }
+                bool was0 = nums[index] == 0;
+                nums[index] = nums[i];
+                nums[i] = was0 ? 0 : nums[i];
+                index++;
             }
         }
     }

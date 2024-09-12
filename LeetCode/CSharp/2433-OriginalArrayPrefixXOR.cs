@@ -1,33 +1,32 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2433 : IRunProgram
 {
-    internal class Solution2433 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        FindArray([5, 2, 0, 3, 1]).Print();
+    }
+    public int[] FindArray(int[] pref)
+    {
+        int temp = pref[0];
+        for (int i = 1; i < pref.Length; i++)
         {
-            FindArray([5, 2, 0, 3, 1]).Print();
+            int t = pref[i];
+            pref[i] = temp ^ pref[i];
+            temp = t;
         }
-        public int[] FindArray(int[] pref)
+        return pref;
+    }
+    public int[] FindArray2Arr(int[] pref)
+    {
+        int[] output = new int[pref.Length];
+        output[0] = pref[0];
+        for (int i = 1; i < pref.Length; i++)
         {
-            int temp = pref[0];
-            for (int i = 1; i < pref.Length; i++)
-            {
-                int t = pref[i];
-                pref[i] = temp ^ pref[i];
-                temp = t;
-            }
-            return pref;
+            output[i] = pref[i - 1] ^ pref[i];
         }
-        public int[] FindArray2Arr(int[] pref)
-        {
-            int[] output = new int[pref.Length];
-            output[0] = pref[0];
-            for (int i = 1; i < pref.Length; i++)
-            {
-                output[i] = pref[i - 1] ^ pref[i];
-            }
-            return output;
-        }
+        return output;
     }
 }

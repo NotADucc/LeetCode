@@ -1,33 +1,32 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1816 : IRunProgram
 {
-    internal class Solution1816 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            TruncateSentence("Hello how are you Contestent", 1).Print();
-        }
+        TruncateSentence("Hello how are you Contestent", 1).Print();
+    }
 
-        public string TruncateSentence(string s, int k)
+    public string TruncateSentence(string s, int k)
+    {
+        var span = s.AsSpan();
+        int size = 0;
+        k--;
+        foreach (char ch in span)
         {
-            var span = s.AsSpan();
-            int size = 0;
-            k--;
-            foreach (char ch in span)
+            if (ch == ' ')
             {
-                if (ch == ' ')
+                if (k <= 0)
                 {
-                    if (k <= 0)
-                    {
-                        break;
-                    }
-                    k--;
+                    break;
                 }
-                size++;
+                k--;
             }
-
-            return span.Slice(0, size).ToString();
+            size++;
         }
+
+        return span.Slice(0, size).ToString();
     }
 }

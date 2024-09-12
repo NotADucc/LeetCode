@@ -1,36 +1,35 @@
 ﻿using LeetCode.CSharp.Shared;
 using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0590 : IRunProgram
 {
-    internal class Solution0590 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        
+    }
+    public IList<int> Postorder(Node root)
+    {
+        var output = new List<int>();
+
+        Helper(root, output);
+
+        return output;
+    }
+
+    private void Helper(Node root, List<int> output)
+    {
+        if (root is null)
         {
-            
+            return;
         }
-        public IList<int> Postorder(Node root)
+
+        foreach (var child in root.children)
         {
-            var output = new List<int>();
-
-            Helper(root, output);
-
-            return output;
+            Helper(child, output);
         }
 
-        private void Helper(Node root, List<int> output)
-        {
-            if (root is null)
-            {
-                return;
-            }
-
-            foreach (var child in root.children)
-            {
-                Helper(child, output);
-            }
-
-            output.Add(root.val);
-        }
+        output.Add(root.val);
     }
 }

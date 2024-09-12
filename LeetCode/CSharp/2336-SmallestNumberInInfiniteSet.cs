@@ -1,46 +1,45 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
-{
-    internal class Solution2336 : IRunProgram
-    {
-        public void Run()
+namespace LeetCode.CSharp;
 
-        {
-        }
+internal class Solution2336 : IRunProgram
+{
+    public void Run()
+
+    {
+    }
+}
+
+public class SmallestInfiniteSet
+{
+    private PriorityQueue<int, int> _priorityQueue;
+    private int _current;
+    private HashSet<int> _set;
+
+    public SmallestInfiniteSet()
+    {
+        _priorityQueue = new PriorityQueue<int, int>();
+        _current = 1;
+        _set = new HashSet<int>();
     }
 
-    public class SmallestInfiniteSet
+    public int PopSmallest()
     {
-        private PriorityQueue<int, int> _priorityQueue;
-        private int _current;
-        private HashSet<int> _set;
-
-        public SmallestInfiniteSet()
+        if (_priorityQueue.Count > 0)
         {
-            _priorityQueue = new PriorityQueue<int, int>();
-            _current = 1;
-            _set = new HashSet<int>();
+            int smallest = _priorityQueue.Dequeue();
+            _set.Remove(smallest);
+            return smallest;
         }
 
-        public int PopSmallest()
-        {
-            if (_priorityQueue.Count > 0)
-            {
-                int smallest = _priorityQueue.Dequeue();
-                _set.Remove(smallest);
-                return smallest;
-            }
+        return _current++;
+    }
 
-            return _current++;
-        }
-
-        public void AddBack(int num)
+    public void AddBack(int num)
+    {
+        if (num < _current && _set.Add(num))
         {
-            if (num < _current && _set.Add(num))
-            {
-                _priorityQueue.Enqueue(num, num);
-            }
+            _priorityQueue.Enqueue(num, num);
         }
     }
 }

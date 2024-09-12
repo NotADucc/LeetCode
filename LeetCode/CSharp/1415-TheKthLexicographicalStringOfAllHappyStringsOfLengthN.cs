@@ -1,49 +1,48 @@
 ﻿using LeetCode.Shared;
 using System.Text;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1415 : IRunProgram
 {
-    internal class Solution1415 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        GetHappyString(1, 3).Print();
+    }
+    public string GetHappyString(int n, int k)
+    {
+        int total = 3 * (int)Math.Pow(2, n - 1);
+        if (k > total) { return string.Empty; }
+        if (n == 1) { return ((char)('a' + k - 1)).ToString(); }
+
+        List<string> output = new List<string>();
+        StringBuilder sb = new StringBuilder();
+        Helper(output, sb, ['a', 'b', 'c'], -1, n, k);
+
+        return output[k - 1];
+    }
+
+    private void Helper(List<string> output, StringBuilder sb, char[] ch, int exclude, int n, int k)
+    {
+        if (sb.Length == n)
         {
-            GetHappyString(1, 3).Print();
+            output.Add(sb.ToString());
         }
-        public string GetHappyString(int n, int k)
+        else
         {
-            int total = 3 * (int)Math.Pow(2, n - 1);
-            if (k > total) { return string.Empty; }
-            if (n == 1) { return ((char)('a' + k - 1)).ToString(); }
-
-            List<string> output = new List<string>();
-            StringBuilder sb = new StringBuilder();
-            Helper(output, sb, ['a', 'b', 'c'], -1, n, k);
-
-            return output[k - 1];
-        }
-
-        private void Helper(List<string> output, StringBuilder sb, char[] ch, int exclude, int n, int k)
-        {
-            if (sb.Length == n)
+            if (output.Count >= k)
             {
-                output.Add(sb.ToString());
+                return;
             }
-            else
+            for (int i = 0; i < ch.Length; i++)
             {
-                if (output.Count >= k)
+                if (i == exclude)
                 {
-                    return;
+                    continue;
                 }
-                for (int i = 0; i < ch.Length; i++)
-                {
-                    if (i == exclude)
-                    {
-                        continue;
-                    }
-                    sb.Append(ch[i]);
-                    Helper(output, sb, ch, i, n, k);
-                    sb.Remove(sb.Length - 1, 1);
-                }
+                sb.Append(ch[i]);
+                Helper(output, sb, ch, i, n, k);
+                sb.Remove(sb.Length - 1, 1);
             }
         }
     }

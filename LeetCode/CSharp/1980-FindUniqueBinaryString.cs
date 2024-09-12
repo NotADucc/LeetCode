@@ -1,36 +1,35 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1980 : IRunProgram
 {
-    internal class Solution1980 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        FindDifferentBinaryString(["01", "10"]).Print();
+        FindDifferentBinaryString(["00", "10"]).Print();
+    }
+    public string FindDifferentBinaryString(string[] nums)
+    {
+        HashSet<int> set = new HashSet<int>();
+        for (int i = 0; i < nums.Length; i++)
         {
-            FindDifferentBinaryString(["01", "10"]).Print();
-            FindDifferentBinaryString(["00", "10"]).Print();
+            int num = Convert.ToInt32(nums[i], 2);
+            set.Add(num);
         }
-        public string FindDifferentBinaryString(string[] nums)
+
+        int output = 1;
+        for (int i = 0; i < nums.Length * nums.Length; i++)
         {
-            HashSet<int> set = new HashSet<int>();
-            for (int i = 0; i < nums.Length; i++)
+            if (!set.Contains(i))
             {
-                int num = Convert.ToInt32(nums[i], 2);
-                set.Add(num);
+                output = i;
+                break;
             }
-
-            int output = 1;
-            for (int i = 0; i < nums.Length * nums.Length; i++)
-            {
-                if (!set.Contains(i))
-                {
-                    output = i;
-                    break;
-                }
-            }
-
-            string s = Convert.ToString(output, 2);
-
-            return new string('0', nums.Length - s.Length) + s;
         }
+
+        string s = Convert.ToString(output, 2);
+
+        return new string('0', nums.Length - s.Length) + s;
     }
 }

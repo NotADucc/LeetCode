@@ -1,42 +1,41 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0202 : IRunProgram
 {
-    internal class Solution0202 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            IsHappy(19).Print();
-            IsHappy(2).Print();
-        }
-        public bool IsHappy(int n)
-        {
-            var set = new HashSet<int>();
+        IsHappy(19).Print();
+        IsHappy(2).Print();
+    }
+    public bool IsHappy(int n)
+    {
+        var set = new HashSet<int>();
 
-            while (n != 1)
+        while (n != 1)
+        {
+            n = Calc(n);
+            if (!set.Add(n))
             {
-                n = Calc(n);
-                if (!set.Add(n))
-                {
-                    return false;
-                }
+                return false;
             }
-
-            return true;
         }
 
-        private int Calc(int input)
+        return true;
+    }
+
+    private int Calc(int input)
+    {
+        int output = 0;
+
+        while (input > 0)
         {
-            int output = 0;
-
-            while (input > 0)
-            {
-                int temp = input % 10;
-                input /= 10;
-                output += temp * temp;
-            }
-
-            return output;
+            int temp = input % 10;
+            input /= 10;
+            output += temp * temp;
         }
+
+        return output;
     }
 }

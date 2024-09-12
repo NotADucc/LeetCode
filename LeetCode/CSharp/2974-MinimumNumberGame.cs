@@ -1,26 +1,25 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2974 : IRunProgram
 {
-    internal class Solution2974 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        NumberGame([5, 4, 2, 3]).Print();
+    }
+
+    public int[] NumberGame(int[] nums)
+    {
+        Array.Sort(nums);
+
+        for (int i = 0; i < nums.Length; i += 2)
         {
-            NumberGame([5, 4, 2, 3]).Print();
+            nums[i] ^= nums[i + 1];
+            nums[i + 1] ^= nums[i];
+            nums[i] ^= nums[i + 1];
         }
 
-        public int[] NumberGame(int[] nums)
-        {
-            Array.Sort(nums);
-
-            for (int i = 0; i < nums.Length; i += 2)
-            {
-                nums[i] ^= nums[i + 1];
-                nums[i + 1] ^= nums[i];
-                nums[i] ^= nums[i + 1];
-            }
-
-            return nums;
-        }
+        return nums;
     }
 }

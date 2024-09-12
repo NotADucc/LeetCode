@@ -1,30 +1,29 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution3194 : IRunProgram
 {
-    internal class Solution3194 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        MinimumAverage([7, 8, 3, 4, 15, 13, 4, 1]).Print();
+    }
+
+    public double MinimumAverage(int[] nums)
+    {
+        Array.Sort(nums);
+
+        int left = 0, right = nums.Length - 1;
+        var min = double.MaxValue;
+
+        while (left < right)
         {
-            MinimumAverage([7, 8, 3, 4, 15, 13, 4, 1]).Print();
+            double avg = (double)(nums[left] + nums[right]) / 2;
+            min = Math.Min(min, avg);
+            left++;
+            right--;
         }
 
-        public double MinimumAverage(int[] nums)
-        {
-            Array.Sort(nums);
-
-            int left = 0, right = nums.Length - 1;
-            var min = double.MaxValue;
-
-            while (left < right)
-            {
-                double avg = (double)(nums[left] + nums[right]) / 2;
-                min = Math.Min(min, avg);
-                left++;
-                right--;
-            }
-
-            return min;
-        }
+        return min;
     }
 }

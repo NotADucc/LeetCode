@@ -1,45 +1,44 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1021: IRunProgram
 {
-    internal class Solution1021: IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            RemoveOuterParentheses("(()())(())").Print();
-        }
+        RemoveOuterParentheses("(()())(())").Print();
+    }
 
-        public string RemoveOuterParentheses(string s)
-        {
-            Span<char> output = stackalloc char[s.Length];
-            int size = 0;
+    public string RemoveOuterParentheses(string s)
+    {
+        Span<char> output = stackalloc char[s.Length];
+        int size = 0;
 
-            int current_open = 0;
-            foreach (var ch in s)
+        int current_open = 0;
+        foreach (var ch in s)
+        {
+            if (ch == '(')
             {
-                if (ch == '(')
+                if (current_open > 0)
                 {
-                    if (current_open > 0)
-                    {
-                        output[size] = '(';
-                        size++;
-                    }
-
-                    current_open++;
+                    output[size] = '(';
+                    size++;
                 }
-                else
-                {
-                    if (current_open > 1)
-                    {
-                        output[size] = ')';
-                        size++;
-                    }
 
-                    current_open--;
-                }
+                current_open++;
             }
+            else
+            {
+                if (current_open > 1)
+                {
+                    output[size] = ')';
+                    size++;
+                }
 
-            return output.Slice(0, size).ToString();
+                current_open--;
+            }
         }
+
+        return output.Slice(0, size).ToString();
     }
 }

@@ -1,35 +1,34 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1701 : IRunProgram
 {
-    internal class Solution1701 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            AverageWaitingTime([[1, 2], [2, 5], [4, 3]]).Print();
-        }
+        AverageWaitingTime([[1, 2], [2, 5], [4, 3]]).Print();
+    }
 
-        public double AverageWaitingTime(int[][] customers)
-        {
-            double sum_wait = 0;
-            double hour_finished_cooking = 0;
+    public double AverageWaitingTime(int[][] customers)
+    {
+        double sum_wait = 0;
+        double hour_finished_cooking = 0;
 
-            foreach (int[] customer in customers)
+        foreach (int[] customer in customers)
+        {
+            if (hour_finished_cooking > customer[0])
             {
-                if (hour_finished_cooking > customer[0])
-                {
-                    hour_finished_cooking += customer[1];
-                    sum_wait += hour_finished_cooking - customer[0];
-                }
-                else
-                {
-                    hour_finished_cooking = customer[0] + customer[1];
-                    sum_wait += hour_finished_cooking - customer[0];
-                }
+                hour_finished_cooking += customer[1];
+                sum_wait += hour_finished_cooking - customer[0];
             }
-
-
-            return sum_wait / customers.Length;
+            else
+            {
+                hour_finished_cooking = customer[0] + customer[1];
+                sum_wait += hour_finished_cooking - customer[0];
+            }
         }
+
+
+        return sum_wait / customers.Length;
     }
 }

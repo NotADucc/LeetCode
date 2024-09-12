@@ -1,34 +1,33 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2095 : IRunProgram
 {
-    internal class Solution2095 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        DeleteMiddle(ListNodeHelper.New(10)).Print();
+    }
+
+    public ListNode DeleteMiddle(ListNode head)
+    {
+        if (head.next is null)
         {
-            DeleteMiddle(ListNodeHelper.New(10)).Print();
+            return null;
+        }
+        var cope_slow = head;
+        var slow = head;
+        var fast = head;
+
+        while (fast is not null && fast.next is not null)
+        {
+            cope_slow = slow;
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        public ListNode DeleteMiddle(ListNode head)
-        {
-            if (head.next is null)
-            {
-                return null;
-            }
-            var cope_slow = head;
-            var slow = head;
-            var fast = head;
+        cope_slow.next = slow.next;
 
-            while (fast is not null && fast.next is not null)
-            {
-                cope_slow = slow;
-                slow = slow.next;
-                fast = fast.next.next;
-            }
-
-            cope_slow.next = slow.next;
-
-            return head;
-        }
+        return head;
     }
 }

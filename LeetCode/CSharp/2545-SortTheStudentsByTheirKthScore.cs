@@ -1,30 +1,29 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution2545 : IRunProgram
 {
-    internal class Solution2545 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        SortTheStudents([[3, 4], [5, 6]], 0).Print();
+    }
+
+    public int[][] SortTheStudents(int[][] score, int k)
+    {
+        PriorityQueue<int[], int> queue = new PriorityQueue<int[], int>();
+
+        int i = 0;
+        for (i = 0; i < score.Length; i++)
         {
-            SortTheStudents([[3, 4], [5, 6]], 0).Print();
+            queue.Enqueue(score[i], score[i][k]);
         }
 
-        public int[][] SortTheStudents(int[][] score, int k)
+        while (queue.Count > 0)
         {
-            PriorityQueue<int[], int> queue = new PriorityQueue<int[], int>();
-
-            int i = 0;
-            for (i = 0; i < score.Length; i++)
-            {
-                queue.Enqueue(score[i], score[i][k]);
-            }
-
-            while (queue.Count > 0)
-            {
-                score[--i] = queue.Dequeue();
-            }
-
-            return score;
+            score[--i] = queue.Dequeue();
         }
+
+        return score;
     }
 }

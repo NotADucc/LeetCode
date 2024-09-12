@@ -1,25 +1,24 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0136 : IRunProgram
 {
-    internal class Solution0136 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            SingleNumber([2, 2, 1]).Print();
-            SingleNumber([4, 1, 2, 1, 2]).Print();
-            SingleNumber([1]).Print();
-        }
-        public int SingleNumber(int[] nums)
-        {
-            int xor = 0;
+        SingleNumber([2, 2, 1]).Print();
+        SingleNumber([4, 1, 2, 1, 2]).Print();
+        SingleNumber([1]).Print();
+    }
+    public int SingleNumber(int[] nums)
+    {
+        int xor = 0;
 
-            foreach (var num in nums)
-            {
-                xor ^= num;
-            }
-
-            return xor;
+        foreach (var num in nums)
+        {
+            xor ^= num;
         }
+
+        return xor;
     }
 }

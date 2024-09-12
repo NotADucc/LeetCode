@@ -1,27 +1,26 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1716 : IRunProgram
 {
-    internal class Solution1716 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        TotalMoney(4).Print();
+        TotalMoney(10).Print();
+    }
+
+    public int TotalMoney(int n)
+    {
+        const int DAY_COUNT = 7;
+        int output = 0;
+
+        for (int i = 0; i < n; i++)
         {
-            TotalMoney(4).Print();
-            TotalMoney(10).Print();
+            int add = i / DAY_COUNT;
+            output += add + (i % DAY_COUNT) + 1;
         }
 
-        public int TotalMoney(int n)
-        {
-            const int DAY_COUNT = 7;
-            int output = 0;
-
-            for (int i = 0; i < n; i++)
-            {
-                int add = i / DAY_COUNT;
-                output += add + (i % DAY_COUNT) + 1;
-            }
-
-            return output;
-        }
+        return output;
     }
 }

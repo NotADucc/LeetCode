@@ -1,58 +1,57 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1472 : IRunProgram
 {
-    internal class Solution1472 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
 
-        }
     }
-    public class BrowserHistory
+}
+public class BrowserHistory
+{
+
+    Stack<string> history = new Stack<string>();
+    Stack<string> future = new Stack<string>();
+    string current = "";
+    public BrowserHistory(string homepage)
     {
+        current = homepage;
+    }
 
-        Stack<string> history = new Stack<string>();
-        Stack<string> future = new Stack<string>();
-        string current = "";
-        public BrowserHistory(string homepage)
+    public void Visit(string url)
+    {
+        history.Push(current);
+        future.Clear();
+        current = url;
+    }
+
+    public string Back(int steps)
+    {
+        for (int i = 0; i < steps; i++)
         {
-            current = homepage;
+            if (history.Count <= 0)
+            {
+                break;
+            }
+            future.Push(current);
+            current = history.Pop();
         }
+        return current;
+    }
 
-        public void Visit(string url)
+    public string Forward(int steps)
+    {
+        for (int i = 0; i < steps; i++)
         {
+            if (future.Count <= 0)
+            {
+                break;
+            }
             history.Push(current);
-            future.Clear();
-            current = url;
+            current = future.Pop();
         }
-
-        public string Back(int steps)
-        {
-            for (int i = 0; i < steps; i++)
-            {
-                if (history.Count <= 0)
-                {
-                    break;
-                }
-                future.Push(current);
-                current = history.Pop();
-            }
-            return current;
-        }
-
-        public string Forward(int steps)
-        {
-            for (int i = 0; i < steps; i++)
-            {
-                if (future.Count <= 0)
-                {
-                    break;
-                }
-                history.Push(current);
-                current = future.Pop();
-            }
-            return current;
-        }
+        return current;
     }
 }

@@ -1,31 +1,30 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0258 : IRunProgram
 {
-    internal class Solution0258 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            AddDigits(38).Print();
-            AddDigits(0).Print();
-            AddDigits(41).Print();
-        }
+        AddDigits(38).Print();
+        AddDigits(0).Print();
+        AddDigits(41).Print();
+    }
 
-        public int AddDigits(int num)
+    public int AddDigits(int num)
+    {
+        int output = 0;
+        while (num > 0)
         {
-            int output = 0;
-            while (num > 0)
+            output += num % 10;
+            num /= 10;
+
+            if (num == 0 && output >= 10)
             {
-                output += num % 10;
-                num /= 10;
-
-                if (num == 0 && output >= 10)
-                {
-                    num = output;
-                    output = 0;
-                }
+                num = output;
+                output = 0;
             }
-            return output;
         }
+        return output;
     }
 }

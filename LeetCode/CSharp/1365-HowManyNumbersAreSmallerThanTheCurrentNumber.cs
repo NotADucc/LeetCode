@@ -1,68 +1,67 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1365 : IRunProgram
 {
-    internal class Solution1365 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            SmallerNumbersThanCurrent([8, 1, 2, 2, 3]).Print();
-        }
-        public int[] SmallerNumbersThanCurrent(int[] nums)
-        {
-            //key is value
-            //value is index
-            var dct = new Dictionary<int, List<int>>();
+        SmallerNumbersThanCurrent([8, 1, 2, 2, 3]).Print();
+    }
+    public int[] SmallerNumbersThanCurrent(int[] nums)
+    {
+        //key is value
+        //value is index
+        var dct = new Dictionary<int, List<int>>();
 
-            for (int i = 0; i < nums.Length; i++)
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (!dct.ContainsKey(nums[i]))
             {
-                if (!dct.ContainsKey(nums[i]))
+                dct.Add(nums[i], new List<int>());
+            }
+            dct[nums[i]].Add(i);
+        }
+
+        Array.Sort(nums);
+        var output = new int[nums.Length];
+
+        int w1 = 0, w2 = 1, diff = 0;
+
+        while (w1 < nums.Length)
+        {
+            if (w2 >= nums.Length)
+            {
+                var indexes = dct[nums[w1]];
+                foreach (int i in indexes)
                 {
-                    dct.Add(nums[i], new List<int>());
+                    output[i] = diff;
                 }
-                dct[nums[i]].Add(i);
+                break;
             }
 
-            Array.Sort(nums);
-            var output = new int[nums.Length];
-
-            int w1 = 0, w2 = 1, diff = 0;
-
-            while (w1 < nums.Length)
+            if (nums[w1] < nums[w2])
             {
-                if (w2 >= nums.Length)
+                var indexes = dct[nums[w1]];
+                foreach (int i in indexes)
                 {
-                    var indexes = dct[nums[w1]];
-                    foreach (int i in indexes)
-                    {
-                        output[i] = diff;
-                    }
-                    break;
+                    output[i] = diff;
                 }
-
-                if (nums[w1] < nums[w2])
-                {
-                    var indexes = dct[nums[w1]];
-                    foreach (int i in indexes)
-                    {
-                        output[i] = diff;
-                    }
-                    diff += indexes.Count;
-                    w1 += indexes.Count;
-                    w2 = w1 + 1;
-                }
-                else if (nums[w1] == nums[w2])
-                {
-                    w2++;
-                }
-                else
-                {
-                    w1++;
-                    w2 = w1 + 1;
-                }
+                diff += indexes.Count;
+                w1 += indexes.Count;
+                w2 = w1 + 1;
             }
-
-            return output;
+            else if (nums[w1] == nums[w2])
+            {
+                w2++;
+            }
+            else
+            {
+                w1++;
+                w2 = w1 + 1;
+            }
         }
+
+        return output;
     }
 }

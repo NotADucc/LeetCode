@@ -1,43 +1,42 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1315 : IRunProgram
 {
-    internal class Solution1315 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
 
-        }
-        public int SumEvenGrandparent(TreeNode root)
-        {
-            int sum = 0;
-            Helper(root, ref sum);
-            return sum;
-        }
-
-        private void Helper(TreeNode root, ref int sum)
-        {
-            if (root is null)
-            {
-                return;
-            }
-
-            if (IsEven(root.val))
-            {
-                if (root.left is not null)
-                {
-                    sum += root.left.left?.val ?? 0;
-                    sum += root.left.right?.val ?? 0;
-                }
-                if (root.right is not null)
-                {
-                    sum += root.right.left?.val ?? 0;
-                    sum += root.right.right?.val ?? 0;
-                }
-            }
-            Helper(root.left, ref sum);
-            Helper(root.right, ref sum);
-        }
-        private bool IsEven(int input) => (input & 1) == 0;
     }
+    public int SumEvenGrandparent(TreeNode root)
+    {
+        int sum = 0;
+        Helper(root, ref sum);
+        return sum;
+    }
+
+    private void Helper(TreeNode root, ref int sum)
+    {
+        if (root is null)
+        {
+            return;
+        }
+
+        if (IsEven(root.val))
+        {
+            if (root.left is not null)
+            {
+                sum += root.left.left?.val ?? 0;
+                sum += root.left.right?.val ?? 0;
+            }
+            if (root.right is not null)
+            {
+                sum += root.right.left?.val ?? 0;
+                sum += root.right.right?.val ?? 0;
+            }
+        }
+        Helper(root.left, ref sum);
+        Helper(root.right, ref sum);
+    }
+    private bool IsEven(int input) => (input & 1) == 0;
 }

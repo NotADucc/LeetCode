@@ -1,54 +1,53 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution0725: IRunProgram
 {
-    internal class Solution0725: IRunProgram
+    public void Run()
     {
-        public void Run()
+        SplitListToParts(ListNodeHelper.New(10), 5).Print();
+    }
+    public ListNode[] SplitListToParts(ListNode head, int k)
+    {
+        if (k == 1) { return [head]; }
+
+        int len = 0;
+        var fast = head;
+        while (fast is not null && fast.next is not null)
         {
-            SplitListToParts(ListNodeHelper.New(10), 5).Print();
+            fast = fast.next.next;
+            len++;
         }
-        public ListNode[] SplitListToParts(ListNode head, int k)
+
+        len <<= 1;
+        if (fast is not null) { len++; }
+
+        int items_per_arr = len / k;
+        int count_arr_extra_items = len % k;
+        count_arr_extra_items = count_arr_extra_items == 0 || len <= k ? int.MinValue : count_arr_extra_items;
+
+        var output = new ListNode[k];
+        var curr = head;
+        for (int arr_i = 0; arr_i < output.Length; arr_i++)
         {
-            if (k == 1) { return [head]; }
+            int arr_item_count = items_per_arr;
+            if (arr_i < count_arr_extra_items) { arr_item_count++; }
 
-            int len = 0;
-            var fast = head;
-            while (fast is not null && fast.next is not null)
+            if (curr is null) { break; }
+
+            ListNode node = new ListNode(curr.val);
+            output[arr_i] = node;
+            curr = curr.next;
+            for (int curr_i = 1; curr_i < arr_item_count; curr_i++)
             {
-                fast = fast.next.next;
-                len++;
-            }
-
-            len <<= 1;
-            if (fast is not null) { len++; }
-
-            int items_per_arr = len / k;
-            int count_arr_extra_items = len % k;
-            count_arr_extra_items = count_arr_extra_items == 0 || len <= k ? int.MinValue : count_arr_extra_items;
-
-            var output = new ListNode[k];
-            var curr = head;
-            for (int arr_i = 0; arr_i < output.Length; arr_i++)
-            {
-                int arr_item_count = items_per_arr;
-                if (arr_i < count_arr_extra_items) { arr_item_count++; }
-
                 if (curr is null) { break; }
-
-                ListNode node = new ListNode(curr.val);
-                output[arr_i] = node;
+                node.next = new ListNode(curr.val);
+                node = node.next;
                 curr = curr.next;
-                for (int curr_i = 1; curr_i < arr_item_count; curr_i++)
-                {
-                    if (curr is null) { break; }
-                    node.next = new ListNode(curr.val);
-                    node = node.next;
-                    curr = curr.next;
-                }
             }
-
-            return output;
         }
+
+        return output;
     }
 }

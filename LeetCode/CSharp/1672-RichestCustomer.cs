@@ -1,59 +1,58 @@
 ﻿using LeetCode.Shared;
 using System.Numerics;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1672 : IRunProgram
 {
-    internal class Solution1672 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        MaximumWealth([[1, 2, 3],[3, 2, 1]]).Print();
+    }
+
+    public int MaximumWealth(int[][] accounts)
+    {
+        int l = accounts.Length;
+        int[] totals = new int[l];
+
+        for (int i = 0; i < l; i++)
         {
-            MaximumWealth([[1, 2, 3],[3, 2, 1]]).Print();
+            totals[i] = accounts[i].Sum();
         }
 
-        public int MaximumWealth(int[][] accounts)
+        return totals.Max();
+    }
+
+    public int MaximumWealthNoBuiltInMethods(int[][] accounts)
+    {
+        int l = accounts.Length;
+        int max = int.MinValue;
+
+        for (int i = 0; i < l; i++)
         {
-            int l = accounts.Length;
-            int[] totals = new int[l];
-
-            for (int i = 0; i < l; i++)
+            int temp = SumArray(accounts[i]);
+            if (temp > max)
             {
-                totals[i] = accounts[i].Sum();
+                max = temp;
             }
-
-            return totals.Max();
         }
 
-        public int MaximumWealthNoBuiltInMethods(int[][] accounts)
+        return max;
+    }
+    public int SumArray(int[] arr) 
+    {
+        var vSize = Vector<int>.Count;
+        int result = 0;
+        int i = 0;
+        for (; i <= arr.Length - vSize; i += vSize)
         {
-            int l = accounts.Length;
-            int max = int.MinValue;
-
-            for (int i = 0; i < l; i++)
-            {
-                int temp = SumArray(accounts[i]);
-                if (temp > max)
-                {
-                    max = temp;
-                }
-            }
-
-            return max;
+            var v1 = new Vector<int>(arr, i);
+            result += Vector.Sum<int>(v1);
         }
-        public int SumArray(int[] arr) 
+        for (; i < arr.Length; i++)
         {
-            var vSize = Vector<int>.Count;
-            int result = 0;
-            int i = 0;
-            for (; i <= arr.Length - vSize; i += vSize)
-            {
-                var v1 = new Vector<int>(arr, i);
-                result += Vector.Sum<int>(v1);
-            }
-            for (; i < arr.Length; i++)
-            {
-                result += arr[i];
-            }
-            return result;
+            result += arr[i];
         }
+        return result;
     }
 }

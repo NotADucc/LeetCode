@@ -1,62 +1,61 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1763 : IRunProgram
 {
-    internal class Solution1763 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            LongestNiceSubstring("YazaAay").Print();
-            LongestNiceSubstring("Bb").Print();
-        }
+        LongestNiceSubstring("YazaAay").Print();
+        LongestNiceSubstring("Bb").Print();
+    }
 
-        public string LongestNiceSubstring(string s)
-        {
-            var set = new HashSet<char>();
-            int start = 0, len = 0;
-            bool is_nice = false;
+    public string LongestNiceSubstring(string s)
+    {
+        var set = new HashSet<char>();
+        int start = 0, len = 0;
+        bool is_nice = false;
 
-            for (int i = 0; i < s.Length; i++)
+        for (int i = 0; i < s.Length; i++)
+        {
+            set.Clear();
+            for (int j = i; j < s.Length; j++)
             {
-                set.Clear();
-                for (int j = i; j < s.Length; j++)
+                set.Add(s[j]);
+                if (char.IsLower(s[j]))
                 {
-                    set.Add(s[j]);
-                    if (char.IsLower(s[j]))
+                    is_nice = set.Contains((char)(s[j] - 32));
+                }
+                else
+                {
+                    is_nice = set.Contains((char)(s[j] + 32));
+                }
+
+                if (is_nice && j - i + 1 > len)
+                {
+                    Span<int> freq = stackalloc int[26];
+                    foreach (var ch in set)
                     {
-                        is_nice = set.Contains((char)(s[j] - 32));
+                        freq[char.ToLower(ch) - 'a']++;
                     }
-                    else
+                    int k = 0;
+                    for (; k < freq.Length; k++)
                     {
-                        is_nice = set.Contains((char)(s[j] + 32));
+                        if (freq[k] == 1)
+                        {
+                            break;
+                        }
                     }
 
-                    if (is_nice && j - i + 1 > len)
+                    if (k == freq.Length)
                     {
-                        Span<int> freq = stackalloc int[26];
-                        foreach (var ch in set)
-                        {
-                            freq[char.ToLower(ch) - 'a']++;
-                        }
-                        int k = 0;
-                        for (; k < freq.Length; k++)
-                        {
-                            if (freq[k] == 1)
-                            {
-                                break;
-                            }
-                        }
-
-                        if (k == freq.Length)
-                        {
-                            start = i;
-                            len = j - i + 1;
-                        }
+                        start = i;
+                        len = j - i + 1;
                     }
                 }
             }
-
-            return s.Substring(start, len);
         }
+
+        return s.Substring(start, len);
     }
 }

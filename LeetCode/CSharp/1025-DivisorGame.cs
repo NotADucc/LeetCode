@@ -1,17 +1,16 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
-{
-    internal class Solution1025: IRunProgram
-    {
-        public void Run()
-        {
-            
-        }
+namespace LeetCode.CSharp;
 
-        public bool DivisorGame(int n)
-        {
-            return (n & 1) == 0;
-        }
+internal class Solution1025: IRunProgram
+{
+    public void Run()
+    {
+        
+    }
+
+    public bool DivisorGame(int n)
+    {
+        return (n & 1) == 0;
     }
 }

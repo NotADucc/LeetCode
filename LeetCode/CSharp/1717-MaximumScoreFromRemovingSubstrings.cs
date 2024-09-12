@@ -1,43 +1,42 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1717 : IRunProgram
 {
-    internal class Solution1717 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            MaximumGain("cdbcbbaaabab", 4, 5).Print();
-        }
+        MaximumGain("cdbcbbaaabab", 4, 5).Print();
+    }
 
-        public int MaximumGain(string s, int x, int y)
-        {
-            //x is ab
-            //y is ba
+    public int MaximumGain(string s, int x, int y)
+    {
+        //x is ab
+        //y is ba
 
-            (int high_score, string high_replace, int low_score, string low_replace) =
-                x < y ? (y, "ba", x, "ab") : (x, "ab", y, "ba");
-            string temp = s;
-            int output_low = 0, output_high = 0;
-            while (true)
+        (int high_score, string high_replace, int low_score, string low_replace) =
+            x < y ? (y, "ba", x, "ab") : (x, "ab", y, "ba");
+        string temp = s;
+        int output_low = 0, output_high = 0;
+        while (true)
+        {
+            string replaced = s.Replace(high_replace, "");
+            while (replaced.Length != s.Length)
             {
-                string replaced = s.Replace(high_replace, "");
-                while (replaced.Length != s.Length)
-                {
-                    output_high += (s.Length - replaced.Length >> 1) * high_score;
-                    s = replaced;
-                    replaced = s.Replace(high_replace, "");
-                }
-
-                replaced = s.Replace(low_replace, "");
-                if (replaced.Length == s.Length)
-                {
-                    break;
-                }
-                output_high += (s.Length - replaced.Length >> 1) * low_score;
+                output_high += (s.Length - replaced.Length >> 1) * high_score;
                 s = replaced;
+                replaced = s.Replace(high_replace, "");
             }
 
-            return output_high;
+            replaced = s.Replace(low_replace, "");
+            if (replaced.Length == s.Length)
+            {
+                break;
+            }
+            output_high += (s.Length - replaced.Length >> 1) * low_score;
+            s = replaced;
         }
+
+        return output_high;
     }
 }

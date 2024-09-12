@@ -1,33 +1,32 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1614 : IRunProgram
 {
-    internal class Solution1614 : IRunProgram
+    public void Run()
     {
-        public void Run()
-        {
-            MaxDepth("(1+(2*3)+((8)/4))+1").Print();
-        }
+        MaxDepth("(1+(2*3)+((8)/4))+1").Print();
+    }
 
-        public int MaxDepth(string s)
-        {
-            int max = 0;
-            int current = 0;
+    public int MaxDepth(string s)
+    {
+        int max = 0;
+        int current = 0;
 
-            foreach (var ch in s)
+        foreach (var ch in s)
+        {
+            if (ch == '(')
             {
-                if (ch == '(')
-                {
-                    current++;
-                    max = Math.Max(max, current);
-                }
-                else if (ch == ')')
-                {
-                    current--;
-                }
+                current++;
+                max = Math.Max(max, current);
             }
-
-            return max;
+            else if (ch == ')')
+            {
+                current--;
+            }
         }
+
+        return max;
     }
 }

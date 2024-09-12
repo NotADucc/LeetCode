@@ -1,46 +1,45 @@
 ﻿using LeetCode.Shared;
 
-namespace LeetCode.CSharp
+namespace LeetCode.CSharp;
+
+internal class Solution1963 : IRunProgram
 {
-    internal class Solution1963 : IRunProgram
+    public void Run()
     {
-        public void Run()
+        MinSwaps("][][").Print();
+        MinSwaps("]]][[[").Print();
+    }
+    public unsafe int MinSwaps(string s)
+    {
+        Span<char> sSpan;
+        fixed (char* ptr = s)
         {
-            MinSwaps("][][").Print();
-            MinSwaps("]]][[[").Print();
+            sSpan = new Span<char>(ptr, s.Length);
         }
-        public unsafe int MinSwaps(string s)
-        {
-            Span<char> sSpan;
-            fixed (char* ptr = s)
-            {
-                sSpan = new Span<char>(ptr, s.Length);
-            }
 
-            int evenDelta = 0, left = 0, right = sSpan.Length - 1;
-            int output = 0;
-            while (left < right)
+        int evenDelta = 0, left = 0, right = sSpan.Length - 1;
+        int output = 0;
+        while (left < right)
+        {
+            evenDelta = sSpan[left] == ']' ? evenDelta + 1 : evenDelta - 1;
+            if (evenDelta > 0)
             {
-                evenDelta = sSpan[left] == ']' ? evenDelta + 1 : evenDelta - 1;
-                if (evenDelta > 0)
+                output++;
+                while (left < right)
                 {
-                    output++;
-                    while (left < right)
+                    if (sSpan[right] == '[')
                     {
-                        if (sSpan[right] == '[')
-                        {
-                            sSpan[right] = ']';
-                            right--;
-                            break;
-                        }
+                        sSpan[right] = ']';
                         right--;
+                        break;
                     }
-                    evenDelta -= 2;
+                    right--;
                 }
-                left++;
+                evenDelta -= 2;
             }
-
-            return output;
+            left++;
         }
+
+        return output;
     }
 }
