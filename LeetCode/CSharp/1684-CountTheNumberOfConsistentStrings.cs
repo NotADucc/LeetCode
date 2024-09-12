@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode.CSharp
 {
-    internal class Solution1678 : IRunProgram
+    internal class Solution1684 : IRunProgram
     {
         public void Run()
         {
