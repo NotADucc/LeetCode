@@ -33,6 +33,28 @@ namespace LeetCode.Shared
             Console.WriteLine(input[^1]);
         }
 
+        public static void Print<T>(this T[][] input)
+        {
+            if (input is null)
+            {
+                return;
+            }
+
+            if (input.Length == 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int j = 0; j < input[i].Length - 1; j++)
+                {
+                    Console.Write($"{input[i][j]} | ");
+                }
+                Console.WriteLine();
+            }
+        }
+
         public static void Print<T>(this IEnumerable<T> input)
         {
             if (input is null)
