@@ -30,15 +30,7 @@ namespace LeetCode.CSharp
                 return false;
             }
 
-            bool b = true;
-
-            b = Helper(leftNode.left, rightNode.right);
-            if (b)
-            {
-                b = Helper(leftNode.right, rightNode.left);
-            }
-
-            return b;
+            return Helper(leftNode.left, rightNode.right) && Helper(leftNode.right, rightNode.left);
         }
     }
 }
