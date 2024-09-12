@@ -12,7 +12,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            Runner.RunLeetCodeSolution<Solution0040>();
+            Runner.RunLeetCodeSolution<Solution0083>();
         }
     }
 }
