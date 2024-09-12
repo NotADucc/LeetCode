@@ -9,21 +9,9 @@ namespace LeetCode.CSharp
 {
     internal class Solution1302 : IRunProgram
     {
-        private record Input(TreeNode Data, int Result);
         public void Run()
         {
-            Input[] inputs = new Input[]
-            {
-                new Input(new TreeNode(1, new TreeNode(2, new TreeNode(4, new TreeNode(7)), new TreeNode(5)), new TreeNode(3, null, new TreeNode(6, null, new TreeNode(8))))
-               , 15)
-            };
-
-            foreach (var input in inputs)
-            {
-                Console.WriteLine(DeepestLeavesSum(input.Data));
-                Console.WriteLine(input.Result);
-                Console.WriteLine();
-            }
+            DeepestLeavesSum(new TreeNode(1, new TreeNode(2, new TreeNode(4, new TreeNode(7)), new TreeNode(5)), new TreeNode(3, null, new TreeNode(6, null, new TreeNode(8)))));
         }
         int maxDepth = 0;
         int total = 0;
