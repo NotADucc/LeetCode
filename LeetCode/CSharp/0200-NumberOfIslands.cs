@@ -16,7 +16,7 @@ namespace LeetCode.CSharp
               ['1','1','0','1','0'],
               ['1','1','0','0','0'],
               ['0','0','0','0','0']
-            ]);
+            ]).Print();
         }
         public int NumIslands(char[][] grid)
         {
@@ -40,32 +40,17 @@ namespace LeetCode.CSharp
 
         private void Explore(char[][] grid, int i, int j)
         {
-            if (grid[i][j] != '1')
+            if (i < 0 || i >= grid.Length ||j < 0 || j >= grid[i].Length || grid[i][j] != '1')
             {
                 return;
             }
 
             grid[i][j] = '2';
 
-            if (i > 0)
-            {
-                Explore(grid, i - 1, j);
-            }
-
-            if (i < grid.Length - 1)
-            {
-                Explore(grid, i + 1, j);
-            }
-
-            if (j > 0)
-            {
-                Explore(grid, i, j - 1);
-            }
-
-            if (j < grid[i].Length - 1)
-            {
-                Explore(grid, i, j + 1);
-            }
+            Explore(grid, i - 1, j);
+            Explore(grid, i + 1, j);
+            Explore(grid, i, j - 1);
+            Explore(grid, i, j + 1);
         }
     }
 }
