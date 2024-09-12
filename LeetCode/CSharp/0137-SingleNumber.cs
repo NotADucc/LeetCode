@@ -12,6 +12,9 @@ namespace LeetCode.CSharp
     {
         public void Run()
         {
+            // TODO: currently invalid
+            // using extra space
+
             SingleNumber([2, 2, 2, 1]).Print();
             SingleNumber([4, 1, 2, 2, 1, 1, 2]).Print();
             SingleNumber([0, 1, 0, 1, 0, 1, 99]).Print();
