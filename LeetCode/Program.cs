@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using LeetCode._1Easy;
-using LeetCode._2Medium;
+using LeetCode.CSharp;
 using LeetCode.Shared;
 
 namespace LeetCode
@@ -13,7 +12,7 @@ namespace LeetCode
     {
         public static void Main()
         {
-            Runner.RunLeetCodeSolution<SummaryRanges>();
+            Runner.RunLeetCodeSolution<Solution0002>();
         }
     }
 }
