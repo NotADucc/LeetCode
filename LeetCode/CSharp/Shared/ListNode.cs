@@ -35,4 +35,16 @@ public static class ListNodeHelper
         }
         return node;
     }
+    public static ListNode? New(int startValue, int endValue)
+    {
+        (startValue, endValue) = startValue < endValue ? (startValue, endValue) : (endValue, startValue);
+        ListNode node = new ListNode(startValue);
+        var n = node;
+        for (int i = startValue; i < endValue; i++)
+        {
+            n.next = new ListNode(i + 1);
+            n = n.next;
+        }
+        return node;
+    }
 }
