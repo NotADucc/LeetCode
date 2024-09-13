@@ -1,11 +1,31 @@
-﻿namespace LeetCode.Shared;
+﻿using System.Collections;
+
+namespace LeetCode.Shared;
 
 public static class ToStringExtensions
 {
     public static void Print<T>(this T input)
     {
-        Console.WriteLine(input);
+        if (input is IEnumerable enumerable && input is not string)
+        {
+            if (input is null)
+            {
+                return;
+            }
+
+            if (!enumerable.Cast<object>().Any())
+            {
+                return;
+            }
+
+            Console.WriteLine(string.Join(", ", enumerable.Cast<object>()));
+        }
+        else 
+        { 
+            Console.WriteLine(input);
+        }
     }
+
     public static void Print<T>(this T[] input)
     {
         if (input is null)
@@ -61,20 +81,5 @@ public static class ToStringExtensions
             item.Print();
         }
         Console.WriteLine();
-    }
-
-    public static void Print<T>(this IEnumerable<T> input)
-    {
-        if (input is null)
-        {
-            return;
-        }
-
-        if (input.Count() == 0)
-        {
-            return;
-        }
-
-        Console.WriteLine(string.Join(", ", input.Select(x => x)));
     }
 }
