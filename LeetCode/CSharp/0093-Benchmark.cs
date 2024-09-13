@@ -1,16 +1,32 @@
-﻿using LeetCode.Shared;
+﻿using BenchmarkDotNet.Attributes;
+using LeetCode.CSharp.Benchmark;
 using System.Text;
 
 namespace LeetCode.CSharp
 {
-    internal class Solution0093 : IRunProgram
+    public class Benchmark0093 : BenchmarkAttributes
     {
-        public void Run()
+        [Params("0000", "255255111")]
+        public string input;
+        private Solution0093 sol;
+        [GlobalSetup]
+        public void Setup() 
         {
-            RestoreIpAddresses("000").Print();
-            RestoreIpAddresses("0000").Print();
-            RestoreIpAddresses("25525511135").Print();
+            sol = new Solution0093();
         }
+
+        [Benchmark(Baseline = true)]
+        public IList<string> Baseline() 
+        {
+            return sol.RestoreIpAddresses(input);
+        }
+
+        [Benchmark]
+        public IList<string> MoreBranches()
+        {
+            return RestoreIpAddresses(input);
+        }
+
         public IList<string> RestoreIpAddresses(string s)
         {
             if (s.Length < 4) return [];
@@ -34,12 +50,10 @@ namespace LeetCode.CSharp
                 {
                     if (octet.HasValue)
                     {
-                        if (octet.Value == 0) break;
+                        if (octet.Value == 0 || octet > 25 || octet == 25 && input[i] > '5') break;
 
                         octet *= 10;
                         octet += input[i] - '0';
-
-                        if (octet.Value > 255) break;
                     }
                     else
                     {

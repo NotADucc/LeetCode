@@ -1,4 +1,5 @@
-﻿using LeetCode.CSharp;
+﻿using BenchmarkDotNet.Running;
+using LeetCode.CSharp;
 using LeetCode.Shared;
 
 namespace LeetCode;
@@ -7,6 +8,7 @@ public class Program
 {
     public static void Main()
     {
-        Runner.RunLeetCodeSolution<Solution0093>();
+        BenchmarkRunner.Run<Benchmark0093>();
+        //Runner.RunLeetCodeSolution<Solution0093>();
     }
 }
