@@ -29,7 +29,7 @@ public class Solution0077 : IRunProgram
             {
                 current.Add(i);
                 Helper(output, current, n, k, i + 1);
-                current.Remove(i);
+                current.RemoveAt(current.Count - 1);
             }
         }
     }
