@@ -7,6 +7,6 @@ public class Program
 {
     public static void Main()
     {
-        Runner.RunLeetCodeSolution<Solution0206>();
+        Runner.RunLeetCodeSolution<Solution0278>();
     }
 }
