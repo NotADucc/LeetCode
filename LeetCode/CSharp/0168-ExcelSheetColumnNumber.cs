@@ -1,4 +1,5 @@
 ﻿using LeetCode.Shared;
+using System.Text;
 
 namespace LeetCode.CSharp;
 
@@ -16,18 +17,18 @@ internal class Solution0168 : IRunProgram
 
     public string ConvertToTitle(int columnNumber)
     {
-        string output = string.Empty;
+        StringBuilder sb = new StringBuilder();
 
         while (columnNumber > 0)
         {
             int rest = columnNumber % 26;
             rest = rest == 0 ? 26 : rest;
-            output = (char)(rest + _ASCII_BASE) + output;
+            sb.Insert(0, (char)(rest + _ASCII_BASE));
 
             columnNumber -= rest;
             columnNumber /= 26;
         }
 
-        return output;
+        return sb.ToString();
     }
 }
