@@ -29,4 +29,29 @@ internal class Solution0412 : IRunProgram
         }
         return output;
     }
+    public IList<string> FizzBuzz_NoSB(int n)
+    {
+        var output = new List<string>();
+        for (int i = 1; i <= n; i++)
+        {
+            int m3 = i % 3, m5 = i % 5;
+            if (m3 == 0 && m5 == 0)
+            {
+                output.Add("FizzBuzz");
+            }
+            else if (m3 == 0)
+            {
+                output.Add("Fizz");
+            }
+            else if (m5 == 0)
+            {
+                output.Add("Buzz");
+            }
+            else
+            {
+                output.Add(i.ToString());
+            }
+        }
+        return output;
+    }
 }
