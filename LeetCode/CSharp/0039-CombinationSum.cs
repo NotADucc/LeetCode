@@ -12,7 +12,6 @@ public class Solution0039 : IRunProgram
 
     public IList<IList<int>> CombinationSum(int[] candidates, int target)
     {
-        Array.Sort(candidates, new Comparison<int>((i1, i2) => i2.CompareTo(i1)));
         var output = new List<IList<int>>();
 
         Helper(output, [], candidates, target, 0);
@@ -20,7 +19,7 @@ public class Solution0039 : IRunProgram
         return output;
     }
 
-    private void Helper(List<IList<int>> lst, List<int> temp, int[] cand, int target, int index)
+    private void Helper(List<IList<int>> lst, List<int> current, int[] candidates, int target, int index)
     {
         if (target < 0)
         {
@@ -28,14 +27,15 @@ public class Solution0039 : IRunProgram
         }
         else if (target == 0)
         {
-            lst.Add(temp);
+            lst.Add(new List<int>(current));
         }
         else
         {
-            while (index < cand.Length)
+            for (; index < candidates.Length; index++)
             {
-                Helper(lst, [.. temp, cand[index]], cand, target - cand[index], index);
-                index++;
+                current.Add(candidates[index]);
+                Helper(lst, current, candidates, target - candidates[index], index);
+                current.RemoveAt(current.Count - 1);
             }
         }
     }
