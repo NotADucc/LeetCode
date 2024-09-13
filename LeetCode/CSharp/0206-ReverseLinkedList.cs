@@ -6,21 +6,37 @@ internal class Solution0206 : IRunProgram
 {
     public void Run()
     {
-        ReverseList(ListNodeHelper.New(10)).Print();
+        ReverseListIte(ListNodeHelper.New(10)).Print();
+        ReverseListRec(ListNodeHelper.New(10)).Print();
     }
-    public ListNode ReverseList(ListNode head)
+
+    public ListNode ReverseListIte(ListNode head)
+    {
+        ListNode curr = head;
+        ListNode prev = null;
+
+        while (curr is not null)
+        {
+            var temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+
+        return prev;
+    }
+
+    public ListNode ReverseListRec(ListNode head)
     {
         ListNode node = null;
         Helper(head, ref node);
         return node;
     }
 
-    private void Helper(ListNode head, ref ListNode node)
+    private void Helper(ListNode head, ref ListNode node) 
     {
         if (head is null) { return; }
-
         node = new ListNode(head.val, node);
-        head = head.next;
-        Helper(head, ref node);
+        Helper(head.next, ref node);
     }
 }
