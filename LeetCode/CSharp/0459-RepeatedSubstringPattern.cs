@@ -19,7 +19,7 @@ internal class Solution0459 : IRunProgram
         int i, j;
         for (i = 0; i < len; i++)
         {
-            //if (i > (len - 1) >> 1) return false;
+            if (i > (len - 1) >> 1) return false;
             for (j = i + 1; j < len; j += i + 1)
             {
                 if (j + i + 1 > len || !span.Slice(j, i + 1).StartsWith(span.Slice(0, i + 1)))
