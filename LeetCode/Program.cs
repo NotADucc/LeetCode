@@ -9,6 +9,6 @@ public class Program
     public static void Main()
     {
         //BenchmarkRunner.Run<Benchmark0093>();
-        Runner.RunLeetCodeSolution<Solution0543>();
+        Runner.RunLeetCodeSolution<Solution1402>();
     }
 }
