@@ -21,44 +21,33 @@ internal class Solution0208 : IRunProgram
 
 public class Trie
 {
-    private TrieNode trie;
+    private Dictionary<char, Trie> trie;
     public Trie()
     {
-        trie = new TrieNode();
+        trie = new Dictionary<char, Trie>();
     }
-    public void Insert(string word) => trie.AddWord(word);
-    public bool Search(string word) => trie.ContainsWord(word);
-    public bool StartsWith(string prefix) => trie.ContainsWord(prefix, true);
-}
-
-class TrieNode
-{
-    private Dictionary<char, TrieNode> nodes;
-    public TrieNode()
+    public void Insert(ReadOnlySpan<char> word)
     {
-        nodes = new Dictionary<char, TrieNode>();
-    }
-    public void AddWord(ReadOnlySpan<char> input)
-    {
-        nodes.TryAdd(input[0], new TrieNode());
-        if (input.Length == 1)
+        var temp = trie;
+        for (int i = 0; i < word.Length; i++)
         {
-            nodes[input[0]].nodes.TryAdd('\0', new TrieNode());
+            temp.TryAdd(word[i], new Trie());
+            temp = temp[word[i]].trie;
         }
-        else
-        {
-            nodes[input[0]].AddWord(input.Slice(1));
-        }
+        temp.TryAdd('\0', new Trie());
     }
+    public bool Search(string word) => ContainsWord(word);
+    public bool StartsWith(string prefix) => ContainsWord(prefix, true);
     public bool ContainsWord(ReadOnlySpan<char> input, bool prefix = false)
     {
-        var temp = this;
+        var temp = trie;
         for (int i = 0; i < input.Length; i++)
         {
-            if (temp is null || !temp.nodes.ContainsKey(input[i])) return false;
-            temp = temp.nodes[input[i]];
+            if (temp is null || !temp.ContainsKey(input[i])) return false;
+            temp = temp[input[i]].trie;
         }
-        return prefix ? true : temp.nodes.ContainsKey('\0');
+        return prefix ? true : temp.ContainsKey('\0');
     }
-    public override string ToString() => string.Join(", ", nodes.Select(kv => $"[{kv.Key} => {kv.Value}]"));
+    //for debugging
+    public override string ToString() => string.Join(", ", trie.Select(kv => $"[{kv.Key} => {kv.Value}]"));
 }
