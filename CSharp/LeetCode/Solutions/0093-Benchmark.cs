@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
-using LeetCode.CSharp.Benchmark;
+using LeetCode.Solutions.Benchmark;
 using System.Text;
 
-namespace LeetCode.CSharp
+namespace LeetCode.Solutions
 {
     public class Benchmark0093 : BenchmarkAttributes
     {

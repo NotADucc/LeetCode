@@ -1,4 +1,4 @@
-﻿namespace LeetCode.Shared;
+﻿namespace LeetCode.Solutions.Shared;
 
 internal class Runner
 {

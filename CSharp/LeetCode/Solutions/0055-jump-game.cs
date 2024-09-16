@@ -1,7 +1,7 @@
-﻿using LeetCode.Shared;
+﻿using LeetCode.Solutions.Shared;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace LeetCode.CSharp;
+namespace LeetCode.Solutions;
 
 internal class Solution0055 : IRunProgram
 {

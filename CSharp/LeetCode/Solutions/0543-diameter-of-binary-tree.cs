@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Disassemblers;
-using LeetCode.Shared;
+using LeetCode.Solutions.Shared;
 
-namespace LeetCode.CSharp;
+namespace LeetCode.Solutions;
 
 internal class Solution0543 : IRunProgram
 {

@@ -1,4 +1,4 @@
-﻿using LeetCode.Shared;
+﻿using LeetCode.Solutions.Shared;
 
 namespace LeetCode.Solutions;
 

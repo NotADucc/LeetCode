@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 
-namespace LeetCode.CSharp.Benchmark;
+namespace LeetCode.Solutions.Benchmark;
 
 public sealed class Config : ManualConfig
 {

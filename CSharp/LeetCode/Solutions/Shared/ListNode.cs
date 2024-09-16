@@ -1,6 +1,6 @@
-﻿using LeetCode.Shared;
+﻿using LeetCode.Solutions.Shared;
 
-namespace LeetCode.Shared;
+namespace LeetCode.Solutions.Shared;
 
 public class ListNode
 {

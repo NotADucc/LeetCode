@@ -1,6 +1,6 @@
-﻿using LeetCode.Shared;
+﻿using LeetCode.Solutions.Shared;
 
-namespace LeetCode.CSharp;
+namespace LeetCode.Solutions;
 
 public class Solution0070 : IRunProgram
 {

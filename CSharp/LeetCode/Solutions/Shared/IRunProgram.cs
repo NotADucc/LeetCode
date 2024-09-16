@@ -1,5 +1,4 @@
-﻿namespace LeetCode.Shared;
-
+﻿namespace LeetCode.Solutions.Shared;
 public interface IRunProgram
 {
     void Run();

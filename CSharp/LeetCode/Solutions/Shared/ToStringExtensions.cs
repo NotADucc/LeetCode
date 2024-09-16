@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 
-namespace LeetCode.Shared;
-
+namespace LeetCode.Solutions.Shared;
 public static class ToStringExtensions
 {
     public static void Print<T>(this T input)

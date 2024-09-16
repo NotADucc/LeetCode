@@ -1,7 +1,7 @@
-﻿using LeetCode.Shared;
+﻿using LeetCode.Solutions.Shared;
 using System.Numerics;
 
-namespace LeetCode.CSharp;
+namespace LeetCode.Solutions;
 
 internal class Solution1672 : IRunProgram
 {

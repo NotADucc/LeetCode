@@ -1,7 +1,7 @@
-﻿using LeetCode.Shared;
+﻿using LeetCode.Solutions.Shared;
 using System.Security.Cryptography;
 
-namespace LeetCode.CSharp;
+namespace LeetCode.Solutions;
 
 internal class Solution0441 : IRunProgram
 {

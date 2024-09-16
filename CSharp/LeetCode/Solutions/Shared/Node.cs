@@ -1,4 +1,4 @@
-﻿namespace LeetCode.CSharp.Shared;
+﻿namespace LeetCode.Solutions.Shared;
 
 public class Node
 {

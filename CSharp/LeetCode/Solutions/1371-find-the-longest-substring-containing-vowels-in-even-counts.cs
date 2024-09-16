@@ -1,9 +1,9 @@
 ﻿using Iced.Intel;
-using LeetCode.Shared;
+using LeetCode.Solutions.Shared;
 using Microsoft.Diagnostics.Tracing.Parsers.JScript;
 using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
 
-namespace LeetCode.CSharp;
+namespace LeetCode.Solutions;
 
 internal class Solution1371 : IRunProgram
 {
