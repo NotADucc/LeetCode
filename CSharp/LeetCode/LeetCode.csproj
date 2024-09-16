@@ -10,8 +10,11 @@
 
   <ItemGroup>
     <Compile Remove="3Hard\**" />
+    <Compile Remove="CSharp\**" />
     <EmbeddedResource Remove="3Hard\**" />
+    <EmbeddedResource Remove="CSharp\**" />
     <None Remove="3Hard\**" />
+    <None Remove="CSharp\**" />
   </ItemGroup>
 
   <ItemGroup>
