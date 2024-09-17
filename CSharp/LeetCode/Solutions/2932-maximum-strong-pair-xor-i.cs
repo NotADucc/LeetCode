@@ -11,11 +11,10 @@ internal class Solution2932 : IRunProgram
 
     public int MaximumStrongPairXor(int[] nums)
     {
+        if (nums.Length == 1) return 0;
+
         int output = 0;
-
-        int w1 = 0, w2 = 0;
-
-        Array.Sort(nums);
+        int w1 = 0, w2 = 1;
         while (w1 < nums.Length)
         {
             if (Math.Abs(nums[w1] - nums[w2]) <= Math.Min(nums[w1], nums[w2]))
