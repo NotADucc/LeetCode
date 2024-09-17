@@ -19,21 +19,19 @@ internal class Solution0071 : IRunProgram
             if (path[i] == '/') continue;
             if (path[i] == '.')
             {
-                if (i + 1 >= path.Length || path[i + 1] == '/') { i++; }
+                if (i + 1 >= path.Length || path[i + 1] == '/')
+                {
+                    i++;
+                    continue;
+                }
                 else if ((i + 2 < path.Length && path[i + 1] == '.' && path[i + 2] == '/') || (i + 2 >= path.Length && path[i + 1] == '.'))
                 {
                     if (stack.Count > 0) stack.Pop();
                     i += 2;
-                }
-                else
-                {
-                    i += AddToStack(path, i, stack);
+                    continue;
                 }
             }
-            else
-            {
-                i += AddToStack(path, i, stack);
-            }
+            i += AddToStack(path, i, stack);
         }
 
         StringBuilder sb = new StringBuilder();
