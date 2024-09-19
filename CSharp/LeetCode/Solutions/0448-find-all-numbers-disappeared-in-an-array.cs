@@ -21,10 +21,8 @@ internal class Solution0448 : IRunProgram
 
         for (int i = 0; i < nums.Length; i++)
         {
-
+            if (nums[i] > 0) output.Add(i + 1);
         }
-
-        Console.WriteLine(string.Join(", ", nums));
 
         return output;
     }
