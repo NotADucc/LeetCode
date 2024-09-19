@@ -6,32 +6,31 @@ internal class Solution0003 : IRunProgram
 {
     public void Run()
     {
-        LengthOfLongestSubstring("abcabcbb").Print();
-        LengthOfLongestSubstring("bbbbb").Print();
-        LengthOfLongestSubstring("pwwkew").Print();
+        LengthOfLongestSubstring("aabaab!bb").Print();
     }
 
+    private Int128 ONE = 1;
     public int LengthOfLongestSubstring(string s)
     {
-        var set = new HashSet<char>();
-        int output = 0;
-        int l = 0, r = 0;
-
+        int Convert(char ch) => ch - ' ';
+        Int128 mask = 0;
+        int l = 0, r = 0, output = 0;
         while (r < s.Length)
         {
-            if (set.Contains(s[r]))
+            Int128 temp = mask ^ (ONE << Convert(s[r]));
+            if (temp < mask)
             {
                 while (s[l] != s[r])
                 {
-                    set.Remove(s[l]);
+                    mask ^= ONE << Convert(s[l]);
                     l++;
                 }
-                set.Remove(s[l]);
+                mask ^= ONE << Convert(s[l]);
                 l++;
             }
             else
             {
-                set.Add(s[r]);
+                mask = temp;
                 output = Math.Max(output, r - l + 1);
                 r++;
             }
