@@ -16,23 +16,21 @@ internal class Solution0014 : IRunProgram
         {
             return strs[0];
         }
-        var n = strs.Min().Length;
-        if (n == 0)
+        int len = 0;
+
+        string smallest = strs.OrderBy(c => c.Length).FirstOrDefault();
+
+        for (int i = 0; i < smallest.Length; i++)
         {
-            return "";
-        }
-        var nn = 1;
-        while (nn <= n)
-        {
-            var test = strs.Any(x => !x[..nn].Equals(strs.Min()[..nn]));
-            if (test)
+            for (int j = 0; j < strs.Length; j++)
             {
-                nn--;
-                return strs.Min()[..nn];
+                if (strs[j][i] != smallest[i])
+                {
+                    return smallest.Substring(0, len);
+                }
             }
-            nn++;
+            len++;
         }
-        nn--;
-        return strs.Min()[..nn];
+        return smallest.Substring(0, len);
     }
 }
