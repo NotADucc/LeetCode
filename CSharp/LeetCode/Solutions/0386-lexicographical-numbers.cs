@@ -31,3 +31,26 @@ internal class Solution0386 : IRunProgram
         }
     }
 }
+
+internal class Solution0386Edit
+{
+    public IList<int> LexicalOrder(int n)
+    {
+        IList<int> output = new List<int>(n);
+        for (int i = 1; i < 10; i++) DFS(output, i, n);
+        return output;
+    }
+    private void DFS(IList<int> output, int current, int n)
+    {
+        if (current > n) return;
+
+        output.Add(current);
+
+        for (int i = 0; i < 10; i++)
+        {
+            int temp = current * 10 + i;
+            if (temp > n) break;
+            DFS(output, temp, n);
+        }
+    }
+}
