@@ -19,17 +19,15 @@ public class Solution0052 : IRunProgram
 
     public int TotalNQueens(int n)
     {
+        List<int> col = new List<int>(n);
+        List<int> diag1 = new List<int>(n);
+        List<int> diag2 = new List<int>(n);
         int output = 0;
-
-        HashSet<int> v_column = new HashSet<int>();
-        HashSet<int> v_diag_1 = new HashSet<int>();
-        HashSet<int> v_diag_2 = new HashSet<int>();
-        Helper(v_column, v_diag_1, v_diag_2, 0, n, n, ref output);
-
+        Backtrack(ref output, col, diag1, diag2, n, 0, n);
         return output;
     }
 
-    private void Helper(HashSet<int> v_column, HashSet<int> v_diag_1, HashSet<int> v_diag_2, int row, int grid_size, int queens_left, ref int output)
+    private void Backtrack(ref int output, List<int> col, List<int> diag1, List<int> diag2, int grid_size, int row, int queens_left)
     {
         if (queens_left == 0)
         {
@@ -37,31 +35,31 @@ public class Solution0052 : IRunProgram
         }
         else
         {
-            for (int i = 0; i < grid_size; i++)
+            for (int c = 0; c < grid_size; c++)
             {
-                if (CanPlace(v_column, v_diag_1, v_diag_2, row, i))
+                if (CanPlace(col, diag1, diag2, row, c))
                 {
-                    AddVisited(v_column, v_diag_1, v_diag_2, row, i);
-                    Helper(v_column, v_diag_1, v_diag_2, row + 1, grid_size, queens_left - 1, ref output);
-                    RemoveVisited(v_column, v_diag_1, v_diag_2, row, i);
+                    Place(col, diag1, diag2, row, c);
+                    Backtrack(ref output, col, diag1, diag2, grid_size, row + 1, queens_left - 1);
+                    Remove(col, diag1, diag2, row, c);
                 }
             }
         }
     }
-    private void AddVisited(HashSet<int> v_column, HashSet<int> v_diag_1, HashSet<int> v_diag_2, int row, int col)
+    private bool CanPlace(List<int> col, List<int> diag1, List<int> diag2, int r, int c)
     {
-        v_column.Add(col);
-        v_diag_1.Add(row - col);
-        v_diag_2.Add(row + col);
+        return !col.Contains(c) && !diag1.Contains(r + c) && !diag2.Contains(r - c);
     }
-    private void RemoveVisited(HashSet<int> v_column, HashSet<int> v_diag_1, HashSet<int> v_diag_2, int row, int col)
+    private void Place(List<int> col, List<int> diag1, List<int> diag2, int r, int c)
     {
-        v_column.Remove(col);
-        v_diag_1.Remove(row - col);
-        v_diag_2.Remove(row + col);
+        col.Add(c);
+        diag1.Add(r + c);
+        diag2.Add(r - c);
     }
-    private bool CanPlace(HashSet<int> v_column, HashSet<int> v_diag_1, HashSet<int> v_diag_2, int row, int col)
+    private void Remove(List<int> col, List<int> diag1, List<int> diag2, int r, int c)
     {
-        return !v_column.Contains(col) && !v_diag_1.Contains(row - col) && !v_diag_2.Contains(row + col);
+        col.Remove(c);
+        diag1.Remove(r + c);
+        diag2.Remove(r - c);
     }
 }
