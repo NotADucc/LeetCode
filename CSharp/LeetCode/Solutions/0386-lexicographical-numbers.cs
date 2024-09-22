@@ -6,7 +6,7 @@ internal class Solution0386 : IRunProgram
 {
     public void Run()
     {
-
+        LexicalOrder(260).Print();
     }
 
     public IList<int> LexicalOrder(int n)
