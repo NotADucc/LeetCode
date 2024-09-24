@@ -41,7 +41,7 @@ internal class Solution3043 : IRunProgram
     public int LongestCommonPrefixTrie(int[] arr1, int[] arr2)
     {
         int max = 0;
-        Trie3043 trie = new Trie3043();
+        Trie trie = new Trie();
         for (int i = 0; i < arr1.Length; i++)
         {
             trie.AddTrie(arr1[i]);
@@ -52,36 +52,36 @@ internal class Solution3043 : IRunProgram
         }
         return max;
     }
-}
 
-public class Trie3043
-{
-    private Dictionary<char, Trie3043> trie;
-    public Trie3043()
+    public class Trie
     {
-        trie = new Dictionary<char, Trie3043>();
-    }
-    public void AddTrie(int add)
-    {
-        string num = add.ToString();
-        var temp = trie;
-        for (int i = 0; i < num.Length; i++)
+        private Dictionary<char, Trie> trie;
+        public Trie()
         {
-            temp.TryAdd(num[i], new Trie3043());
-            temp = temp[num[i]].trie;
+            trie = new Dictionary<char, Trie>();
         }
-    }
-    public int Search(int target)
-    {
-        string num = target.ToString();
-        int counter = 0;
-        var temp = trie;
-        for (int i = 0; i < num.Length; i++)
+        public void AddTrie(int add)
         {
-            if (temp is null || !temp.ContainsKey(num[i])) break;
-            counter++;
-            temp = temp[num[i]].trie;
+            string num = add.ToString();
+            var temp = trie;
+            for (int i = 0; i < num.Length; i++)
+            {
+                temp.TryAdd(num[i], new Trie());
+                temp = temp[num[i]].trie;
+            }
         }
-        return counter;
+        public int Search(int target)
+        {
+            string num = target.ToString();
+            int counter = 0;
+            var temp = trie;
+            for (int i = 0; i < num.Length; i++)
+            {
+                if (temp is null || !temp.ContainsKey(num[i])) break;
+                counter++;
+                temp = temp[num[i]].trie;
+            }
+            return counter;
+        }
     }
 }
