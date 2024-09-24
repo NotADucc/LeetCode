@@ -11,28 +11,30 @@ internal class Solution3043 : IRunProgram
 
     public int LongestCommonPrefix(int[] arr1, int[] arr2)
     {
-        var set = new HashSet<string>();
+        var set = new HashSet<int>();
 
         for (int i = 0; i < arr1.Length; i++)
         {
-            string num = arr1[i].ToString();
-            for (int j = 1; j <= num.Length; j++)
+            int num = arr1[i];
+            while (num > 0)
             {
-                set.Add(num.Substring(0, j));
+                set.Add(num);
+                num /= 10;
             }
         }
 
         int max = 0;
         for (int i = 0; i < arr2.Length; i++)
         {
-            string num = arr2[i].ToString();
-            for (int j = num.Length; j >= 1; j--)
+            int num = arr2[i];
+            while (num > 0)
             {
-                if (set.Contains(num.Substring(0, j)))
+                if (set.Contains(num))
                 {
-                    max = Math.Max(max, j);
+                    max = Math.Max(max, num.ToString().Length);
                     break;
                 }
+                num /= 10;
             }
         }
         return max;
