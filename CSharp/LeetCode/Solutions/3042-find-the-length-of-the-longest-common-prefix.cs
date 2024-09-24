@@ -1,4 +1,5 @@
 ﻿using LeetCode.Solutions.Shared;
+using System.Collections.Generic;
 
 namespace LeetCode.Solutions;
 
@@ -57,31 +58,44 @@ internal class Solution3043 : IRunProgram
 
     public class Trie
     {
-        private Dictionary<char, Trie> trie;
+        private Dictionary<int, Trie> trie;
         public Trie()
         {
-            trie = new Dictionary<char, Trie>();
+            trie = new Dictionary<int, Trie>();
         }
         public void AddTrie(int add)
         {
-            string num = add.ToString();
-            var temp = trie;
-            for (int i = 0; i < num.Length; i++)
+            Span<int> span = stackalloc int[20];
+            int len = -1;
+            while (add > 0)
             {
-                temp.TryAdd(num[i], new Trie());
-                temp = temp[num[i]].trie;
+                span[++len] = add % 10;
+                add /= 10;
+            }
+            var temp = trie;
+            for (; len >= 0; len--)
+            {
+                temp.TryAdd(span[len], new Trie());
+                temp = temp[span[len]].trie;
             }
         }
         public int Search(int target)
         {
-            string num = target.ToString();
+            Span<int> span = stackalloc int[20];
+            int len = -1;
+            while (target > 0)
+            {
+                span[++len] = target % 10;
+                target /= 10;
+            }
+
             int counter = 0;
             var temp = trie;
-            for (int i = 0; i < num.Length; i++)
+            for (; len >= 0; len--)
             {
-                if (temp is null || !temp.ContainsKey(num[i])) break;
+                if (temp is null || !temp.ContainsKey(span[len])) break;
                 counter++;
-                temp = temp[num[i]].trie;
+                temp = temp[span[len]].trie;
             }
             return counter;
         }
