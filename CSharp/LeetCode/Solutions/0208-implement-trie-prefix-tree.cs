@@ -18,7 +18,7 @@ internal class Solution0208 : IRunProgram
         trie.Search("ten").Print();
     }
 
-    public class Trie
+    internal class Trie
     {
         private Dictionary<char, Trie> trie;
         public Trie()

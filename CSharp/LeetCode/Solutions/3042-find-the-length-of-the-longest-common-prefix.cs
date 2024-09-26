@@ -56,7 +56,7 @@ internal class Solution3043 : IRunProgram
         return max;
     }
 
-    public class Trie
+    internal class Trie
     {
         private Dictionary<int, Trie> trie;
         public Trie()

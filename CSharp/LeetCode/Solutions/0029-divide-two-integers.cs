@@ -2,7 +2,7 @@
 
 namespace LeetCode.Solutions;
 
-public class Solution0029 : IRunProgram
+internal class Solution0029 : IRunProgram
 {
     public void Run()
     {

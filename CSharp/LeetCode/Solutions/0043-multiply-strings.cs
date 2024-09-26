@@ -3,7 +3,7 @@ using System.Text;
 
 namespace LeetCode.Solutions;
 
-public class Solution0043 : IRunProgram
+internal class Solution0043 : IRunProgram
 {
     public void Run()
     {
