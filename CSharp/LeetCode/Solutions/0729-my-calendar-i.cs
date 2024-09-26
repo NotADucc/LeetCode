@@ -10,7 +10,7 @@ namespace LeetCode.Solutions
         }
         internal class MyCalendar
         {
-            private PriorityQueue<(int, int), int> book = new PriorityQueue<(int, int), int>();
+            private List<(int, int)> book = new List<(int, int)>(1001);
             public MyCalendar()
             {
 
@@ -19,17 +19,11 @@ namespace LeetCode.Solutions
             public bool Book(int start, int end)
             {
                 bool can_add = true;
-                List<(int, int)> temp = new List<(int, int)>();
-                while (book.Count > 0)
+                for (int i = 0; i < book.Count; i++)
                 {
-                    (int booked_start, int booked_end) = book.Peek();
-                    if (booked_start >= end)
-                    {
-                        break;
-                    }
-
+                    (int booked_start, int booked_end) = book[i];
                     if (
-                        (start < booked_start && end >= booked_start)
+                        (start < booked_start && end > booked_start)
                     || (start < booked_end && end >= booked_end)
                     || (start >= booked_start && end <= booked_end)
                     )
@@ -37,17 +31,12 @@ namespace LeetCode.Solutions
                         can_add = false;
                         break;
                     }
-                    temp.Add(book.Dequeue());
                 }
 
-                for (int i = 0; i < temp.Count; i++)
-                {
-                    book.Enqueue((temp[i].Item1, temp[i].Item2), temp[i].Item1);
-                }
-
-                if (can_add) book.Enqueue((start, end), start);
+                if (can_add) book.Add((start, end));
                 return can_add;
             }
         }
+
     }
 }
