@@ -8,7 +8,7 @@ namespace LeetCode.Solutions
         {
 
         }
-        public class MyCalendar
+        internal class MyCalendar
         {
             private PriorityQueue<(int, int), int> book = new PriorityQueue<(int, int), int>();
             public MyCalendar()
