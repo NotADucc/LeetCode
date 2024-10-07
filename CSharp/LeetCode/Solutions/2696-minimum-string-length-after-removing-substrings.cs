@@ -12,24 +12,20 @@ internal class Solution2696 : IRunProgram
     public int MinLength(string s) 
     {
         bool changed = true;
-        
+        var sb = new StringBuilder(s);
         while (changed)
         {
             changed = false;
-            string temp = s.Replace("AB", "");
-            if (temp.Length != s.Length)
+            for (int i = 0; i < sb.Length - 1; i++)
             {
-                changed = true;
-                s = temp;
-            }
-            temp = s.Replace("CD", "");
-            if (temp.Length != s.Length)
-            {
-                changed = true;
-                s = temp;
+                if ((sb[i] == 'A' && sb[i + 1] == 'B') || (sb[i] == 'C' && sb[i + 1] == 'D'))
+                {
+                    changed = true;
+                    sb.Remove(i, 2);
+                }
             }
         }
 
-        return s.Length; 
+        return sb.Length; 
     }
 }
