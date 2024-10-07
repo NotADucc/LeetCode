@@ -11,21 +11,28 @@ internal class Solution2696 : IRunProgram
 
     public int MinLength(string s) 
     {
-        bool changed = true;
-        var sb = new StringBuilder(s);
-        while (changed)
+        var stack = new Stack<char>();
+
+        for (int i = 0; i < s.Length; i++)
         {
-            changed = false;
-            for (int i = 0; i < sb.Length - 1; i++)
+            if (stack.Count == 0)
             {
-                if ((sb[i] == 'A' && sb[i + 1] == 'B') || (sb[i] == 'C' && sb[i + 1] == 'D'))
+                stack.Push(s[i]);
+            }
+            else
+            {
+                char ch = stack.Peek();
+                if (ch == 'A' && s[i] == 'B' || ch == 'C' && s[i] == 'D') 
                 {
-                    changed = true;
-                    sb.Remove(i, 2);
+                    stack.Pop();
+                }
+                else
+                {
+                    stack.Push(s[i]);
                 }
             }
-        }
+        }   
 
-        return sb.Length; 
+        return stack.Count;
     }
 }
