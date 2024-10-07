@@ -7,27 +7,26 @@ internal class Solution2390 : IRunProgram
     public void Run()
     {
         RemoveStars("leet**cod*e").Print();
+        RemoveStars("erase*****").Print();
     }
     public string RemoveStars(string s)
     {
-        Stack<char> stack = new Stack<char>();
-        foreach (var ch in s)
+        Span<char> output = stackalloc char[s.Length];
+        int len = 0;
+
+        for (int i = 0; i < s.Length; i++)
         {
+            char ch = s[i];
             if (ch == '*')
             {
-                if (stack.Count > 0) stack.Pop();
+                len = Math.Max(0, len - 1);
             }
-            else
+            else 
             {
-                stack.Push(ch);
+                output[len++] = ch;
             }
         }
-        Span<char> output = stackalloc char[stack.Count];
-        int i = stack.Count - 1;
-        while (stack.Count > 0)
-        {
-            output[i--] = stack.Pop();
-        }
-        return output.ToString();
+
+        return output.Slice(0, len).ToString();
     }
 }

@@ -15,28 +15,30 @@ public class Solution0047 : IRunProgram
     {
         Array.Sort(nums);
         var output = new List<IList<int>>();
-        Helper(output, nums, []);
+        Backtrack(output, nums.ToList(), []);
         return output;
     }
 
-    private void Helper(List<IList<int>> output, int[] nums, List<int> current)
+    private void Backtrack(List<IList<int>> output, List<int> nums, List<int> current)
     {
-        if (nums.Length == 0)
+        if (nums.Count == 0)
         {
             output.Add(new List<int>(current));
         }
         else
         {
-            for (int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Count; i++)
             {
                 if (i > 0 && nums[i] == nums[i - 1])
                 {
                     continue;
                 }
-                current.Add(nums[i]);
-                Helper(output, [.. nums[..i], .. nums[(i + 1)..]], current);
-                int last = current.LastIndexOf(nums[i]);
-                current.RemoveAt(last);
+                int num = nums[i];
+                current.Add(num);
+                nums.Remove(num);
+                Backtrack(output, nums, current);
+                nums.Insert(i, num);
+                current.RemoveAt(current.Count - 1);
             }
         }
     }
