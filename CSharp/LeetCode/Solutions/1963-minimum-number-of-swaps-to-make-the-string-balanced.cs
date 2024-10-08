@@ -9,35 +9,29 @@ internal class Solution1963 : IRunProgram
         MinSwaps("][][").Print();
         MinSwaps("]]][[[").Print();
     }
-    public unsafe int MinSwaps(string s)
+    public int MinSwaps(string s)
     {
-        Span<char> sSpan;
-        fixed (char* ptr = s)
-        {
-            sSpan = new Span<char>(ptr, s.Length);
-        }
+        int count = 0, output = 0;
 
-        int evenDelta = 0, left = 0, right = sSpan.Length - 1;
-        int output = 0;
-        while (left < right)
+        for (int i = 0; i < s.Length; i++)
         {
-            evenDelta = sSpan[left] == ']' ? evenDelta + 1 : evenDelta - 1;
-            if (evenDelta > 0)
+            char ch = s[i];
+            if (ch == '[')
             {
-                output++;
-                while (left < right)
-                {
-                    if (sSpan[right] == '[')
-                    {
-                        sSpan[right] = ']';
-                        right--;
-                        break;
-                    }
-                    right--;
-                }
-                evenDelta -= 2;
+                count++;
             }
-            left++;
+            else
+            {
+                if (count <= 0)
+                {
+                    count++;
+                    output++;
+                }
+                else
+                {
+                    count--;
+                }
+            }
         }
 
         return output;
