@@ -12,34 +12,34 @@ internal class Solution0225 : IRunProgram
 
 public class MyStack
 {
-    Queue<int> q1;
+    Queue<int> queue;
 
     public MyStack()
     {
-        q1 = new Queue<int>();
+        queue = new Queue<int>();
     }
 
     public void Push(int x)
     {
-        q1.Enqueue(x);
-        for (int i = 0; i < q1.Count - 1; i++)
+        queue.Enqueue(x);
+        for (int i = 0; i < queue.Count - 1; i++)
         {
-            q1.Enqueue(q1.Dequeue());
+            queue.Enqueue(queue.Dequeue());
         }
     }
 
     public int Pop()
     {
-        return q1.Dequeue();
+        return queue.Dequeue();
     }
 
     public int Top()
     {
-        return q1.Peek();
+        return queue.Peek();
     }
 
     public bool Empty()
     {
-        return q1.Count == 0;
+        return queue.Count == 0;
     }
 }
