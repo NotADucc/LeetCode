@@ -11,15 +11,17 @@ internal class Solution0219 : IRunProgram
 
     public bool ContainsNearbyDuplicate(int[] nums, int k)
     {
+        // key is value
+        // value is index
+        var dct = new Dictionary<int, int>();
+
         for (int i = 0; i < nums.Length; i++)
         {
-            for (int j = i + 1; j < nums.Length && Math.Abs(i - j) <= k; j++)
+            if (dct.TryGetValue(nums[i], out int last_index))
             {
-                if (nums[i] == nums[j])
-                {
-                    return true;
-                }
+                if (i - last_index <= k) return true;
             }
+            dct[nums[i]] = i;
         }
 
         return false;
