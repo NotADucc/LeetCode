@@ -16,13 +16,13 @@ internal class Solution0374 : IRunProgram
 
         while (left <= right)
         {
-            int mid = (int)(((long)left + right) >> 1);
-            int gue = guess(mid);
-            if (gue == 1)
+            int mid = left + ((right - left) >> 1);
+            int result_guess = guess(mid);
+            if (result_guess == 1)
             {
                 left = mid + 1;
             }
-            else if (gue == -1)
+            else if (result_guess == -1)
             {
                 right = mid - 1;
             }
