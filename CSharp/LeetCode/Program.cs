@@ -8,6 +8,6 @@ public class Program
     public static void Main()
     {
         //BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark3034>();
-        Runner.RunLeetCodeSolution<Solution2390>();
+        Runner.RunLeetCodeSolution<Solution1942>();
     }
 }
