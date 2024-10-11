@@ -11,40 +11,33 @@ internal class Solution1942 : IRunProgram
 
     public int SmallestChair(int[][] times, int targetFriend)
     {
-        void RemoveGuests(PriorityQueue<(int, int), int> leaves, int other_arrival, Dictionary<int, int> seat_history, PriorityQueue<int, int> open_chairs)
+        int target_arrival = times[targetFriend][0];
+        Array.Sort(times, (a, b) => { return a[0] - b[0]; });
+        // key is index
+        // value is chair nr 
+        var seat_history = new Dictionary<int, int>();
+        var leaves = new PriorityQueue<(int, int), int>();
+        var open_chairs = new PriorityQueue<int, int>();
+        int chair = 0;
+        for (int i = 0; i < times.Length; i++)
         {
+            int other_arrival = times[i][0], other_leave = times[i][1];
+
             while (leaves.Count > 0 && other_arrival >= leaves.Peek().Item1)
             {
                 int open_chair = seat_history[leaves.Dequeue().Item2];
                 open_chairs.Enqueue(open_chair, open_chair);
             }
-        }
 
-        // 'keys' are times
-        // values are indexes
-        var arrivals = new PriorityQueue<(int, int), int>();
-        var leaves = new PriorityQueue<(int, int), int>();
-        for (int i = 0; i < times.Length; i++)
-        {
-            var time = times[i];
-            arrivals.Enqueue((time[0], i), time[0]);
-            leaves.Enqueue((time[1], i), time[1]);
-        }
+            if (target_arrival == other_arrival) 
+            {
+                break;
+            }
 
-        int chair = 0, target_arrival = times[targetFriend][0];
-        // key is index
-        // value is chair nr 
-        var seat_history = new Dictionary<int, int>();
-        var open_chairs = new PriorityQueue<int, int>();
-        while (arrivals.Count > 0 && arrivals.Peek().Item1 != target_arrival)
-        {
-            (int other_arrival, int other_index) = arrivals.Dequeue();
-            RemoveGuests(leaves, other_arrival, seat_history, open_chairs);
+            leaves.Enqueue((other_leave, i), other_leave);
             int allocated_chair = open_chairs.Count > 0 ? open_chairs.Dequeue() : chair++;
-            seat_history.Add(other_index, allocated_chair);
+            seat_history.Add(i, allocated_chair);
         }
-
-        RemoveGuests(leaves, target_arrival, seat_history, open_chairs);
 
         return open_chairs.Count > 0 ? open_chairs.Dequeue() : chair;
     }
