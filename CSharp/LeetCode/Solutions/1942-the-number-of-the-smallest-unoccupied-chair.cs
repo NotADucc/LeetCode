@@ -16,9 +16,12 @@ internal class Solution1942 : IRunProgram
         // key is index
         // value is chair nr 
         var seat_history = new Dictionary<int, int>();
+        // 'key' leave time
+        // 'value' index
+        // prio on leave time
         var leaves = new PriorityQueue<(int, int), int>();
         var open_chairs = new PriorityQueue<int, int>();
-        int chair = 0;
+        int chair_counter = 0;
         for (int i = 0; i < times.Length; i++)
         {
             int other_arrival = times[i][0], other_leave = times[i][1];
@@ -29,16 +32,13 @@ internal class Solution1942 : IRunProgram
                 open_chairs.Enqueue(open_chair, open_chair);
             }
 
-            if (target_arrival == other_arrival) 
-            {
-                break;
-            }
+            if (target_arrival == other_arrival) break;
 
             leaves.Enqueue((other_leave, i), other_leave);
-            int allocated_chair = open_chairs.Count > 0 ? open_chairs.Dequeue() : chair++;
+            int allocated_chair = open_chairs.Count > 0 ? open_chairs.Dequeue() : chair_counter++;
             seat_history.Add(i, allocated_chair);
         }
 
-        return open_chairs.Count > 0 ? open_chairs.Dequeue() : chair;
+        return open_chairs.Count > 0 ? open_chairs.Dequeue() : chair_counter;
     }
 }
