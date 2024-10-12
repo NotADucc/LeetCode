@@ -11,22 +11,17 @@ internal class Solution1603 : IRunProgram
 }
 public class ParkingSystem
 {
-    private int[] spces = new int[] { 0, 0, 0 };
+    private int[] spaces;
 
     public ParkingSystem(int big, int medium, int small)
     {
-        spces[0] = big;
-        spces[1] = medium;
-        spces[2] = small;
+        spaces = [big, medium, small];
     }
 
     public bool AddCar(int carType)
     {
-        if (spces[carType - 1] <= 0)
-        {
-            return false;
-        }
-        spces[carType - 1] -= 1;
+        if (spaces[carType - 1] <= 0) return false;
+        spaces[carType - 1] -= 1;
         return true;
     }
 }
