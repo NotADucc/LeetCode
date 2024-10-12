@@ -9,7 +9,7 @@ internal class Solution1396 : IRunProgram
         
     }
 
-    private class UndergroundSystem
+    public class UndergroundSystem
     {
         // key: id
         // value: station, time
