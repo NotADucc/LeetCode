@@ -12,10 +12,10 @@ internal class Solution1137 : IRunProgram
     public int Tribonacci(int n)
     {
         int[] mem = new int[n];
-        return Helper(n, mem);
+        return Recursive(n, mem);
     }
 
-    private int Helper(int n, int[] mem)
+    private int Recursive(int n, int[] mem)
     {
         if (n <= 0)
         {
@@ -31,7 +31,7 @@ internal class Solution1137 : IRunProgram
         }
         else
         {
-            mem[n - 1] = Helper(n - 1, mem) + Helper(n - 2, mem) + Helper(n - 3, mem);
+            mem[n - 1] = Recursive(n - 1, mem) + Recursive(n - 2, mem) + Recursive(n - 3, mem);
             return mem[n - 1];
         }
     }
