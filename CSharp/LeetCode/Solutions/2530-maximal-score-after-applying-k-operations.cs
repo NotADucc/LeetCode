@@ -18,9 +18,7 @@ internal class Solution2530 : IRunProgram
         {
             int value = queue.Dequeue();
             output += value;
-            int rest = value % 3;
-            value /= 3;
-            value = rest > 0 ? value + 1 : value;
+            value = (int)Math.Ceiling(value * 1.0 / 3);
             queue.Enqueue(value, value);
         }
 
