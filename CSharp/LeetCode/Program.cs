@@ -7,7 +7,7 @@ public class Program
 {
     public static void Main()
     {
-        //BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark1942>();
+        //BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark2530>();
         Runner.RunLeetCodeSolution<Solution1942>();
     }
 }
