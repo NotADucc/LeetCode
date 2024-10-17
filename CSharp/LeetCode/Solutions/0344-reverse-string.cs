@@ -12,12 +12,14 @@ internal class Solution0344 : IRunProgram
 
     public void ReverseString(char[] s)
     {
-        char l;
-        for (int i = 0; i < s.Length / 2; i++)
+        int l = 0, r = s.Length - 1;
+        while (l < r)
         {
-            l = s[i];
-            s[i] = s[^(i + 1)];
-            s[^(i + 1)] = l;
+            s[l] ^= s[r];
+            s[r] ^= s[l];
+            s[l] ^= s[r];
+            l++;
+            r--;
         }
     }
 }
