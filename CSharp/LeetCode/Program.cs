@@ -7,7 +7,7 @@ public class Program
 {
     public static void Main()
     {
-        //BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark2530>();
-        Runner.RunLeetCodeSolution<Solution0355>();
+        BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark1545>();
+        //Runner.RunLeetCodeSolution<Solution0355>();
     }
 }
