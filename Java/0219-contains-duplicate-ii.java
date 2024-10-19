@@ -15,3 +15,21 @@ class Solution {
         return false;
     }
 }
+
+
+// sliding window
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        // key : num
+        // value last index
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int l = 0, r = 0;
+        while (r < nums.length) {
+            if (r - l > k) map.remove(nums[l++]);
+            if (map.containsKey(nums[r])) return true;
+            map.put(nums[r], r++);
+        }
+
+        return false;
+    }
+}
