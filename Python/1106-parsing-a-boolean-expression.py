@@ -8,7 +8,7 @@ class Solution:
                     pop = stack.pop()
                     if pop == 't' :
                         contains_t = True
-                    elif pop == 'f' :
+                    else :
                         contains_f = True
                 pop = stack.pop()
                 if pop == '&' :
@@ -18,6 +18,6 @@ class Solution:
                 else :
                     append = 'f' if contains_t else 't'
                 stack.append(append)
-            else :
+            elif ch not in [',', '('] :
                 stack.append(ch)
         return True if stack.pop() == 't' else False

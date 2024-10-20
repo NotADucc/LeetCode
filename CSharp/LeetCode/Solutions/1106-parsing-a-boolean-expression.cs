@@ -22,26 +22,16 @@ internal class Solution1106 : IRunProgram
                 {
                     char pop_inner = stack.Pop();
                     if (pop_inner == 't') contains_true = true;
-                    else if (pop_inner == 'f') contains_false = true;
+                    else contains_false = true;
                 }
                 char pop = stack.Pop();
-                if (pop == '&')
-                {
-                    char add_ch = contains_false ? 'f' : 't';
-                    stack.Push(add_ch);
-                }
-                else if (pop == '|')
-                {
-                    char add_ch = contains_true ? 't' : 'f';
-                    stack.Push(add_ch);
-                }
-                else
-                {
-                    char add_ch = contains_true ? 'f' : 't';
-                    stack.Push(add_ch);
-                }
+                char add_ch = '\0';
+                if (pop == '&') add_ch = contains_false ? 'f' : 't';
+                else if (pop == '|') add_ch = contains_true ? 't' : 'f';
+                else add_ch = contains_true ? 'f' : 't';
+                stack.Push(add_ch);
             }
-            else
+            else if (ch != ',' && ch != '(')
             {
                 stack.Push(ch);
             }
