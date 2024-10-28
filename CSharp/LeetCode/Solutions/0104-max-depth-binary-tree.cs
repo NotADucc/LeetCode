@@ -11,22 +11,7 @@ internal class Solution0104 : IRunProgram
 
     public int MaxDepth(TreeNode root)
     {
-        int max = 0;
-        Helper(root, ref max);
-        return max;
-    }
-
-    private void Helper(TreeNode root, ref int max, int curr = 0)
-    {
-        if (root is null)
-        {
-            return;
-        }
-
-        curr++;
-        max = Math.Max(max, curr);
-
-        Helper(root.left, ref max, curr);
-        Helper(root.right, ref max, curr);
+        if (root is null) return 0;
+        return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
     }
 }
