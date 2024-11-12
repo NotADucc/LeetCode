@@ -57,6 +57,6 @@ internal class Solution2070 : IRunProgram
             }
         }
 
-        return arr[left][0] <= target ? left : left > 0 && arr[left - 1][0] <= target ? left - 1 : -1;
+        return arr[left][0] <= target ? left : --left;
     }
 }
