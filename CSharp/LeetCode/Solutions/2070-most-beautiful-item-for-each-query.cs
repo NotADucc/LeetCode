@@ -12,36 +12,25 @@ internal class Solution2070 : IRunProgram
     public int[] MaximumBeauty(int[][] items, int[] queries)
     {
         Array.Sort(items, (a, b) => a[0] - b[0]);
-        List<int[]> lst = [items[0]];
         for (int i = 1; i < items.Length; i++)
         {
-            if (lst[^1][1] < items[i][1])
-            {
-                if (lst[^1][0] == items[i][0])
-                {
-                    lst[^1][1] = items[i][1];
-                }
-                else
-                {
-                    lst.Add(items[i]);
-                }
-            }
+            items[i][1] = Math.Max(items[i - 1][1], items[i][1]);
         }
 
         for (int i = 0; i < queries.Length; i++)
         {
             int target = queries[i];
-            int ind = search(lst, target);
-            int res = ind == -1 ? 0 : lst[ind][1];
+            int ind = search(items, target);
+            int res = ind == -1 ? 0 : items[ind][1];
             queries[i] = res;
         }
 
         return queries;
     }
 
-    private int search(List<int[]> arr, int target)
+    private int search(int[][] arr, int target)
     {
-        int left = 0, right = arr.Count - 1;
+        int left = 0, right = arr.Length - 1;
 
         while (left < right)
         {
