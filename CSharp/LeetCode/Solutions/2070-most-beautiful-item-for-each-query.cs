@@ -11,7 +11,7 @@ internal class Solution2070 : IRunProgram
     }
     public int[] MaximumBeauty(int[][] items, int[] queries)
     {
-        items = items.OrderBy(x => x[0]).ThenBy(x => x[1]).ToArray();
+        Array.Sort(items, (a, b) => a[0] - b[0]);
         List<int[]> lst = [items[0]];
         for (int i = 1; i < items.Length; i++)
         {
