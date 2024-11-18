@@ -13,10 +13,16 @@ internal class Solution1652 : IRunProgram
     {
         var res = new int[code.Length];
         if (k == 0) return res;
-        int new_k = Math.Abs(k);
-        int l = k < 0 ? code.Length + k : 1, r = l;
-        for (int j = 1; j <= new_k; j++)
+        int l = 1;
+        if (k < 0)
+        {
+            l = code.Length + k;
+            k *= -1;
+        }
+        int r = l;
+        for (int j = 1; j <= k; j++)
             res[0] += code[r++];
+
         for (int i = 1; i < code.Length; i++)
         {
             res[i] += res[i - 1];
