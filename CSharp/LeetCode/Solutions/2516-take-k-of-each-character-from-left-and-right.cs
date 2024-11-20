@@ -34,7 +34,6 @@ internal class Solution2516 : IRunProgram
             {
                 int ldex = s[l++] - 'a';
                 freq[ldex]++;
-                res = Math.Min(res, s.Length - (r - l));
             }
             res = Math.Min(res, s.Length - (r - l));
             if (r >= s.Length) break;
