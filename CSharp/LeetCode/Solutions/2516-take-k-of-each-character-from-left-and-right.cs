@@ -41,5 +41,4 @@ internal class Solution2516 : IRunProgram
 
         return res;
     }
-
 }

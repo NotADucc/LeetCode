@@ -12,14 +12,14 @@ internal class Solution2257 : IRunProgram
 
     public int CountUnguarded(int m, int n, int[][] guards, int[][] walls)
     {
-        // key is r + c
+        // key is r * n + c
         // value is bitmask
         // 1 is r, 2 is c, 3 is both
-        var visited = new Dictionary<(int, int), int>();
+        var visited = new Dictionary<int, int>();
         int res = m * n - walls.Length;
 
         for (int i = 0; i < walls.Length; i++)
-            visited.Add((walls[i][0], walls[i][1]), 3);
+            visited.Add(walls[i][0] * n + walls[i][1], 3);
 
         foreach (int[] guard in guards)
         {
@@ -27,53 +27,57 @@ internal class Solution2257 : IRunProgram
             // row -
             for (int j = r; j >= 0; j--)
             {
-                if (visited.TryAdd((j, c), 1))
+                int ind = j * n + c;
+                if (visited.TryAdd(ind, 1))
                 {
                     res--;
                 }
                 else
                 {
-                    if ((visited[(j, c)] & 1) == 1) break;
-                    visited[(j, c)] |= 1;
+                    if ((visited[ind] & 1) == 1) break;
+                    visited[ind] |= 1;
                 }
             }
             // row +
             for (int j = r + 1; j < m; j++)
             {
-                if (visited.TryAdd((j, c), 1))
+                int ind = j * n + c;
+                if (visited.TryAdd(ind, 1))
                 {
                     res--;
                 }
                 else
                 {
-                    if ((visited[(j, c)] & 1) == 1) break;
-                    visited[(j, c)] |= 1;
+                    if ((visited[ind] & 1) == 1) break;
+                    visited[ind] |= 1;
                 }
             }
             // col -
             for (int j = c; j >= 0; j--)
             {
-                if (visited.TryAdd((r, j), 2))
+                int ind = r * n + j;
+                if (visited.TryAdd(ind, 2))
                 {
                     res--;
                 }
                 else
                 {
-                    if ((visited[(r, j)] & 2) == 2) break;
-                    visited[(r, j)] |= 2;
+                    if ((visited[ind] & 2) == 2) break;
+                    visited[ind] |= 2;
                 }
             }
             // col +
             for (int j = c + 1; j < n; j++)
             {
-                if (visited.TryAdd((r, j), 2))
+                int ind = r * n + j;
+                if (visited.TryAdd(ind, 2))
                 {
                     res--;
                 }
                 else
                 {
-                    if ((visited[(r, j)] & 2) == 2) break;
-                    visited[(r, j)] |= 2;
+                    if ((visited[ind] & 2) == 2) break;
+                    visited[ind] |= 2;
                 }
             }
         }
