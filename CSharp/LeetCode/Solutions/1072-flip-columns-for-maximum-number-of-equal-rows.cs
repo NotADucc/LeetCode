@@ -1,62 +1,50 @@
 ﻿using LeetCode.Solutions.Shared;
+using System;
 using System.Text;
 
 namespace LeetCode.Solutions;
 
-internal class Solution1072 { 
+internal class Solution1072 : IRunProgram
+{ 
     public void Run()
     {
-        
+        MaxEqualRowsAfterFlips([[0, 1], [1, 0]]).Print();
     }
 
     public int MaxEqualRowsAfterFlips(int[][] matrix)
     {
         var freq = new Dictionary<string, int>();
-        StringBuilder sb = new StringBuilder();
+        Span<char> buffer = stackalloc char[matrix[0].Length];
+        Span<char> buffer_invert = stackalloc char[matrix[0].Length];
         int res = 0;
 
         foreach (int[] row in matrix)
         {
-            int sum = 0; sb.Length = 0;
             for (int i = 0; i < row.Length; i++)
             {
-                sb.Append(row[i]);
-                sum += row[i];
+                buffer[i] = (char)(row[i] + '0');
+                buffer_invert[i] = (char)(1 - row[i] + '0');
             }
-            if (sum == 0 || sum == row.Length)
+            string mask = new string(buffer);
+            if (freq.ContainsKey(mask))
             {
-                res++;
+                freq[mask]++;
             }
             else
             {
-                string mask = sb.ToString();
-                string invert_mask = Invert(mask);
+                mask = new string(buffer_invert);
                 if (freq.ContainsKey(mask))
                 {
                     freq[mask]++;
-                }
-                else if (freq.ContainsKey(invert_mask))
-                {
-                    freq[invert_mask]++;
                 }
                 else
                 {
                     freq.Add(mask, 1);
                 }
             }
+            res = Math.Max(res, freq[mask]);
         }
-
-        foreach (var val in freq.Values)
-            res = Math.Max(res, val);
-
+        // Console.WriteLine(String.Join(", ", freq.Select(x => $"[{x.Key} : {x.Value}]")));
         return res;
-    }
-    public string Invert(string input)
-    {
-        StringBuilder sb = new StringBuilder();
-        foreach (char ch in input)
-            sb.Append(ch.Equals('1') ? '0' : '1');
-
-        return sb.ToString();
     }
 }
