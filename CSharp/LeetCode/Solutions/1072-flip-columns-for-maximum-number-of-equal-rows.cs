@@ -12,12 +12,12 @@ internal class Solution1072 {
     public int MaxEqualRowsAfterFlips(int[][] matrix)
     {
         var freq = new Dictionary<string, int>();
+        StringBuilder sb = new StringBuilder();
         int res = 0;
 
         foreach (int[] row in matrix)
         {
-            int sum = 0;
-            StringBuilder sb = new StringBuilder();
+            int sum = 0; sb.Length = 0;
             for (int i = 0; i < row.Length; i++)
             {
                 sb.Append(row[i]);
@@ -46,7 +46,10 @@ internal class Solution1072 {
             }
         }
 
-        return Math.Max(res, freq.Values.Count > 0 ? freq.Values.Max() : 0);
+        foreach (var val in freq.Values)
+            res = Math.Max(res, val);
+
+        return res;
     }
     public string Invert(string input)
     {
