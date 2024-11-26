@@ -13,17 +13,21 @@ internal class Solution2708 : IRunProgram
     {
         if (nums.Length == 1) return nums[0];
 
-        long res = 1; bool b = false;
-        Array.Sort(nums);
+        long res = 1;
+        int biggest_neg = int.MinValue, factors = 0;
         for (int i = 0; i < nums.Length; i++)
         {
-            if ((i + 1 < nums.Length && nums[i] < 0 && nums[i + 1] < 0) || res < 0 && nums[i] < 0 || nums[i] > 0)
+            if (nums[i] != 0)
             {
+                if (nums[i] < 0)
+                {
+                    biggest_neg = Math.Max(biggest_neg, nums[i]);
+                }
+                factors++;
                 res *= nums[i];
-                b = true;
             }
         }
 
-        return b ? res : 0;
+        return res < 0 && factors > 1 ? res / biggest_neg : res > 0 && factors > 0 ? res : 0;
     }
 }
