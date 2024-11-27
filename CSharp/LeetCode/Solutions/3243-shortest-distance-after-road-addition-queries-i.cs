@@ -23,7 +23,6 @@ namespace LeetCode.Solutions
             {
                 dag[queries[i][0]].Add(queries[i][1]);
                 res[i] = BFS(dag, n);
-                // Console.WriteLine(string.Join(" | ", dag.Select(x => string.Join(", ", x))));
             }
 
 
@@ -35,7 +34,7 @@ namespace LeetCode.Solutions
             int[] res = new int[n];
             for (int i = 1; i < res.Length; i++)
                 res[i] = int.MaxValue;
-            var visited = new HashSet<int>();
+            var visited = new bool[n];
             var q = new Queue<(int, List<int>)>();
             q.Enqueue((0, dag[0]));
 
@@ -45,8 +44,9 @@ namespace LeetCode.Solutions
                 for (int i = 0; i < nodes.Count; i++)
                 {
                     res[nodes[i]] = Math.Min(res[nodes[i]], res[index] + 1);
-                    if (visited.Add(nodes[i]) && nodes[i] < n - 1)
+                    if (!visited[nodes[i]] && nodes[i] < n - 1)
                     {
+                        visited[nodes[i]] = true;
                         q.Enqueue((nodes[i], dag[nodes[i]]));
                     }
                 }
