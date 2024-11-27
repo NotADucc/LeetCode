@@ -29,7 +29,7 @@ namespace LeetCode.Solutions
                 var visited = new bool[n];
                 var q = new Queue<int>();
 
-                q.Enqueue(0);
+                q.Enqueue(i == 0 ? 0 : queries[i][0]);
 
                 while (q.Count > 0)
                 {
