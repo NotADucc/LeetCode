@@ -1,4 +1,5 @@
 ﻿using LeetCode.Solutions.Shared;
+using System;
 
 namespace LeetCode.Solutions
 {
@@ -35,19 +36,20 @@ namespace LeetCode.Solutions
             for (int i = 1; i < res.Length; i++)
                 res[i] = int.MaxValue;
             var visited = new bool[n];
-            var q = new Queue<(int, List<int>)>();
-            q.Enqueue((0, dag[0]));
+            var q = new Queue<int>();
+
+            q.Enqueue(0);
 
             while (q.Count > 0)
             {
-                (int index, List<int> nodes) = q.Dequeue();
-                for (int i = 0; i < nodes.Count; i++)
+                int curr = q.Dequeue();
+                foreach (var next in dag[curr])
                 {
-                    res[nodes[i]] = Math.Min(res[nodes[i]], res[index] + 1);
-                    if (!visited[nodes[i]] && nodes[i] < n - 1)
+                    res[next] = Math.Min(res[next], res[curr] + 1);
+                    if (!visited[next] && next < n - 1)
                     {
-                        visited[nodes[i]] = true;
-                        q.Enqueue((nodes[i], dag[nodes[i]]));
+                        visited[next] = true;
+                        q.Enqueue(next);
                     }
                 }
             }
