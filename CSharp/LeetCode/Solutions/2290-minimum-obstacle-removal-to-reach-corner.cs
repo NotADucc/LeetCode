@@ -14,18 +14,15 @@ internal class Solution2290 : IRunProgram
     {
         int n = grid.Length, m = grid[0].Length;
 
-        var res = new int[n * m];
+        var res = new int[n, m];
         for (int i = 0; i < n; i++)
-        {
             for (int j = 0; j < grid[i].Length; j++)
-            {
-                res[i * m + j] = int.MaxValue;
-            }
-        }
+                res[i, j] = int.MaxValue;
+
 
         var q = new LinkedList<(int, int)>();
 
-        res[0] = 0;
+        res[0, 0] = 0;
         q.AddFirst((0, 0));
 
         while (q.Count > 0)
@@ -37,32 +34,21 @@ internal class Solution2290 : IRunProgram
                 int new_i = i + directions[k][0], new_j = j + directions[k][1];
                 if (new_i < 0 || new_i >= n || new_j < 0 || new_j >= grid[i].Length) continue;
 
-                if (res[new_i * m + new_j] > res[i * m + j] + grid[new_i][new_j])
+                if (res[new_i, new_j] > res[i, j] + grid[new_i][new_j])
                 {
-                    res[new_i * m + new_j] = res[i * m + j] + grid[new_i][new_j];
-                    if (res[new_i * m + new_j] == 0)
+                    res[new_i, new_j] = res[i, j] + grid[new_i][new_j];
+                    if (res[new_i, new_j] == 0)
                     {
                         q.AddFirst((new_i, new_j));
                     }
-                    else 
+                    else
                     {
-                        q.AddLast((new_i, new_j)); 
+                        q.AddLast((new_i, new_j));
                     }
                 }
             }
         }
 
-        /*
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < grid[i].Length; j++)
-            {
-                Console.Write($"| {res[i * m + j]} |");
-            }
-            Console.WriteLine();
-        }
-        */
-
-        return res[^1];
+        return res[n - 1, m - 1];
     }
 }
