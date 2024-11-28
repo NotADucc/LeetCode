@@ -23,25 +23,31 @@ internal class Solution2290 : IRunProgram
             }
         }
 
-        var q = new PriorityQueue<(int, int), int>();
-        bool[] visited = new bool[n * m];
+        var q = new LinkedList<(int, int)>();
 
         res[0] = 0;
-        q.Enqueue((0, 0), 0);
+        q.AddFirst((0, 0));
 
         while (q.Count > 0)
         {
-            (int i, int j) = q.Dequeue();
+            (int i, int j) = q.First!.Value;
+            q.RemoveFirst();
             for (int k = 0; k < directions.Length; k++)
             {
                 int new_i = i + directions[k][0], new_j = j + directions[k][1];
                 if (new_i < 0 || new_i >= n || new_j < 0 || new_j >= grid[i].Length) continue;
 
-                res[new_i * m + new_j] = Math.Min(res[new_i * m + new_j], res[i * m + j] + grid[new_i][new_j]);
-                if (!visited[new_i * m + new_j])
+                if (res[new_i * m + new_j] > res[i * m + j] + grid[new_i][new_j])
                 {
-                    visited[new_i * m + new_j] = true;
-                    q.Enqueue((new_i, new_j), res[new_i * m + new_j]);
+                    res[new_i * m + new_j] = res[i * m + j] + grid[new_i][new_j];
+                    if (res[new_i * m + new_j] == 0)
+                    {
+                        q.AddFirst((new_i, new_j));
+                    }
+                    else 
+                    {
+                        q.AddLast((new_i, new_j)); 
+                    }
                 }
             }
         }
