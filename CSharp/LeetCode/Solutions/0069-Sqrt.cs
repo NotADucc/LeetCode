@@ -12,23 +12,20 @@ public class Solution0069 : IRunProgram
 
     public int MySqrt(int x)
     {
-        double left = 0, right = x;
-        while (left < right)
+        int left = 0, right = x;
+        while (left <= right)
         {
-            double mid = (left + right) / 2;
-            if (Math.Floor(mid * mid) < x)
+            int mid = (left + right) >> 1;
+            long pow = (long)mid * mid;
+            if (pow <= x)
             {
-                left = mid;
-            }
-            else if (Math.Floor(mid * mid) > x)
-            {
-                right = mid;
+                left = mid + 1;
             }
             else
             {
-                return (int)Math.Floor(mid);
+                right = mid - 1;
             }
         }
-        return (int)Math.Floor(left);
+        return left - 1;
     }
 }
