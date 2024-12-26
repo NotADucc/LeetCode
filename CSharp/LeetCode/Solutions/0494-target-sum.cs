@@ -12,19 +12,21 @@ internal class Solution0494 : IRunProgram
     }
     public int FindTargetSumWays(int[] nums, int target)
     {
-        return Backtrack(nums, 0, target, 0);
+        return Rec(nums, 0, target, 0);
     }
 
-    private int Backtrack(int[] nums, int current, int target, int index) 
+    private Dictionary<(int, int), int> mem = new Dictionary<(int, int), int>();
+    private int Rec(int[] nums, int curr, int target, int idx)
     {
-        if (nums.Length == index)
+        if (idx >= nums.Length)
         {
-            return current == target ? 1 : 0;
+            return curr == target ? 1 : 0;
         }
         else
         {
-            return Backtrack(nums, current - nums[index], target, index + 1) +
-            Backtrack(nums, current + nums[index], target, index + 1);
+            if (!mem.ContainsKey((curr, idx)))
+                mem[(curr, idx)] = Rec(nums, curr - nums[idx], target, idx + 1) + Rec(nums, curr + nums[idx], target, idx + 1);
+            return mem[(curr, idx)];
         }
     }
 }
