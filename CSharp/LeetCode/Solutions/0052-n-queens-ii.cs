@@ -22,28 +22,29 @@ internal class Solution0052 : IRunProgram
         List<int> col = new List<int>(n);
         List<int> diag1 = new List<int>(n);
         List<int> diag2 = new List<int>(n);
-        int output = 0;
-        Backtrack(ref output, col, diag1, diag2, n, 0, n);
-        return output;
+
+        return Backtrack(col, diag1, diag2, n, 0, n);
     }
 
-    private void Backtrack(ref int output, List<int> col, List<int> diag1, List<int> diag2, int grid_size, int row, int queens_left)
+    private int Backtrack(List<int> col, List<int> diag1, List<int> diag2, int grid_size, int row, int queens_left)
     {
         if (queens_left == 0)
         {
-            output++;
+            return 1;
         }
         else
         {
+            int res = 0;
             for (int c = 0; c < grid_size; c++)
             {
                 if (CanPlace(col, diag1, diag2, row, c))
                 {
                     Place(col, diag1, diag2, row, c);
-                    Backtrack(ref output, col, diag1, diag2, grid_size, row + 1, queens_left - 1);
+                    res += Backtrack(col, diag1, diag2, grid_size, row + 1, queens_left - 1);
                     Remove(col, diag1, diag2, row, c);
                 }
             }
+            return res;
         }
     }
     private bool CanPlace(List<int> col, List<int> diag1, List<int> diag2, int r, int c)
