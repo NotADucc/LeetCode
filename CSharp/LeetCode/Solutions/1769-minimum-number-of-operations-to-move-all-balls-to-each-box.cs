@@ -15,9 +15,12 @@ internal class Solution1769 : IRunProgram
 
         for (int i = 0; i < boxes.Length; i++)
         {
-            for (int j = 0; j < boxes.Length; j++)
+            if (boxes[i] == '1')
             {
-                res[i] += boxes[j] == '1' ? Math.Abs(i - j) : 0;
+                for (int j = 0; j < boxes.Length; j++)
+                {
+                    res[j] += Math.Abs(i - j);
+                }
             }
         }
 
