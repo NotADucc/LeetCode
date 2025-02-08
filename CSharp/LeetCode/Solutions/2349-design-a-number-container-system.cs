@@ -12,9 +12,9 @@ internal class Solution2349 : IRunProgram
     public class NumberContainers
     {
         //key: idx, val: val
-        private Dictionary<int, int> loc = [];
+        private readonly Dictionary<int, int> loc = [];
         //key: val, val: idxs
-        private Dictionary<int, SortedList<int, int>> indices = [];
+        private readonly Dictionary<int, SortedList<int, int>> indices = [];
         public NumberContainers() { }
 
         public void Change(int index, int number)
