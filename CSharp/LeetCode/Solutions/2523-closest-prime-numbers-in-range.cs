@@ -10,7 +10,7 @@ internal class Solution2523 : IRunProgram
     }
     public int[] ClosestPrimes(int left, int right)
     {
-        bool is_prime(int number)
+        static bool is_prime(int number)
         {
             if (number == 1) return false;
             if (number == 2) return true;
@@ -23,27 +23,28 @@ internal class Solution2523 : IRunProgram
             return true;
         }
 
-        var q = new PriorityQueue<int[], int>();
-        var first = -1;
-        while (left <= right)
+        int[] res = [-1, -1];
+        int latest_prime = -1;
+        for (; left <= right; left++)
         {
-            if (is_prime(left))
+            if (!is_prime(left)) 
+                continue;
+
+            if (latest_prime > -1)
             {
-                if (first == -1)
+                if (left - latest_prime <= 2)
+                    return [latest_prime, left];
+
+                if (res[0] == -1 || res[1] - res[0] > left - latest_prime)
                 {
-                    first = left;
+                    res[0] = latest_prime;
+                    res[1] = left;
                 }
-                else
-                {
-                    if (left - first <= 2)
-                        return [first, left];
-                    q.Enqueue([first, left], left - first);
-                    first = left;
-                }
+
             }
-            left++;
+            latest_prime = left;
         }
 
-        return q.Count == 0 ? [-1, -1] : q.Dequeue();
+        return res;
     }
 }
