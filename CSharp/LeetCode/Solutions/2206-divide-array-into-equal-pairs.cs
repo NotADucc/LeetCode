@@ -9,25 +9,18 @@ internal class Solution2206: IRunProgram
 
     }
 
-    public bool DivideArray(int[] nums) 
+    public bool DivideArray(int[] nums)
     {
-        var freq = new Dictionary<int, int>();
+        var freq = new HashSet<int>();
         var n = nums.Length;
 
-        for (int i = 0; i < n;i++)
+        for (int i = 0; i < n; i++)
         {
             int num = nums[i];
-            if (freq.TryGetValue(num, out int val))
-            {
-                if (val == 1)
-                    freq.Remove(num);
-                else
-                    freq[num]--;
-            }            
+            if (freq.Contains(num))
+                freq.Remove(num);
             else
-            {
-                freq.Add(num, 1);
-            }
+                freq.Add(num);
         }
         return freq.Count == 0;
     }
