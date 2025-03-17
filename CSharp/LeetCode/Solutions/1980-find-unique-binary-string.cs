@@ -13,23 +13,18 @@ internal class Solution1980 : IRunProgram
     {
         HashSet<int> set = new HashSet<int>();
         for (int i = 0; i < nums.Length; i++)
-        {
-            int num = Convert.ToInt32(nums[i], 2);
-            set.Add(num);
-        }
+            set.Add(Convert.ToInt32(nums[i], 2));
 
-        int output = 1;
-        for (int i = 0; i < nums.Length * nums.Length; i++)
+        int res = 0;
+        while (true)
         {
-            if (!set.Contains(i))
-            {
-                output = i;
+            if (!set.Contains(res))
                 break;
-            }
+            res++;
         }
 
-        string s = Convert.ToString(output, 2);
+        string s = Convert.ToString(res, 2);
 
-        return new string('0', nums.Length - s.Length) + s;
+        return $"{new string('0', nums.Length - s.Length)}{s}";
     }
 }
