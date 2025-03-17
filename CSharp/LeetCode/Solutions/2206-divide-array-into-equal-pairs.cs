@@ -17,9 +17,7 @@ internal class Solution2206: IRunProgram
         for (int i = 0; i < n; i++)
         {
             int num = nums[i];
-            if (freq.Contains(num))
-                freq.Remove(num);
-            else
+            if (!freq.Remove(num))
                 freq.Add(num);
         }
         return freq.Count == 0;
