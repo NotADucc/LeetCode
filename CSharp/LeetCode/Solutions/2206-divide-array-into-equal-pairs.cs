@@ -1,0 +1,34 @@
+﻿using LeetCode.Solutions.Shared;
+
+namespace LeetCode.Solutions;
+
+internal class Solution2206: IRunProgram
+{
+    public void Run()
+    {
+
+    }
+
+    public bool DivideArray(int[] nums) 
+    {
+        var freq = new Dictionary<int, int>();
+        var n = nums.Length;
+
+        for (int i = 0; i < n;i++)
+        {
+            int num = nums[i];
+            if (freq.TryGetValue(num, out int val))
+            {
+                if (val == 1)
+                    freq.Remove(num);
+                else
+                    freq[num]--;
+            }            
+            else
+            {
+                freq.Add(num, 1);
+            }
+        }
+        return freq.Count == 0;
+    }
+}
