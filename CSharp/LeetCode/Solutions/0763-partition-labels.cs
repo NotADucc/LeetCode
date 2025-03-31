@@ -10,43 +10,27 @@ internal class Solution0763: IRunProgram
     }
     public IList<int> PartitionLabels(string s)
     {
-        //key is letter
-        //value is first seen and last seen
-        var dct = new Dictionary<char, (int, int)>();
+        var res = new List<int>();
+        var freq = new int[26];
+        var set = new HashSet<char>();
+        int n = s.Length, last_idx = -1;
 
-        for (int i = 0; i < s.Length; i++)
+        foreach (char ch in s) freq[ch - 'a']++;
+
+        for (int i = 0; i < n; i++)
         {
-            if (!dct.ContainsKey(s[i]))
+            char ch = s[i];
+            int idx = ch - 'a';
+            freq[idx]--;
+            bool _ = freq[idx] == 0 ? set.Remove(ch) : set.Add(ch);
+
+            if (set.Count == 0)
             {
-                dct.Add(s[i], (i, i));
-            }
-            else
-            {
-                dct[s[i]] = (dct[s[i]].Item1, i);
+                res.Add(i - last_idx);
+                last_idx = i;
             }
         }
 
-        var lst = new List<int>();
-
-        int bound = dct.ElementAt(0).Value.Item2;
-        int offset = 0;
-        for (int i = 1; i < dct.Count; i++)
-        {
-            var current = dct.ElementAt(i);
-            if (current.Value.Item1 < bound)
-            {
-                bound = Math.Max(bound, current.Value.Item2);
-            }
-            else
-            {
-                bound = current.Value.Item2;
-                lst.Add(current.Value.Item1 - offset);
-                offset = current.Value.Item1;
-            }
-        }
-
-        lst.Add(s.Length - offset);
-
-        return lst;
+        return res;
     }
 }
