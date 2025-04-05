@@ -11,14 +11,9 @@ internal class Solution1863 : IRunProgram
     }
 
     public int SubsetXORSum(int[] nums)
-    {
-        int output = 0;
-        Array.Sort(nums);
-        SubsetXORSumHelper(ref output, nums, [], 0);
-        return output;
-    }
+        => SubsetXORSumHelper(0, nums, [], 0);
 
-    private void SubsetXORSumHelper(ref int output, int[] nums, List<int> current, int index)
+    private int SubsetXORSumHelper(int output, int[] nums, List<int> current, int index)
     {
         int xor = 0;
         foreach (var item in current)
@@ -30,8 +25,9 @@ internal class Solution1863 : IRunProgram
         for (int i = index; i < nums.Length; i++)
         {
             current.Add(nums[i]);
-            SubsetXORSumHelper(ref output, nums, current, i + 1);
+            output = SubsetXORSumHelper(output, nums, current, i + 1);
             current.RemoveAt(current.LastIndexOf(nums[i]));
         }
+        return output;
     }
 }
