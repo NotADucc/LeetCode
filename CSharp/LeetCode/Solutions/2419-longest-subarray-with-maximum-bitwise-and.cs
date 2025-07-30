@@ -16,18 +16,14 @@ internal class Solution2419 : IRunProgram
         int output = 0, current = 0, AND = nums[0];
         for (int i = 0; i < nums.Length; i++)
         {
-            current = (nums[i] & AND) == AND ? current + 1 : 0;
-
-            if (nums[i] > AND)
+            if (AND < nums[i])
             {
                 AND = nums[i];
-                output = 1;
-                current = 1;
+                current = 0;
+                output = 0;
             }
-            else
-            {
-                output = Math.Max(output, current);
-            }
+            current = nums[i] == AND ? current + 1 : 0;
+            output = Math.Max(output, current);
         }
         return output;
     }
