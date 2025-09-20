@@ -11,9 +11,10 @@ internal class Solution0101 : IRunProgram
     }
     public bool IsSymmetric(TreeNode root)
     {
-        return Helper(root.left, root.right);
+        return Dfs(root.left, root.right);
     }
-    private bool Helper(TreeNode leftNode, TreeNode rightNode)
+
+    private bool Dfs(TreeNode leftNode, TreeNode rightNode)
     {
         if (leftNode is null || rightNode is null)
         {
@@ -25,6 +26,7 @@ internal class Solution0101 : IRunProgram
             return false;
         }
 
-        return Helper(leftNode.left, rightNode.right) && Helper(leftNode.right, rightNode.left);
+        return Dfs(leftNode.left, rightNode.right)
+            && Dfs(leftNode.right, rightNode.left);
     }
 }
