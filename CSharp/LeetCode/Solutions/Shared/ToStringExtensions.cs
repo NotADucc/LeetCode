@@ -1,83 +1,80 @@
 ﻿using System.Collections;
+using System.Linq;
 
 namespace LeetCode.Solutions.Shared;
 public static class ToStringExtensions
 {
-    public static void Print<T>(this T input)
+    public static void Print<T>(this T input, string delimiter = ", ")
     {
         if (input is IEnumerable enumerable && input is not string)
         {
-            if (input is null)
+            if (input is null || !enumerable.Cast<object>().Any())
             {
                 return;
             }
 
-            if (!enumerable.Cast<object>().Any())
-            {
-                return;
-            }
-
-            Console.WriteLine(string.Join(", ", enumerable.Cast<object>()));
+            Console.WriteLine(string.Join(delimiter, enumerable.Cast<object>()));
         }
-        else 
-        { 
+        else
+        {
             Console.WriteLine(input);
         }
     }
 
-    public static void Print<T>(this T[] input)
+    public static void Print<T>(this T[] input, string delimiter = ", ")
     {
-        if (input is null)
+        if (input is null || input.Length == 0)
         {
             return;
         }
 
-        if (input.Length == 0)
-        {
-            return;
-        }
-
-        for (int i = 0; i < input.Length - 1; i++)
-        {
-            Console.Write($"{input[i]}, ");
-        }
-
-        Console.WriteLine(input[^1]);
+        Console.WriteLine(string.Join(delimiter, input));
     }
 
-    public static void Print<T>(this T[][] input)
+    public static void Print<T>(this T[][] input, string delimiter = ", ")
     {
-        if (input is null)
-        {
-            return;
-        }
-
-        if (input.Length == 0)
+        if (input is null || input.Length == 0)
         {
             return;
         }
 
         for (int i = 0; i < input.Length; i++)
         {
-            input[i].Print();
+            input[i].Print(delimiter);
         }
     }
 
-    public static void PrintNested<T>(this IEnumerable<IEnumerable<T>> input)
+    public static void Print<T>(this T[,] input, string delimiter = ", ")
     {
-        if (input is null)
+        if (input is null || input.Length == 0)
         {
             return;
         }
 
-        if (input.Count() == 0)
+        int rows = input.GetLength(0);
+        int cols = input.GetLength(1);
+
+        for (int i = 0; i < rows; i++)
+        {
+            T[] row = new T[cols];
+            for (int j = 0; j < cols; j++)
+            {
+                row[j] = input[i, j];
+            }
+            row.Print(delimiter);
+        }
+    }
+
+    public static void PrintNested<T>(this IEnumerable<IEnumerable<T>> input, string delimiter = ", ")
+    {
+        if (input is null || !input.Any())
         {
             return;
         }
 
-        foreach (var item in input) 
-        { 
-            item.Print();
+        foreach (var item in input)
+        {
+            item.Print(delimiter);
         }
         Console.WriteLine();
     }
