@@ -16,22 +16,20 @@ internal class Solution0153 : IRunProgram
         if (nums[0] <= nums[^1])
             return nums[0];
 
-        int res = int.MaxValue;
         int l = 0, r = nums.Length - 1;
-        while (l <= r)
+        while (l < r)
         {
             int middle = (l + r) >> 1;
-            res = Math.Min(res, nums[middle]);
-            if (nums[middle] >= nums[^1])
+            if (nums[middle] >= nums[r])
             {
                 l = middle + 1;
             }
             else
             {
-                r = middle - 1;
+                r = middle;
             }
         }
 
-        return res;
+        return nums[l];
     }
 }
