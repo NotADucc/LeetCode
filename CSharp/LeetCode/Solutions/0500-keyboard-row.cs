@@ -33,8 +33,6 @@ internal class Solution0500 : IRunProgram
     public string[] FindWordsSimplified(string[] words)
     {
         int[] keeb = [1, 2, 2, 1, 0, 1, 1, 1, 0, 1, 1, 1, 2, 2, 0, 0, 0, 0, 1, 0, 0, 2, 0, 2, 0, 2];
-        List<string> ans = [];
-
         return [.. words.Where(x =>
         {
             string cleaned = x.ToLower();
