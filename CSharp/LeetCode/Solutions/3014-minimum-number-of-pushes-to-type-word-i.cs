@@ -10,10 +10,10 @@ internal class Solution3014 : IRunProgram
     public int MinimumPushes(string word)
     {
         int ans = 0, n = word.Length;
-        for (int i = 0; i < n; i++)
-        {
-            ans += (i / 8 + 1);
-        }
-        return ans;
+        int v = n / 8, r = n % 8;
+        for (int i = 1; i <= v; i++)
+            ans += i * 8;
+
+        return ans + r * ++v;
     }
 }
