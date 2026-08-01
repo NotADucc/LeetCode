@@ -15,4 +15,7 @@ internal class Solution1929 : IRunProgram
         Array.Copy(nums, 0, a, nums.Length, nums.Length);
         return a;
     }
+
+    public int[] GetConcatenationList(int[] nums)
+        => [.. nums, .. nums];
 }
