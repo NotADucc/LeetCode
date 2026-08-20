@@ -11,18 +11,21 @@ internal class Solution3069 : IRunProgram
 
     public int[] ResultArray(int[] nums)
     {
-        List<int>[] ans = [
+        List<int>[] arrs = [
             [nums[0]], 
             [nums[1]]
         ];
 
         for (int i = 2; i < nums.Length; i++)
         {
-            int idx = ans[0][^1] > ans[1][^1] ? 0 : 1;
-            ans[idx].Add(nums[i]);
+            int idx = arrs[0][^1] > arrs[1][^1] ? 0 : 1;
+            arrs[idx].Add(nums[i]);
         }
-        return ans[0]
-            .Union(ans[1])
-            .ToArray();
+
+        var ans = new int[nums.Length];
+        arrs[0].CopyTo(ans, 0);
+        arrs[1].CopyTo(ans, arrs[0].Count);
+
+        return ans;
     }
 }
